@@ -13,7 +13,6 @@
 * kudos: serves actual purpose, looks good, mobile-friendly
 
 # Aktuelle To-Do Liste
-### wie von Dozent wiederholt erwähnt
 1. erstes Konzept erstellen
 	1. User-Stories
 		1. -> Features
