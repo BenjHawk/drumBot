@@ -1,8 +1,8 @@
-#drumBot
-###Konzept
+# drumBot
+### Konzept
 
-#Anforderungen
-###alle Anforderungen (aus Foliensatz)
+# Anforderungen
+### alle Anforderungen (aus Foliensatz)
 * must have user stories and wireframes/sketches
 * must use advanced toolkit (eg. angular, vue, react)
 * must have frontend and backend
