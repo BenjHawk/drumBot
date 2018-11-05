@@ -12,8 +12,8 @@
 * must be deployed via docker containers or heroku or as VM
 * kudos: serves actual purpose, looks good, mobile-friendly
 
-#Aktuelle To-Do Liste
-###wie von Dozent wiederholt erwähnt
+# Aktuelle To-Do Liste
+### wie von Dozent wiederholt erwähnt
 1. erstes Konzept erstellen
 	1. User-Stories
 		1. -> Features
@@ -25,5 +25,5 @@
 	1. Datenbank
 		1. wie wird die eingebunden?
 
-#über dieses Dokument
+# über dieses Dokument
 Styleguide für Markdown ist in diesem [Link](https://guides.github.com/features/mastering-markdown/) zu finden.
