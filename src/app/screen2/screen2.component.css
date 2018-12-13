@@ -1,0 +1,11 @@
+div {
+    position: absolute;
+    top: 15px;
+    left: 275px;
+    height: 100px;
+    width: 219px;
+    border: 2px solid rgb(15, 22, 3);
+    color: greenyellow;
+    border-radius: 6px;
+    box-shadow: 1px 1px 1px #000000;
+}

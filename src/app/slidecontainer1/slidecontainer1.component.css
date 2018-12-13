@@ -1,0 +1,30 @@
+div {
+    position: absolute;
+    top: 270px;
+    left: 30px;
+    transform: rotate(270deg);
+}
+
+#slider1 {
+    top: 0px;
+}
+
+#slider2 {
+    top: 40px;
+}
+
+#slider3 {
+    top: 80px;
+}
+
+#slider4 {
+    top: 120px;
+}
+
+#slider5 {
+    top: 160px;
+}
+
+#slider6 {
+    top: 200px;
+}

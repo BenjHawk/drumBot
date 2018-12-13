@@ -1,0 +1,29 @@
+div {
+    position: absolute;
+    left:340px;
+}
+
+.logIn {
+    width: 80px;
+    margin-right: 5px;
+    border-radius: 6px;
+    background-color:rgb(206, 202, 202);
+    box-shadow: 1px 1px 1px #000000;
+    border: 2px solid rgb(31, 49, 3);
+}
+
+::placeholder {
+    color: rgb(92, 89, 89);
+}
+
+.submit {
+    box-shadow: 1px 1px 1px #000000;
+    border: 2px solid rgb(31, 49, 3);
+    border-radius: 6px;
+    width: 80px;
+    background-color: rgb(248, 94, 34);
+}
+
+.submit:hover {
+    background-color: rgb(202, 74, 23);
+}
