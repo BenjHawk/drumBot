@@ -1,30 +1,17 @@
-div {
-    position: absolute;
-    top: 270px;
-    left: 30px;
-    transform: rotate(270deg);
+.slidecontainer1 {    
+    height: 105px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;  
 }
 
-#slider1 {
-    top: 0px;
+input[type=range] {
+    transform: rotate(270deg);    
+    height: 7px;
+    width: 85px;
+    margin-bottom: -20px;
+    margin-top: 50px;
+    margin-left: -23px;
+    margin-right: -23px;        
 }
 
-#slider2 {
-    top: 40px;
-}
-
-#slider3 {
-    top: 80px;
-}
-
-#slider4 {
-    top: 120px;
-}
-
-#slider5 {
-    top: 160px;
-}
-
-#slider6 {
-    top: 200px;
-}

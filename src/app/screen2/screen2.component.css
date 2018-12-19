@@ -1,9 +1,7 @@
 div {
-    position: absolute;
-    top: 15px;
-    left: 275px;
     height: 100px;
-    width: 219px;
+    width: 225px;
+    margin-bottom: 5px;
     border: 2px solid rgb(15, 22, 3);
     color: greenyellow;
     border-radius: 6px;

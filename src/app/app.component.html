@@ -1,11 +1,29 @@
-<app-registration></app-registration>
-  <div class="container">
-    <app-screen1></app-screen1>
-    <app-screen2></app-screen2>
-    <app-controls1></app-controls1>
-    <app-slidecontainer1></app-slidecontainer1>
-    <app-controls2></app-controls2>
-    <app-controls3></app-controls3>
-    <app-effects></app-effects>
-    <app-slidecontainer2></app-slidecontainer2>
+<div class="register">
+  <app-registration></app-registration>
+</div>
+  
+
+<div class="container">
+  <div class="flex">
+    <div class="left">
+      <app-screen1></app-screen1>
+      <app-controls1></app-controls1>
+      <app-slidecontainer1></app-slidecontainer1>
+      <app-controls2></app-controls2>
+    </div>
+      
+    <div class="middleLeft">
+      <app-screen2></app-screen2>
+      <app-controls3></app-controls3>
+    </div>
+
+    <div class="middleRight">
+      <app-effects></app-effects>
+    </div>
+      
+    <div class="right">
+      <app-slidecontainer2></app-slidecontainer2>
+    </div>
+      
   </div>
+</div>
