@@ -1,67 +1,7 @@
-<div class="controls3">
-  <div class="row">
-      <button class="button2" id="11"></button>
-      <button class="button2" id="12"></button>
-      <button class="button2" id="13"></button>
-      <button class="button2" id="14"></button>
-      <button class="button2" id="15"></button>
-      <button class="button2" id="16"></button>
-      <button class="button2" id="17"></button>
-      <button class="button2" id="18"></button>
-  </div>
-
-  <div class="row">
-      <button class="button2" id="21"></button>
-      <button class="button2" id="22"></button>
-      <button class="button2" id="23"></button>
-      <button class="button2" id="24"></button>
-      <button class="button2" id="25"></button>
-      <button class="button2" id="26"></button>
-      <button class="button2" id="27"></button>
-      <button class="button2" id="28"></button>
-  </div>
-
-  <div class="row">
-      <button class="button2" id="31"></button>
-      <button class="button2" id="32"></button>
-      <button class="button2" id="33"></button>
-      <button class="button2" id="34"></button>
-      <button class="button2" id="35"></button>
-      <button class="button2" id="36"></button>
-      <button class="button2" id="37"></button>
-      <button class="button2" id="38"></button>
-  </div>
-
-  <div class="row">
-      <button class="button2" id="41"></button>
-      <button class="button2" id="42"></button>
-      <button class="button2" id="43"></button>
-      <button class="button2" id="44"></button>
-      <button class="button2" id="45"></button>
-      <button class="button2" id="46"></button>
-      <button class="button2" id="47"></button>
-      <button class="button2" id="48"></button>
-  </div>
-
-  <div class="row">
-      <button class="button2" id="51"></button>
-      <button class="button2" id="52"></button>
-      <button class="button2" id="53"></button>
-      <button class="button2" id="54"></button>
-      <button class="button2" id="55"></button>
-      <button class="button2" id="56"></button>
-      <button class="button2" id="57"></button>
-      <button class="button2" id="58"></button>
-  </div>
-
-  <div class="row">
-      <button class="button2" id="61"></button>
-      <button class="button2" id="62"></button>
-      <button class="button2" id="63"></button>
-      <button class="button2" id="64"></button>
-      <button class="button2" id="65"></button>
-      <button class="button2" id="66"></button>
-      <button class="button2" id="67"></button>
-      <button class="button2" id="68"></button>
-  </div>
+<div class="controls3" *ngFor="let rowId of rowNr" id="{{ rowNr }}">
+  <span class="row" *ngFor="let btnId of btnNr">
+      <button class="button2" id="{{ rowId }}{{ btnId }}"></button>    
+  </span>
 </div>
+
+      

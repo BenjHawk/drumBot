@@ -1,6 +1,5 @@
-<div class="controls2">
-  <button class="button1" id="save">SAVE</button>
-  <button class="button1" id="cut">CUT</button>
-  <button class="button1" id="play">PLAY</button>
-</div>
+<span class="controls2" *ngFor="let btnName of name">
+    <button class="button1" id="{{ btnName }}">{{ btnName | uppercase }}</button>  
+</span>
+
 

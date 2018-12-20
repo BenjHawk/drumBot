@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Controls2Component implements OnInit {
 
+  name = ['save', 'cut', 'play'];
+  btnName=this.name[0];
+
   constructor() { }
 
   ngOnInit() {

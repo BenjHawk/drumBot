@@ -1,8 +1,4 @@
-<div class="slidecontainer2">
-  <input type="range" id="slider7" min=0 max=10>
-  <input type="range" id="slider8" min=0 max=10>
-  <input type="range" id="slider9" min=0 max=10>
-  <input type="range" id="slider10" min=0 max=10>
-  <input type="range" id="slider11" min=0 max=10>
-  <input type="range" id="slider12" min=0 max=10>
+<div class="slidecontainer2" *ngFor="let sliderName of name">
+  <div>{{ sliderName | uppercase }}<input type="range" id="{{ sliderName }}" min=0 max=10></div>
 </div>
+ 

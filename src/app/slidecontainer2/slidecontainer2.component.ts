@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Slidecontainer2Component implements OnInit {
 
+  name = ['bass', 'hihat', 'snare', 'cymbal', 'tom1', 'tom2'];
+  sliderName = this.name[0];
+
   constructor() { }
 
   ngOnInit() {

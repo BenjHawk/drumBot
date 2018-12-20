@@ -7,7 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Controls1Component implements OnInit {
 
-  constructor() { }
+  row = ['1', '2'];
+  rowNr = this.row[0];
+  name = ['tempo', 'volume', 'sounds'];
+  btnName = this.name[0];
+  //name2 = ['meter', 'mode', 'effects'];
+  
+  
+  
+
+  constructor() {}
+   
 
   ngOnInit() {
   }

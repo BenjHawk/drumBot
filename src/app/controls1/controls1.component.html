@@ -1,14 +1,5 @@
-<div class="controls1">
-    <div>
-        <button class="button1" id="tempo">TEMPO</button>
-        <button class="button1" id="volume">VOLUME</button>
-        <button class="button1" id="sounds">SOUNDS</button>
-    </div>
-  
-    <div>
-        <button class="button1" id="meter">METER</button>
-        <button class="button1" id="mode">MODE</button>
-        <button class="button1" id="effects">EFFECTS</button>
-    </div>
-  </div>
-  
+<div class="controls1" *ngFor="let rowNr of row">
+    <span *ngFor="let btnName of name">
+        <button class="button1" id="{{ btnName }}">{{ btnName | uppercase }}</button>
+    </span>
+</div>
