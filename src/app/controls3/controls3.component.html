@@ -1,6 +1,7 @@
 <div class="controls3" *ngFor="let rowId of rowNr" id="{{ rowNr }}">
   <span class="row" *ngFor="let btnId of btnNr">
-      <button class="button2" id="{{ rowId }}{{ btnId }}"></button>    
+      <button class="button2" id="{{ rowId }}{{ btnId }}"
+      (click)="clickedBtn(rowId, btnId)"></button>    
   </span>
 </div>
 
