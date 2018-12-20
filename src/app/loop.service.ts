@@ -11,7 +11,7 @@ export class LoopService {
   private instrumentTimes: Array<Array<boolean>>;
   private instruments: Array<HTMLAudioElement>;
   private audioFilePaths: Array<string> = ["timpani.mp3",
-  "bark.mp3", "gobble.mp3","strings1.mp3","strings2.mp3","strings3.mp3"];
+  "bark.mp3", "gobble.mp3","strings3.mp3","strings2.mp3","strings1.mp3"];
   private audioDir: string = "assets/sound/";
 
   private isPlaying: boolean = false;

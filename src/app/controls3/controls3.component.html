@@ -1,7 +1,14 @@
 <div class="controls3" *ngFor="let rowId of rowNr" id="{{ rowNr }}">
   <span class="row" *ngFor="let btnId of btnNr">
-      <button class="button2" id="{{ rowId }}{{ btnId }}"
+    <!--
+      <button class="button2"
+      id="{{ rowId }}{{ btnId }}"
       (click)="clickedBtn(rowId, btnId)"></button>    
+    -->
+        <button [class.button2]="!this.selectedBtn(rowId, btnId)"
+        [class.button2Selected]="this.selectedBtn(rowId, btnId)"
+        id="{{ rowId }}{{ btnId }}"
+        (click)="clickedBtn(rowId, btnId)"></button>    
   </span>
 </div>
 
