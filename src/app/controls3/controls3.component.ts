@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BuiltinMethod } from '@angular/compiler';
+//import { BuiltinMethod } from '@angular/compiler';
+import { LoopService } from "../loop.service";
 
 @Component({
   selector: 'app-controls3',
@@ -13,9 +14,19 @@ export class Controls3Component implements OnInit {
   rowId = this.rowNr[0];
   btnId = this.btnNr[0];
   
-  constructor() { }
+  private loopSvc: LoopService;
 
-  ngOnInit() {
+  constructor(loopSvc: LoopService) { 
+    this.loopSvc = loopSvc;
   }
+  
+  private clickedBtn(rowId: number, btnId: number):void{
+    this.loopSvc.setInstrumentTime(rowId - 1, btnId - 1);
+  }
+  
+  ngOnInit() {
+    this.loopSvc.setDimensions(this.rowNr.length,this.btnNr.length);
+  }
+
 
 }
