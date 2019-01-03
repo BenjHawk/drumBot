@@ -1,0 +1,9 @@
+div {
+    height: 100px;
+    width: 240px;
+    margin-bottom: 5px;
+    border: 2px solid rgb(15, 22, 3);
+    color: greenyellow;
+    border-radius: 6px;
+    box-shadow: 1px 1px 1px #000000;
+}
