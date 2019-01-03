@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../data.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-screen1',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Screen1Component implements OnInit {
 
-  constructor() { }
+  user$: Object; 
+
+  constructor(private data : DataService) { }
 
   ngOnInit() {
+    this.data.getUser("2").subscribe(
+      data => this.user$ = data
+    )
   }
 
 }

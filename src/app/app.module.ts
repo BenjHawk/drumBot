@@ -12,6 +12,8 @@ import { Screen2Component } from './screen2/screen2.component';
 import { Slidecontainer1Component } from './slidecontainer1/slidecontainer1.component';
 import { Slidecontainer2Component } from './slidecontainer2/slidecontainer2.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +28,8 @@ import { Slidecontainer2Component } from './slidecontainer2/slidecontainer2.comp
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -10,6 +10,6 @@ export class Screen2Component implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
-
 }
