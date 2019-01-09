@@ -19,7 +19,7 @@ export class Controls2Component implements OnInit {
 
   ngOnInit() {
   }
-
+/*
   private clickedBtn(btnName: String): void {
     if(btnName === this.name[0]){
       // dirty testing-method
@@ -35,4 +35,5 @@ export class Controls2Component implements OnInit {
     if(btnName === this.name[2])
       this.loopSvc.play();
   }
+*/
 }
