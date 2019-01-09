@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-screen1',
@@ -6,6 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./screen1.component.css']
 })
 export class Screen1Component implements OnInit {
+
+  @Input() selectedTempo: number;
+  @Input() selectedVolume: number;
+  @Input() selectedMeter: String;
+  @Input() selectedEffects: String;
+  @Input() selectedMode: String;
 
   constructor() { }
 

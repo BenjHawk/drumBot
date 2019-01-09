@@ -8,8 +8,8 @@ import { LoopService } from "../loop.service";
 })
 export class Controls2Component implements OnInit {
 
-  name = ['save', 'cut', 'play'];
-  btnName=this.name[0];
+  name: String[] = ['save', 'load', 'delete'];
+  btnName: String =this.name[0];
 
   private loopSvc: LoopService;
 

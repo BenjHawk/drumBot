@@ -1,12 +1,24 @@
+
 <div class="register">
   <app-registration></app-registration>
 </div>
   
-<div class="container">
-  <div class="flex">
+<div class="container" fxLayout="row" fxLayout.xs="column">
+  
     <div class="left">
-      <app-screen1></app-screen1>
-      <app-controls1></app-controls1>
+      <app-screen1 
+      [selectedTempo]="curTempo" [selectedVolume]="curVolume" 
+      [selectedMeter]="curMeter" [selectedEffects]="curEffects"
+      [selectedMode]="curMode">
+      </app-screen1> 
+
+      <app-controls1 
+      [tempo]="curTempo" (tempoChanged)="onTempoChange($event)"
+      [volume]="curVolume" (volumeChanged)="onVolumeChange($event)"
+      [meter]="curMeter" (meterChanged)="onMeterChange($event)"
+      [effects]="curEffects" (effectsChanged)="onEffectsChange($event)"
+      [mode]="curMode" (modeChanged)="onModeChange($event)"></app-controls1>
+      
       <app-slidecontainer1></app-slidecontainer1>
       <app-controls2></app-controls2>
     </div>
@@ -18,7 +30,6 @@
       
     <div class="right">
       <app-slidecontainer2></app-slidecontainer2>
-    </div>
-      
-  </div>
+    </div>      
+  
 </div>

@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -11,6 +13,8 @@ import { Screen2Component } from './screen2/screen2.component';
 import { Slidecontainer1Component } from './slidecontainer1/slidecontainer1.component';
 import { Slidecontainer2Component } from './slidecontainer2/slidecontainer2.component';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,10 +25,12 @@ import { Slidecontainer2Component } from './slidecontainer2/slidecontainer2.comp
     Screen1Component,
     Screen2Component,
     Slidecontainer1Component,
-    Slidecontainer2Component
+    Slidecontainer2Component,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FlexLayoutModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
