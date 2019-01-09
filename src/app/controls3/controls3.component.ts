@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-//import { BuiltinMethod } from '@angular/compiler';
 import { LoopService } from "../loop.service";
 
 @Component({
@@ -14,14 +13,12 @@ export class Controls3Component implements OnInit {
   rowId: number = this.rowNr[0];
   colId: number = this.colNr[0];
 
-  private selectedBtns: Array<Array<boolean>> = null;
-  
   private loopSvc: LoopService;
 
   constructor(loopSvc: LoopService) { 
     this.loopSvc = loopSvc;
   }
-  
+  /*
   private clickedBtn(rowId: number, colId: number): void{
     this.loopSvc.setInstrumentTime(rowId - 1, colId - 1);
     this.selectedBtns[rowId - 1][colId - 1] = !this.selectedBtns[rowId - 1][colId - 1];
@@ -47,7 +44,21 @@ export class Controls3Component implements OnInit {
   ngOnInit() {
     this.loopSvc.setDimensions(this.rowNr.length,this.colNr.length);
     this.initSelectedBtns();
+  private clickedBtn(rowId: number, colId: number): void{
+    this.loopSvc.setInstrumentTime(rowId - 1, colId - 1);
+  }
+
+  private selectedBtn(rowId:number, colId: number): boolean{
+      return this.loopSvc.getInstrumentTime(rowId - 1, colId - 1);
+  }
+  
+  ngOnInit() {
+    this.loopSvc.setDimensions(this.rowNr.length,this.colNr.length);
     console.log("initialized selectedBtns");
+  }*/
+
+  ngOnInit() {
+    
   }
 
 
