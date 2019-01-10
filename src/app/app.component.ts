@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoopService } from './loop.service';
 
 @Component({
   selector: 'app-root',
@@ -13,10 +14,16 @@ export class AppComponent {
   curEffects: String = 'none';
   curMode: String = 'standard';
   
+  private loopSvc: LoopService;
+
+  constructor(loopSvc: LoopService) { 
+    this.loopSvc = loopSvc;
+  }
 
   onTempoChange(tempo: number) {
     console.log("New tempo:", tempo);
     this.curTempo = tempo;
+    this.loopSvc.setTempo(tempo);
   }
 
   onVolumeChange(volume: number) {
@@ -39,5 +46,6 @@ export class AppComponent {
     this.curMode = mode;
   }
 
+  
 }
 

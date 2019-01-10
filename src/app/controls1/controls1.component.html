@@ -12,8 +12,8 @@
         </select>
 
         <button class="button1" id="effects" (click)="chooseEffects()" *ngIf="!effectsVisible">EFFECTS</button>
-        <select *ngIf="effectsVisible" [(ngModel)]="effects" name="effects" (change)="hideEffects()" class="select">
-            <option *ngFor="let effects1 of effectsScale()"  [value]="effects1.value">{{ effects1.title }}</option>
+        <select *ngIf="effectsVisible" [(ngModel)]="effects" name="effects" (click)="hideEffects()" class="select">
+            <option *ngFor="let effects1 of effectsScale()"  [value]="effects1.value" disabled>{{ effects1.title }}</option>
         </select>
     
         <!--<span *ngFor="let btnName of name">
@@ -24,17 +24,16 @@
     <div>
 
         <button class="button1" id="meter" (click)="chooseMeter()" *ngIf="!meterVisible">METER</button>
-        <select *ngIf="meterVisible" [(ngModel)]="meter" name="meter" (change)="hideMeter()" class="select">
-            <option *ngFor="let meter1 of meterScale()"  [value]="meter1.value">{{ meter1.title }}</option>
+        <select *ngIf="meterVisible" [(ngModel)]="meter" name="meter" (click)="hideMeter()" class="select">
+            <option *ngFor="let meter1 of meterScale()"  [value]="meter1.value" disabled>{{ meter1.title }}</option>
         </select>
 
         <button class="button1" id="mode" (click)="chooseMode()" *ngIf="!modeVisible">MODE</button>
-        <select *ngIf="modeVisible" [(ngModel)]="mode" name="mode" (change)="hideMode()" class="select">
-            <option *ngFor="let mode1 of modeScale()"  [value]="mode1.value">{{ mode1.title }}</option>
+        <select *ngIf="modeVisible" [(ngModel)]="mode" name="mode" (click)="hideMode()" class="select">
+            <option *ngFor="let mode1 of modeScale()"  [value]="mode1.value" disabled>{{ mode1.title }}</option>
         </select>
 
-        <span *ngFor="let btnName2 of name2">
-            <button class="button1" id="{{ btnName2 }}">{{ btnName2 | uppercase }}</button>
-        </span>
+        <button class="button1" id="play" (click)="play()">{{ playTitle }}</button>
+        
     </div>
 </div>

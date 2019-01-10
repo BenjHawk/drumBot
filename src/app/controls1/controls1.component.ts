@@ -1,4 +1,7 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
+import { element } from '@angular/core/src/render3';
+import { LoopService } from "../loop.service";
+
 //import { temporaryAllocator } from '@angular/compiler/src/render3/view/util';
 
 
@@ -10,9 +13,7 @@ import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 
 export class Controls1Component implements OnInit {
 
-  name2: String[] = ['play'];
-  btnName2: String = this.name2[0];
-
+  playTitle: String = 'PLAY';
   minTempo: number = 40;
   maxTempo: number = 208;
   tempoVisible: boolean = false;
@@ -40,7 +41,12 @@ export class Controls1Component implements OnInit {
   @Output() modeChanged = new EventEmitter<String>();
     
 
-  constructor() {}
+  private loopSvc: LoopService;
+
+  constructor(loopSvc: LoopService) { 
+    this.loopSvc = loopSvc;
+  }
+  
 
   ngOnInit() {
   }
@@ -117,6 +123,16 @@ export class Controls1Component implements OnInit {
     this.modeVisible = false;
     this.modeChanged.emit(this.mode);
   }
+
+  play() {
+    this.loopSvc.play();
+    if (this.loopSvc.isCurrentlyPlaying()) {
+      this.playTitle = 'STOP';
+    } else {
+      this.playTitle = 'PLAY';
+    }
+  }
+
 
 }
 
