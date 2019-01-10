@@ -1,9 +1,14 @@
 import { Injectable } from '@angular/core';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class LoopService {
+
+  public onInstrumentPlay: any = null;
+  public onStop: any = null;
+  private tempo: number = 40;
 
   private instrumentCount: number = 0;
   private timeCount: number = 0;
@@ -43,16 +48,27 @@ export class LoopService {
     this.clearLoop();
     // delegate interval to browser-window
     this.intervalID = window.setInterval(() => {
+      let minInstrument = 6;
       for(let i = 0; i < this.instrumentCount; i++){
         if(this.instrumentTimes[i][this.time]){
           console.log("playing instrument #" + i + " time" + (this.time));
           this.instruments[i].currentTime = 0;
           this.instruments[i].play();
+          if (i < minInstrument){
+            minInstrument = i;
+          }
         }
+      }
+      if (this.onInstrumentPlay){
+        this.onInstrumentPlay(this.time, minInstrument);
       }
       this.time++;
       this.time = this.time % this.timeCount;
-    }, 1000);
+    }, 60/this.tempo*1000);
+  }
+
+  public setTempo(tempo: number){
+    this.tempo = tempo;
   }
 
   public setDimensions(rowCount: number, colCount: number): void{
@@ -80,12 +96,19 @@ export class LoopService {
       }
       // reset loop-time
       this.time = 0;
+      if(this.onStop){
+        this.onStop();
+      }
     }
     else{
       console.log("starting loop");
       this.isPlaying = true;
       this.playInstruments();
     }
+  }
+
+  public isCurrentlyPlaying(){
+    return this.isPlaying;
   }
 
   constructor() { }

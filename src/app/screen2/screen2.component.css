@@ -1,9 +1,59 @@
-div {
+.box {
     height: 100px;
     width: 225px;
     margin-bottom: 5px;
-    border: 2px solid rgb(15, 22, 3);
-    color: greenyellow;
+    border: 1px solid rgb(15, 22, 3);
     border-radius: 6px;
     box-shadow: 1px 1px 1px #000000;
 }
+
+.button3 {
+    background-color: greenyellow;
+    box-shadow: 1px 1px 1px #000000;
+    border: 2px solid rgb(31, 49, 3);
+    border-radius: 2px;
+    width: 24px;
+    height: 15px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    opacity: 0.07;
+}
+    
+.visualizer {
+    margin-top: 20px;
+}
+
+.button3.highlited {
+    opacity: 1.0;
+}
+/*javascript timer (set interval - atkariba no tempo, ik pec cik msek atkartojas, izpilda funkciju vienu soli uz priekshu) && animation*/
+
+.row {
+    margin-left: 15px;
+    margin-top: -5px;
+}
+
+#row1 .button3 {
+    background-color: red;
+}
+
+#row2 .button3 {
+    background-color: rgb(236, 98, 5);
+}
+#row3 .button3 {
+    background-color: rgb(247, 190, 3);
+}
+
+#row4 .button3 {
+    background-color: rgb(176, 228, 5);
+}
+
+#row5 .button3 {
+    background-color: rgb(89, 233, 5);
+}
+
+#row6 .button3 {
+    background-color: rgb(5, 134, 12);
+}
+
+

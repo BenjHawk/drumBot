@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 //import { BuiltinMethod } from '@angular/compiler';
 import { LoopService } from "../loop.service";
 
@@ -27,6 +27,7 @@ export class Controls3Component implements OnInit {
     this.selectedBtns[rowId - 1][colId - 1] = !this.selectedBtns[rowId - 1][colId - 1];
   }
 
+
   private initSelectedBtns(): void {
     this.selectedBtns = new Array<Array<boolean>>(this.rowNr.length);
     for (let i = 0; i < this.rowNr.length; i++){
@@ -37,7 +38,7 @@ export class Controls3Component implements OnInit {
     }
     
     private selectedBtn(rowId:number, colId: number): boolean{
-      console.log("check selectedBtns");
+      //console.log("check selectedBtns");
     if(this.selectedBtns === null)
       return false;
     else

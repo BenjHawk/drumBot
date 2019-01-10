@@ -1,1 +1,11 @@
-<div>Animation here</div>
+<div class="box">
+    <div class="visualizer">
+        <div class="row" *ngFor="let rowId of rowNr" id="row{{ rowId }}">
+            <span class="col" *ngFor="let colId of colNr" id="col{{ colId }}">
+                <button class="button3" id="{{ rowId }}{{ colId }}"
+                [class.highlited]="this.isHighlited(rowId, colId)"></button>    
+            </span>
+        </div>
+    </div>    
+</div>
+
