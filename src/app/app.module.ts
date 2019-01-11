@@ -14,6 +14,7 @@ import { Slidecontainer1Component } from './slidecontainer1/slidecontainer1.comp
 import { Slidecontainer2Component } from './slidecontainer2/slidecontainer2.component';
 
 
+//Keine Fehler werden angezeigt, es funktioniert alles in Frontend2//
 
 @NgModule({
   declarations: [
