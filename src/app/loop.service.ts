@@ -12,7 +12,7 @@ export class LoopService {
 
   public onInstrumentPlay: any = null;
   public onStop: any = null;
-  private tempo: number = 40;
+  private tempo: number = 80;
 
   private itemsToStore = 1;
   // loop dimensions
@@ -22,8 +22,8 @@ export class LoopService {
   private instrumentTimes: Array<Array<boolean>>;   // state of instruments at specific times
 
   private instruments: Array<HTMLAudioElement>;
-  private audioFilePaths: Array<string> = ["timpani.mp3",
-  "bark.mp3", "gobble.mp3","strings3.mp3","strings2.mp3","strings1.mp3"];
+  private audioFilePaths: Array<string> = ["drum_heavy_kick.flac",
+  "drum_cymbal_pedal.flac", "drum_snare_soft.flac","drum_splash_hard.flac","drum_tom_hi_hard.flac","drum_tom_lo_hard.flac"];
   private audioDir: string = "assets/sound/";
   // state of loop
   private isPlaying: boolean = false;
