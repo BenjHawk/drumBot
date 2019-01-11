@@ -4,16 +4,23 @@
 
 import { Injectable } from '@angular/core';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class LoopService {
+
+  public onInstrumentPlay: any = null;
+  public onStop: any = null;
+  private tempo: number = 40;
+
   private itemsToStore = 1;
   // loop dimensions
   private instrumentCount: number = 0;  // number of instruments demanded by UI
   private timeCount: number = 0;        // number of times demanded by UI
   // instrument data
   private instrumentTimes: Array<Array<boolean>>;   // state of instruments at specific times
+
   private instruments: Array<HTMLAudioElement>;
   private audioFilePaths: Array<string> = ["timpani.mp3",
   "bark.mp3", "gobble.mp3","strings3.mp3","strings2.mp3","strings1.mp3"];
@@ -48,16 +55,27 @@ export class LoopService {
     this.clearLoop();
     // delegate interval to browser-window
     this.intervalID = window.setInterval(() => {
+      let minInstrument = 6;
       for(let i = 0; i < this.instrumentCount; i++){
         if(this.instrumentTimes[i][this.time]){
           console.log("playing instrument #" + i + " time" + (this.time));
           this.instruments[i].currentTime = 0;
           this.instruments[i].play();
+          if (i < minInstrument){
+            minInstrument = i;
+          }
         }
+      }
+      if (this.onInstrumentPlay){
+        this.onInstrumentPlay(this.time, minInstrument);
       }
       this.time++;
       this.time = this.time % this.timeCount;
-    }, 1000);
+    }, 60/this.tempo*1000);
+  }
+
+  public setTempo(tempo: number){
+    this.tempo = tempo;
   }
 
   /**
@@ -116,12 +134,19 @@ export class LoopService {
       }
       // reset loop-time
       this.time = 0;
+      if(this.onStop){
+        this.onStop();
+      }
     }
     else{
       console.log("starting loop");
       this.isPlaying = true;
       this.playInstruments();
     }
+  }
+
+  public isCurrentlyPlaying(){
+    return this.isPlaying;
   }
 
   constructor() { }

@@ -8,8 +8,8 @@ import { LoopService } from "../loop.service";
 })
 export class Controls2Component implements OnInit {
 
-  name = ['save', 'cut', 'play'];
-  btnName=this.name[0];
+  name: String[] = ['save', 'load', 'delete'];
+  btnName: String =this.name[0];
 
   private loopSvc: LoopService;
 
@@ -19,7 +19,7 @@ export class Controls2Component implements OnInit {
 
   ngOnInit() {
   }
-
+/*
   private clickedBtn(btnName: String): void {
     if(btnName === this.name[0]){
       // dirty testing-method
@@ -35,4 +35,5 @@ export class Controls2Component implements OnInit {
     if(btnName === this.name[2])
       this.loopSvc.play();
   }
+*/
 }

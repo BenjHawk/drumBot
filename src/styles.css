@@ -43,6 +43,14 @@ justify-content: right;
   width: 80px;
 }
 
+.button1Selected {
+  background-color:  rgb(91, 138, 21);
+  box-shadow: 2px 2px 2px #000000;
+  border: 2px solid rgb(31, 49, 3);
+  border-radius: 6px;
+  width: 80px;
+}
+
 .button2 {
   background-color: greenyellow;
   box-shadow: 1px 1px 1px #000000;
@@ -53,9 +61,9 @@ justify-content: right;
 }
 
 .button2Selected {
-  background-color: darkcyan;
+  background-color: rgb(202, 74, 23);
   box-shadow: 1px 1px 1px #000000;
-  border: 2px solid rgb(31, 49, 3);
+  border: 3px solid rgb(31, 49, 3);
   border-radius: 6px;
   width: 28px;
   height: 28px;
@@ -65,6 +73,10 @@ justify-content: right;
   background-color: rgb(91, 138, 21);
 }
 
+.select {
+  width: 80px;
+  border-radius: 6px;
+}
 
 
 input[type=range] {
