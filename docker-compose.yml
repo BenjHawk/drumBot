@@ -1,0 +1,30 @@
+version: '3'
+services:  
+  db:
+    container_name: db_mysql
+    restart: always
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: 'test12'
+      MYSQL_USER: 'root'
+      MYSQL_PASS: 'test12'
+    volumes:
+      - ./mydata:/var/lib/mysql/data
+  database_server:
+    build:
+      context: ./database_Server
+      dockerfile: Dockerfile
+    ports:
+      - "4040:4040"
+    links:
+      - 'db:db'  
+  app:
+      build:
+        context: .
+        dockerfile: Dockerfile
+      ports:
+        - "4200:4200"
+      links:
+        - 'database_server:database_server'     
+
+
