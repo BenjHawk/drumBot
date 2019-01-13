@@ -4,10 +4,10 @@ let db;
 
 setTimeout(() => {
     db = mariadb.createConnection({
-        host: 'db', //'localhost',
+        host: 'localhost', //'localhost',
         user: 'root',
         password: 'test12',
-        //database: 'DrumbotDatabase'
+        database: 'DrumbotDatabase'
     });
 
     db.connect(err => {
@@ -81,6 +81,6 @@ module.exports.createLoopsTable = function(req, res) {
         if (err) {
             throw err;
         }
-        res.send('User table created');
+        res.send('Loops table created');
     });
 }

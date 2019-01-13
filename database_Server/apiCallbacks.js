@@ -4,10 +4,10 @@ let db;
 
 setTimeout(() => {
     db = mariadb.createConnection({
-        host: 'db', //'localhost',
+        host: 'localhost', //'localhost',
         user: 'root',
         password: 'test12',
-        //database: 'DrumbotDatabase'
+        database: 'DrumbotDatabase'
     });
 
     db.connect(err => {
@@ -40,10 +40,14 @@ db.connect((err) => {
 //Create User
 module.exports.createUser = function(req, res) {
     let post = req.body;
-    let sql = 'INSERT INTO User SET ?';
-    let query = db.query(sql, post, (err, result) => {
+    var values = [];
+    values.push(post[0].name, post[0].password, post[0].email);
+
+    let sql = 'INSERT INTO User (name, password, email) VALUES (?, ?, ?) ';
+    let query = db.query(sql, values, (err, result) => {
         if (err) {
             res.status(501).end();
+            console.log(err);
         }
         res.status(201).end();
     });
@@ -67,7 +71,7 @@ module.exports.getUser = function(req, res) {
             res.status(404).end();
         }
         console.log("Response to be send");
-        res.status(200).json(result).end();
+        //res.status(200).json(result).end();
     });
 }
 
