@@ -4,7 +4,7 @@ let db;
 
 setTimeout(() => {
     db = mariadb.createConnection({
-        host: 'localhost', //'localhost',
+        host: 'db', //'localhost',
         user: 'root',
         password: 'test12',
         database: 'DrumbotDatabase'
