@@ -16,7 +16,9 @@ import { Slidecontainer1Component } from './slidecontainer1/slidecontainer1.comp
 import { Slidecontainer2Component } from './slidecontainer2/slidecontainer2.component';
 import {HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptor } from './auth-interceptor'
+import { AuthInterceptor } from './auth-interceptor';
+import { AuthService } from './auth-service.service';
+import { DataService } from './data.service';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { AuthInterceptor } from './auth-interceptor'
     Router
   ],
   providers: [
+    AuthService,
+    DataService,
     { 
       provide: HTTP_INTERCEPTORS, 
       useClass: AuthInterceptor, 
