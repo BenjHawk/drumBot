@@ -19,24 +19,6 @@ setTimeout(() => {
     });
 }, 12000);
 
-
-/*setTimeout(() => {
-    db = mysql.createConnection({
-        host: 'db',
-        user: 'root',
-        password: 'test12',
-        //database: 'DrumbotDatabase'
-    });
-    console.log("''''''''''''''API!!!!!!!!!!!!!!!!!!!!");
-}, 5000);
-
-db.connect((err) => {
-    if (err) {
-        throw err;
-    }
-    console.log('API MySQL connected...');
-})*/
-
 //Create User
 module.exports.createUser = function(req, res) {
     let post = req.body;
@@ -63,6 +45,7 @@ module.exports.createLoop = function(req, res) {
     let sql = 'INSERT INTO Loops (name, tempo, meter, sound, ButtonsSnare, ButtonsBass, ButtonsHiHat, ButtonsTom1,' +
         +' ButtonsTom2, ButtonsCymbal, VolumeSnare, VolumeBass, VolumeHiHat, VolumeTom1, VolumeTom2, VolumeCymbal)' +
         ' VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+
     let query = db.query(sql, values, (err, result) => {
         if (err) {
             res.status(501).end();
@@ -76,7 +59,6 @@ module.exports.getUser = function(req, res) {
     let sql = `SELECT * FROM User WHERE id = ?`;
     let query = db.query(sql, userId, (err, result) => {
         if (err) {
-            console.log(userId);
             res.status(404).end();
             console.log(err);
         }
@@ -94,7 +76,6 @@ module.exports.getLoopsByUser = function(req, res) {
         }
         //console.log(result);
         res.status(200).json(result).end();
-        //res.send('Loops for a User fetched');
     });
 }
 
