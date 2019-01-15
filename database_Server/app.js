@@ -1,8 +1,11 @@
 const express = require('express');
 const bp = require('body-parser');
 const dbSetup = require('./dbSetup');
-const apiCallback = require('./apiCallbacks')
-    //jwt
+const apiCallback = require('./apiCallbacks');
+const authentication = require('./authentication');
+const fs = require('fs');
+const jwt = require('jsonwebtoken');
+
 
 const app = express();
 // Add headers
@@ -33,6 +36,10 @@ app.get('/createlooptable', (req, res) => {
     dbSetup.createLoopsTable(req, res);
 });
 
+//create JWT authentication
+app.post('/login', (req, res) => {
+    authentication.loginRoute(req, res);
+});
 
 /*Implementation of the CRUD operations for the User and Loop table*/
 app.post('/createuser/', (req, res) => {
@@ -59,7 +66,7 @@ app.post('/updateloop/:id', (req, res) => {
 app.get('/deleteuser/:id', (req, res) => {
     apiCallback.deleteUser(req, res);
 });
-app.get('/deleteloop/:id', (req, res) => {
+app.get('/deleteloop/:id', authentication.checkIfAuthenticated, (req, res) => {
     apiCallback.deleteLoop(req, res);
 });
 
