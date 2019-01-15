@@ -13,7 +13,7 @@ export class Screen2Component implements OnInit {
   colNr: number[] = [0, 1, 2, 3, 4, 5, 6, 7];
   rowId: number = this.rowNr[0];
   colId: number = this.colNr[0];
-  highlitedCols: number[] = Array(8).fill(6); //[-1, -1, -1, -1, -1, -1, -1, -1];
+  highlitedCols: number[] = Array(8).fill(6);
   counter: number = 0;
 
   private loopSvc: LoopService;
@@ -37,7 +37,7 @@ export class Screen2Component implements OnInit {
     this.highlitedCols[colId] = rowId;
     if(this.counter>=this.colNr.length){
       let col = (this.colNr.length + colId-1) % (this.colNr.length-1)+1;
-      this.highlitedCols[colId >= 7 ? 0 : col] = 6;
+      this.highlitedCols[colId >= 7 ? 0 : col] = 7;
     }
   } 
 

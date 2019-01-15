@@ -1,18 +1,17 @@
-<div class="registration">
+<div class="registration" style="margin-bottom: 20px">
     <form [formGroup]="form">
-        <fieldset>
-            <div class="form-field">
-                <input name="username" class="logIn" formControlName="username" placeholder="Username">
-            </div>
-            <div class="form-field">
-                <input name="password" formControlName="password" type="password" class="logIn" placeholder="Password">
-            </div>
-        </fieldset>
-        <div class="form-buttons">
-            <button class="button button-primary" (click)="login()">Login</button>
-        </div>
-        <div class="form-buttons" style="margin-left: 20px">
-            <button class="button button-primary" (click)="login()">Register</button>
-        </div>
+        
+        <input name="username" class="logIn" formControlName="username" placeholder="Username">
+            
+        <input name="password" formControlName="password" type="password" class="logIn" placeholder="Password">
+        <span class="form-buttons">         
+            <button class="button-primary" (click)="login()">Login</button>
+        </span>
+        <span class="form-buttons">
+            <button class="button button-primary" (click)="logout()">Logout</button>
+        </span>
+        <span class="form-buttons" style="margin-left: 20px">
+            <button class="button button-primary" (click)="register()">Register</button>
+        </span>        
     </form>
 </div>
