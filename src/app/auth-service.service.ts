@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+/*import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
@@ -12,8 +12,7 @@ export class AuthService {
       
     login(username:string, password:string ) {
         return this.http.post('http://database_server:4040/login', {username, password}).pipe( //not sure about pipe
-            // this is just the HTTP call, 
-            // we still need to handle the reception of the token
+            // this is just the HTTP call
             shareReplay());
     }
 
@@ -26,6 +25,7 @@ export class AuthService {
       localStorage.setItem("userId", authResult.Id);
   }          
 
+  //logout method to be used for logout button
   logout() {
       localStorage.removeItem("id_token");
       localStorage.removeItem("expires_at");
@@ -44,6 +44,6 @@ export class AuthService {
       const expiration = localStorage.getItem("expires_at");
       const expiresAt = JSON.parse(expiration);
       return moment(expiresAt);
-  }    
-}
+  }
+}*/
   
