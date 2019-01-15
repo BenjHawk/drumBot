@@ -1,9 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import { FormsModule } from '@angular/forms';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {Router} from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -19,6 +18,15 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth-interceptor';
 import { AuthService } from './auth-service.service';
 import { DataService } from './data.service';
+
+/********************************** */
+const appRoutes: Routes = [
+  { path: 'login', component: RegistrationComponent },
+];
+
+/************************************* */
+
+
 
 @NgModule({
   declarations: [
@@ -36,11 +44,9 @@ import { DataService } from './data.service';
     BrowserModule,
     FlexLayoutModule,
     FormsModule,
-    FormBuilder,
-    FormGroup,
-    Validators,
+    ReactiveFormsModule,
     HttpClientModule,
-    Router
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [
     AuthService,
@@ -54,3 +60,5 @@ import { DataService } from './data.service';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
