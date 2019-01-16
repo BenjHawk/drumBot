@@ -32,12 +32,15 @@ export class RegistrationComponent implements OnInit {
       if (val.username && val.password) {
           this.authService.login(val.username, val.password)
               .subscribe(
-                  (res) => {
+                  (res: any) => {
                       console.log("User is logged in");
                       console.log(res);
-                      //load jwt, expiration time and userId from to localstorage                    
-                      this.authService.setSession(res);
-                      this.router.navigateByUrl('/');
+                      //load jwt, expiration time and userId from to localstorage 
+                      if (res.idToken != null && res.Id != null){
+                        this.authService.setSession(res);
+                        this.router.navigateByUrl('/');
+                        alert("Login successful! \nWelcome " + val.username);
+                      }                   
                   }
               );
       }

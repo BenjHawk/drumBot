@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { shareReplay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +17,10 @@ export class DataService {
     this.http.post('http://localhost:4040/updateuser/'+userId, body);
   }
 
-  saveLoop(body){
-    this.http.post('http://localhost:4040/createloop/', body);
+  saveLoop(tempo, meter, instrumentTimes, volumeCymbal, volumeHiHat, volumeSnare, volumeBass, volumeTom1,volumeTom2, masterVolume, userId){
+    console.log("I am the dataservice, hello");
+     return this.http.post('http://localhost:4040/createloop/', {tempo, meter, instrumentTimes, volumeCymbal, volumeHiHat,
+     volumeSnare, volumeBass, volumeTom1, volumeTom2, masterVolume, userId});
   }
 
   updateLoop(loopId, body){

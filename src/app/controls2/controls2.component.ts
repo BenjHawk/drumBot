@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LoopService } from "../loop.service";
+import { DataService } from '../data.service';
+import { AuthService } from '../auth-service.service';
+import { TouchSequence } from 'selenium-webdriver';
 
 @Component({
   selector: 'app-controls2',
@@ -13,7 +16,7 @@ export class Controls2Component implements OnInit {
 
   private loopSvc: LoopService;
 
-  constructor(loopSvc: LoopService) { 
+  constructor(loopSvc: LoopService, private dataService : DataService) { 
     this.loopSvc = loopSvc;
   }
 
@@ -21,8 +24,11 @@ export class Controls2Component implements OnInit {
   }
   private clickedBtn(btnName: String): void {
     if(btnName === this.name[0]){
-      console.log(this.loopSvc.toDB());
-    }
+      this.loopSvc.toDB();
+        }
+
+ 
+
     if(btnName === this.name[1]){
       // dirty testing-method
       this.loopSvc.fromDB(
