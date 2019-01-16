@@ -13,7 +13,7 @@ import { Screen1Component } from './screen1/screen1.component';
 import { Screen2Component } from './screen2/screen2.component';
 import { Slidecontainer1Component } from './slidecontainer1/slidecontainer1.component';
 import { Slidecontainer2Component } from './slidecontainer2/slidecontainer2.component';
-import {HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth-interceptor';
 import { AuthService } from './auth-service.service';

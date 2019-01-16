@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./registration.component.css']
 })
 
-export class RegistrationComponent implements OnInit {
+export class RegistrationComponent implements OnInit { 
   
   form:FormGroup;
 
@@ -32,11 +32,27 @@ export class RegistrationComponent implements OnInit {
       if (val.username && val.password) {
           this.authService.login(val.username, val.password)
               .subscribe(
-                  () => {
+                  (res) => {
                       console.log("User is logged in");
+                      console.log(res);
+                      //load jwt, expiration time and userId from to localstorage                    
+                      this.authService.setSession(res);
                       this.router.navigateByUrl('/');
                   }
               );
       }
   }
+
+  test() {
+        this.authService.test()
+            .subscribe(
+                () => {
+                    console.log("Test done");
+                    this.router.navigateByUrl('/');
+                }
+            );
+    }
 }
+
+  
+

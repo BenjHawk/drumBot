@@ -1,39 +1,6 @@
 const express = require('express');
 const mariadb = require('mariadb/callback');
-let db;
-
-setTimeout(() => {
-    db = mariadb.createConnection({
-        host: 'db', //'localhost',
-        user: 'root',
-        password: 'test12',
-        database: 'DrumbotDatabase'
-    });
-
-    db.connect(err => {
-        if (err) {
-            console.log("not connected due to error: " + err);
-        } else {
-            console.log("connected ! connection id is " + db.threadId);
-        }
-    });
-}, 12000);
-
-//Create User
-module.exports.createUser = function(req, res) {
-    let post = req.body;
-    let values = [];
-    values.push(post[0].name, post[0].password, post[0].email);
-
-    let sql = 'INSERT INTO User (name, password, email) VALUES (?, ?, ?) ';
-    let query = db.query(sql, values, (err, result) => {
-        if (err) {
-            res.status(501).end();
-            console.log(err);
-        }
-        res.status(201).end();
-    });
-};
+const db = require('./databaseConnection');
 
 module.exports.createLoop = function(req, res) {
     let post = req.body;
@@ -62,7 +29,7 @@ module.exports.getUser = function(req, res) {
             res.status(404).end();
             console.log(err);
         }
-        console.log("Response to be send" + result);
+        //console.log("Response to be send" + result);
         res.status(200).json(result).end();
     });
 }
@@ -70,7 +37,7 @@ module.exports.getUser = function(req, res) {
 module.exports.getLoopsByUser = function(req, res) {
     let userId = req.params.id;
     let sql = `SELECT * FROM Loop WHERE userId = ?`;
-    let query = db.query(sql, userId, (err, result) => {
+    let query = db.query(sql, [userId], (err, result) => {
         if (err) {
             res.status(404).end();
         }
@@ -80,12 +47,12 @@ module.exports.getLoopsByUser = function(req, res) {
 }
 
 module.exports.getLoopsById = function(res, req) {
-    let sql = `SELECT * FROM Loop WHERE id =${req.params.id}`;
-    let query = db.query(sql, (err, result) => {
+    let Id = req.params.id;
+    let sql = `SELECT * FROM Loop WHERE id = ?`;
+    let query = db.query(sql, [Id], (err, result) => {
         if (err) {
             res.status(404).end();
         }
-        //console.log(result);
         res.status(200).json(result).end();
     });
 }
@@ -113,8 +80,9 @@ module.exports.updateLoop = function(res, req) {
 }
 
 module.exports.deleteUser = function(res, req) {
-    let sql = `DELETE FROM User WHERE id =${req.params.id}`;
-    let query = db.query(sql, (err, result) => {
+    let userId = req.params.id;
+    let sql = `DELETE FROM User WHERE id = ?`;
+    let query = db.query(sql, [userId], (err, result) => {
         if (err) {
             res.status(501).end();
         }
@@ -123,8 +91,9 @@ module.exports.deleteUser = function(res, req) {
 }
 
 module.exports.deleteLoop = function(res, req) {
-    let sql = `DELETE FROM Loop WHERE id =${req.params.id}`;
-    let query = db.query(sql, (err, result) => {
+    let Id = req.params.id;
+    let sql = `DELETE FROM Loop WHERE id = ?`;
+    let query = db.query(sql, [Id], (err, result) => {
         if (err) {
             res.status(501).end();
         }

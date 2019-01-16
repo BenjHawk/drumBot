@@ -9,31 +9,31 @@ export class DataService {
   constructor(private http: HttpClient) { }
 
   createUser(body){
-    this.http.post('http://database_server:4040/createuser/', body);
+    this.http.post('http://localhost:4040/createuser/', body);
   }
 
   updateUser(userId, body){
-    this.http.post('http://database_server:4040/updateuser/'+userId, body);
+    this.http.post('http://localhost:4040/updateuser/'+userId, body);
   }
 
   saveLoop(body){
-    this.http.post('http://database_server:4040/createloop/', body);
+    this.http.post('http://localhost:4040/createloop/', body);
   }
 
   updateLoop(loopId, body){
-    this.http.post('http://database_server:4040/updateloop/'+loopId, body);
+    this.http.post('http://localhost:4040/updateloop/'+loopId, body);
   }
 
   getUser(userId) {
-    return this.http.get('http://database_server:4040/getusers/'+userId);
+    return this.http.get('http://localhost:4040/getusers/'+userId);
   }
 
   getLoopsByUser(userId) {
-    return this.http.get('http://database_server:4040/getloopbyuser/'+userId);
+    return this.http.get('http://localhost:4040/getloopbyuser/'+userId);
   }
   
   getLoopById(loopId) {
-    return this.http.get('http://database_server:4040/getloopbyid/'+loopId);
+    return this.http.get('http://localhost:4040/getloopbyid/'+loopId);
   }
   
   deleteUser(userId) {
