@@ -10,17 +10,19 @@ app.use(bp.json());
 module.exports.createUser = function(req, res) {
     let post = req.body;
     let values = [];
-    values.push(post.name, post.password);
+    values.push(post.username, post.password);
 
     let sql = 'INSERT INTO User (name, password) VALUES (?, ?) ';
     let query = db.query(sql, values, (err, result) => {
         if (err) {
-            res.status(501).end();
             console.log(err);
+            res.status(501).end();
         }
-        res.status(201).end();
+        res.status(201).json({ userStatus: "Created" }).end();
     });
-};
+
+}
+
 
 module.exports.createLoop = function(req, res) {
     let post = req.body;

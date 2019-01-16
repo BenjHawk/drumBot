@@ -26,10 +26,19 @@ app.get('/createusertable', (req, res) => {
 app.get('/createlooptable', (req, res) => {
     dbSetup.createLoopsTable(req, res);
 });
+
+//Only for dev purpose; comment out in the final version
 app.get('/dropdatabase', (req, res) => {
     dbSetup.dropDatabase();
 });
 
+app.get('/dropdusertable', (req, res) => {
+    dbSetup.dropUserTable();
+});
+
+app.get('/droplooptable', (req, res) => {
+    dbSetup.dropLoopTable();
+});
 
 //endpoint for login via JWT authentication
 app.post('/login', (req, res) => {

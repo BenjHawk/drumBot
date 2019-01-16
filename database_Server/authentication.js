@@ -67,7 +67,7 @@ module.exports.loginRoute = function login(req, res) {
                     idToken: jwtBearerToken,
                     expiresIn: "1h",
                     Id: '' + userId
-                })
+                });
 
             }).catch(function(err) { //why is this not a function???
                 console.log(err);

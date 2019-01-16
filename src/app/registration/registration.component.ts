@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth-service.service';
 import { Router } from '@angular/router';
+import { DataService } from '../data.service';
+import { validateBasis } from '@angular/flex-layout';
 
 @Component({
   selector: 'app-registration',
@@ -15,6 +17,7 @@ export class RegistrationComponent implements OnInit {
 
   constructor(private fb:FormBuilder, 
                private authService: AuthService, 
+               private dataService: DataService,
                private router: Router) {
 
       this.form = this.fb.group({
@@ -46,14 +49,29 @@ export class RegistrationComponent implements OnInit {
       }
   }
 
-  test() {
-        this.authService.test()
+  register() {
+    const val = this.form.value;
+
+        this.dataService.createUser(val.username, val.password)
             .subscribe(
-                () => {
-                    console.log("Test done");
+                (res: any) => {
+                    if (res.userStatus === "Created"){
+                        alert("User "+ val.username + " sucessfully created!");
+                      }    
+                    else {
+                        alert("Error! Username already exists. Please choose another one.");
+                    }
                     this.router.navigateByUrl('/');
                 }
             );
+    }
+
+    logout(){
+        const val = this.form.value;
+
+        this.authService.logout();
+        val.username = '';
+        val.password= '';
     }
 }
 

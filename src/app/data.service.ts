@@ -9,8 +9,8 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  createUser(body){
-    this.http.post('http://localhost:4040/createuser/', body);
+  createUser(username, password){
+    return this.http.post('http://localhost:4040/createuser/', {username, password});
   }
 
   updateUser(userId, body){
