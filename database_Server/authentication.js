@@ -1,45 +1,44 @@
 const express = require('express');
-const cookieParser = require('cookie-parser');
 const fs = require('fs');
 const jwt = require('jsonwebtoken');
 const expressJWT = require('express-jwt');
+const mariadb = require('mariadb/callback');
+const db = require('./databaseConnection');
 
 const RSA_PUBLIC_KEY = fs.readFileSync('./public.key');
 
-let validateUsernameAndPassword = function(username, password) {
-    let results = [];
+async function validateUsernameAndPassword(username, password) {
     let resPW;
+    let bool = false;
 
-    let sql = `SELECT password FROM User WHERE username = ?`;
-    let query = db.query(sql, username, (err, result) => {
+    let sql = `SELECT password FROM User WHERE name = ?`;
+    let query = await db.query(sql, [username], (err, result) => {
         if (err) {
-            res.status(404).end();
             console.log(err);
+            return bool;
         }
-
-        results = JSON.stringify(result);
-        resPW = results[0].password;
+        resPW = result[0].password;
         if (resPW === password) {
-            return true;
+            bool = true;
+            return bool;
         }
-        return false;
+        return bool;
     });
 }
 
-let findUserIdForUsername = function(username) {
-    let results = [];
-    let userId;
+function findUserIdForUsername(username) {
+    return new Promise(function(resolve, reject) {
+        let userId;
+        let sql = `SELECT id FROM User WHERE name = ?`;
 
-    let sql = `SELECT id FROM User WHERE username = ?`;
-    let query = db.query(sql, username, (err, result) => {
-        if (err) {
-            res.status(404).end();
-            console.log(err);
-        }
-        results = JSON.stringify(result);
-        userId = results[0].id;
-        console.log(userId);
-        return userId;
+        let query = db.query(sql, [username], (err, result) => {
+            if (err) {
+                reject(err);
+            } else {
+                userId = result[0].id;
+                resolve(userId);
+            }
+        });
     });
 };
 
@@ -50,25 +49,31 @@ module.exports.loginRoute = function login(req, res) {
     let RSA_PRIVATE_KEY = fs.readFileSync('./private.key');
 
     if (validateUsernameAndPassword(username, password)) {
-        const userId = findUserIdForUsername(username);
 
-        const jwtBearerToken = jwt.sign(userId, RSA_PRIVATE_KEY, {
-            algorithm: 'RS256',
-            expiresIn: 120,
-            subject: userId
-        })
+        findUserIdForUsername(username)
+            .then(function(userId) {
 
-        res.status(200).json({
-            idToken: jwtBearerToken,
-            expiresIn: 120,
-            Id: userId
-        });
 
-        // send the JWT back to the user
-        // TODO - multiple options available                              
-    } else {
-        // send status 401 Unauthorized
-        res.sendStatus(401);
+                let user = ' ' + userId + ' ';
+                let payload = { Id: user };
+
+                const jwtBearerToken = jwt.sign(payload, RSA_PRIVATE_KEY, {
+                    algorithm: 'RS256',
+                    expiresIn: "1h",
+                    subject: '' + userId
+                });
+
+                res.status(200).json({
+                        idToken: jwtBearerToken,
+                        expiresIn: "1h",
+                        Id: '' + userId
+                    })
+                    .catch(function(err) { //why is this not a function???
+                        console.log(err);
+                        res.sendStatus(401);
+                    });
+
+            });
     }
 }
 

@@ -1,4 +1,4 @@
-/*import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
@@ -11,12 +11,24 @@ export class AuthService {
     }
       
     login(username:string, password:string ) {
-        return this.http.post('http://database_server:4040/login', {username, password}).pipe( //not sure about pipe
+        return this.http.post('http://localhost:4040/login', {username, password}).pipe( //not sure about pipe
             // this is just the HTTP call
             shareReplay());
     }
 
-    private setSession(authResult) {
+    register(username:string, password:string ) {
+        return this.http.post('http://localhost:4040/createuser', {username, password}).pipe( //not sure about pipe
+            // this is just the HTTP call
+            shareReplay());
+    }
+
+    test() {
+        return this.http.get('http://localhost:4040/dummy').pipe( //not sure about pipe
+            // this is just the HTTP call
+            shareReplay());
+    }
+
+    setSession(authResult) {
       const expiresAt = moment().add(authResult.expiresIn,'second');
 
       //add UserId for HTTPRequest via the local storage of the Browser
@@ -25,7 +37,7 @@ export class AuthService {
       localStorage.setItem("userId", authResult.Id);
   }          
 
-  //logout method to be used for logout button
+  //logout method to be used for logout button; to be done; clear user and password fields
   logout() {
       localStorage.removeItem("id_token");
       localStorage.removeItem("expires_at");
@@ -45,5 +57,5 @@ export class AuthService {
       const expiresAt = JSON.parse(expiration);
       return moment(expiresAt);
   }
-}*/
+}
   

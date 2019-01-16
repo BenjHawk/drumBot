@@ -1,4 +1,4 @@
-/*import { TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { AuthService } from './auth-service.service';
 
@@ -9,4 +9,4 @@ describe('AuthServiceService', () => {
     const service: AuthService = TestBed.get(AuthService);
     expect(service).toBeTruthy();
   });
-});*/
+});

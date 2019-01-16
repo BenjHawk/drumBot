@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-//import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-//import { AuthService } from '../auth-service.service';
-//import {Router} from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../auth-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -9,11 +9,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./registration.component.css']
 })
 
-export class RegistrationComponent implements OnInit {
-
-constructor() { }  
+export class RegistrationComponent implements OnInit { 
   
-  /*form:FormGroup;
+  form:FormGroup;
 
   constructor(private fb:FormBuilder, 
                private authService: AuthService, 
@@ -23,22 +21,38 @@ constructor() { }
           username: ['',Validators.required],
           password: ['',Validators.required]
       });
-  }*/
+  }
 
   ngOnInit() {
   }
 
-  /*login() {
+  login() {
       const val = this.form.value;
 
       if (val.username && val.password) {
           this.authService.login(val.username, val.password)
               .subscribe(
-                  () => {
+                  (res) => {
                       console.log("User is logged in");
+                      console.log(res);
+                      //load jwt, expiration time and userId from to localstorage                    
+                      this.authService.setSession(res);
                       this.router.navigateByUrl('/');
                   }
               );
       }
-  }*/
+  }
+
+  test() {
+        this.authService.test()
+            .subscribe(
+                () => {
+                    console.log("Test done");
+                    this.router.navigateByUrl('/');
+                }
+            );
+    }
 }
+
+  
+

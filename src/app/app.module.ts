@@ -1,11 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import { FormsModule } from '@angular/forms';
-//import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-//import {Router} from '@angular/router';
-import {HttpClientModule } from '@angular/common/http';
-//import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -16,9 +13,20 @@ import { Screen1Component } from './screen1/screen1.component';
 import { Screen2Component } from './screen2/screen2.component';
 import { Slidecontainer1Component } from './slidecontainer1/slidecontainer1.component';
 import { Slidecontainer2Component } from './slidecontainer2/slidecontainer2.component';
-//import { AuthInterceptor } from './auth-interceptor';
-//import { AuthService } from './auth-service.service';
-//import { DataService } from './data.service';
+import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './auth-interceptor';
+import { AuthService } from './auth-service.service';
+import { DataService } from './data.service';
+
+/********************************** */
+const appRoutes: Routes = [
+  { path: 'login', component: RegistrationComponent },
+];
+
+/************************************* */
+
+
 
 @NgModule({
   declarations: [
@@ -36,19 +44,21 @@ import { Slidecontainer2Component } from './slidecontainer2/slidecontainer2.comp
     BrowserModule,
     FlexLayoutModule,
     FormsModule,
-    //FormBuilder,
-    //FormGroup,
-    //Validators,
-    HttpClientModule
-    //Router
+    ReactiveFormsModule,
+    HttpClientModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [
-    /*{ 
+    AuthService,
+    DataService,
+    { 
       provide: HTTP_INTERCEPTORS, 
       useClass: AuthInterceptor, 
       multi: true 
-  }*/
+  }
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
