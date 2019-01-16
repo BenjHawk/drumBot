@@ -21,7 +21,7 @@ export class Controls2Component implements OnInit {
   }
   private clickedBtn(btnName: String): void {
     if(btnName === this.name[0]){
-      console.log(this.loopSvc.toDB());
+      this.loopSvc.toDB();
     }
     if(btnName === this.name[1]){
       // dirty testing-method
