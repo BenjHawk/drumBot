@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-screen1',
@@ -11,8 +10,9 @@ export class Screen1Component implements OnInit {
   @Input() selectedTempo: number;
   @Input() selectedVolume: number;
   @Input() selectedMeter: String;
-  @Input() selectedEffects: String;
+  //@Input() selectedEffects: String;
   @Input() selectedMode: String; 
+  @Input() selectedLoop: String;
   
   constructor() { }
 

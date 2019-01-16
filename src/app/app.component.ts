@@ -7,12 +7,13 @@ import { LoopService } from './loop.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'drumBot';
-  curTempo: number = 40;
-  curVolume: number = 10;
-  curMeter: String = '4/4';
-  curEffects: String = 'none';
-  curMode: String = 'standard';
+  private title = 'HyDrum';
+  private curTempo: number = 120;
+  private curVolume: number = 10;
+  private curMeter: String = '4/4';
+  private curEffects: String = 'none';
+  private curMode: String = 'standard';
+  private curLoop: String = 'default';
   
   private loopSvc: LoopService;
 
@@ -20,32 +21,36 @@ export class AppComponent {
     this.loopSvc = loopSvc;
   }
 
-  onTempoChange(tempo: number) {
+  public onTempoChange(tempo: number) {
     console.log("New tempo:", tempo);
     this.curTempo = tempo;
     this.loopSvc.setTempo(tempo);
   }
 
-  onVolumeChange(volume: number) {
+  public onVolumeChange(volume: number) {
     console.log("New volume:", volume);
     this.curVolume = volume;
   }
 
-  onMeterChange(meter: String) {
+  public onMeterChange(meter: String) {
     console.log("New meter:", meter);
     this.curMeter = meter;
   }
 
-  onEffectsChange(effects: String) {
+  public onEffectsChange(effects: String) {
     console.log("New effect:", effects);
     this.curEffects = effects;
   }
 
-  onModeChange(mode: String) {
+  public onModeChange(mode: String) {
     console.log("New mode:", mode);
     this.curMode = mode;
   }
 
-  
+  public onLoopChange(loop: String) {
+    console.log("New loop:", loop);
+    this.curLoop = loop;
+    this.loopSvc.setLoop(loop);
+  }
 }
 

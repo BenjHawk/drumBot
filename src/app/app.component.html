@@ -8,8 +8,8 @@
     <div class="left">
       <app-screen1 
       [selectedTempo]="curTempo" [selectedVolume]="curVolume" 
-      [selectedMeter]="curMeter" [selectedEffects]="curEffects"
-      [selectedMode]="curMode">
+      [selectedMeter]="curMeter" [selectedMode]="curMode"
+      [selectedLoop]="curLoop">
       </app-screen1> 
 
       <app-controls1 
@@ -20,7 +20,7 @@
       [mode]="curMode" (modeChanged)="onModeChange($event)"></app-controls1>
       
       <app-slidecontainer1></app-slidecontainer1>
-      <app-controls2></app-controls2>
+      <app-controls2 [loop]="curLoop" (loopChanged)="onLoopChange($event)"></app-controls2>
     </div>
       
     <div class="middle">
