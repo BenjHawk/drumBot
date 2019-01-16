@@ -6,8 +6,8 @@ module.exports.createLoop = function(req, res) {
     let post = req.body;
     console.log(post);
     let values = [];
-    values.push(post[0].tempo, post[0].meter, post[0].InstrumentTimes, ppost[0].VolumeCymbal,
-        post[0].VolumeHiHat, post[0].VolumeSnare, post[0].VolumeBass, post[0].VolumeTom1, post[0].VolumeTom2);
+    values.push(post[0].tempo, post[0].meter, post[0].instrumentTimes, ppost[0].volumeCymbal,
+        post[0].volumeHiHat, post[0].volumeSnare, post[0].volumeBass, post[0].volumeTom1, post[0].volumeTom2, post[0].userId);
     console.log(values);
 
     let sql = 'INSERT INTO Loops (tempo, meter, InstrumentTimes,' +
