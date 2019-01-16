@@ -10,7 +10,7 @@ module.exports.createDatabase = function(req, res) {
     let sql = 'CREATE DATABASE DrumbotDatabase';
     db.query(sql, (err, result) => {
         if (err) {
-            throw err;
+            console.log(err);
         }
         res.send('Database created');
     });
@@ -21,7 +21,7 @@ module.exports.dropUserTable = function(req, res) {
     let sql = 'DROP TABLE User';
     db.query(sql, (err, result) => {
         if (err) {
-            throw err;
+            console.log(err);
         }
         res.send('Table User dropped');
     });
@@ -32,7 +32,7 @@ module.exports.dropLoopTable = function(req, res) {
     let sql = 'DROP TABLE Loops';
     db.query(sql, (err, result) => {
         if (err) {
-            throw err;
+            console.log(err);
         }
         res.send('Table Loops dropped');
     });
@@ -43,7 +43,7 @@ module.exports.dropDatabase = function(req, res) {
     let sql = 'DROP DATABASE DrumbotDatabase';
     db.query(sql, (err, result) => {
         if (err) {
-            throw err;
+            console.log(err);
         }
         res.send('Database dropped');
     });
@@ -55,7 +55,7 @@ module.exports.createUserTable = function(req, res) {
     let sql = 'CREATE TABLE User(id int AUTO_INCREMENT, name VARCHAR(255) UNIQUE, password VARCHAR(255), email VARCHAR(255), PRIMARY KEY (id))';
     db.query(sql, (err, result) => {
         if (err) {
-            throw err;
+            console.log(err);
         }
         res.send('User table created');
     });
@@ -67,7 +67,7 @@ module.exports.createLoopsTable = function(req, res) {
         'MasterVolume decimal(2,1), userId int, PRIMARY KEY (id), FOREIGN KEY (userId) REFERENCES User(id))';
     db.query(sql, (err, result) => {
         if (err) {
-            throw err;
+            console.log(err);
         }
         res.send('Loops table created');
     });

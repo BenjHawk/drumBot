@@ -2,6 +2,10 @@
 // TODO: fromDB()
 // TODO: after load -> aktualisiere UI
 // TODO: support general volume
+// Registration::Login -> LoopSvc::initFromDB() -> DS::getLoopIDsByUserID()
+// Ctrl2::btnLoad -> LoopSvc::loopFromDB() -> DS::getLoopByID()
+// Ctrl2::btnSave -> LoopSvc::loopToDB() -> DS::saveLoop()
+// Ctrl2::btnDelet -> LoopSvc::deleteLoopFromDB() -> DS::deleteLoopByID()
 
 import { Injectable } from '@angular/core';
 import { DataService } from './data.service';
@@ -140,7 +144,7 @@ export class LoopService {
    */
   public fromDB(sessionData: Array<string>): void {
     console.warn("fromDB() not tested");
-    this.dataService.getLoopById(1).subscribe(
+    this.dataService.getLoopsByUser(1).subscribe(
       (res) => {
         try {
           console.log(res);

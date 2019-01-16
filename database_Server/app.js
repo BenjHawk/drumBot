@@ -55,7 +55,7 @@ app.post('/createloop/', (req, res) => {
 app.get('/getusers/:id', (req, res) => {
     apiCallback.getUser(req, res);
 });
-app.get('/getloopbyuser/:userid', (req, res) => {
+app.get('/getloopidsbyuser/:userid', (req, res) => {
     apiCallback.getLoopsByUser(req, res);
 });
 app.get('/getloopbyid/:id', (req, res) => {

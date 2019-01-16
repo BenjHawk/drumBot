@@ -31,8 +31,8 @@ export class DataService {
     return this.http.get('http://localhost:4040/getusers/'+userId);
   }
 
-  getLoopsByUser(userId) {
-    return this.http.get('http://localhost:4040/getloopbyuser/'+userId);
+  getLoopIdsByUser(userId) {
+    return this.http.get('http://localhost:4040/getloopidsbyuser/'+userId);
   }
   
   getLoopById(loopId) {

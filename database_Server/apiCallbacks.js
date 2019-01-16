@@ -15,8 +15,8 @@ module.exports.createUser = function(req, res) {
     let sql = 'INSERT INTO User (name, password) VALUES (?, ?) ';
     let query = db.query(sql, values, (err, result) => {
         if (err) {
-            console.log(err);
             res.status(501).end();
+            return console.log(err);
         }
         res.status(201).json({ userStatus: "Created" }).end();
     });
@@ -58,9 +58,9 @@ module.exports.getUser = function(req, res) {
     });
 }
 
-module.exports.getLoopsByUser = function(req, res) {
+module.exports.getLoopIdsByUser = function(req, res) {
     let userId = req.params.userid;
-    let sql = `SELECT * FROM Loops WHERE userId = ?`;
+    let sql = `SELECT id FROM Loops WHERE userId = ?`;
     let query = db.query(sql, userId, (err, result) => {
         if (err) {
             console.log(err);
