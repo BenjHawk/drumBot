@@ -4,14 +4,15 @@ const db = require('./databaseConnection');
 
 module.exports.createLoop = function(req, res) {
     let post = req.body;
+    console.log(post);
     let values = [];
-    values.push(post[0].name, post[0].tempo, post[0].meter, post[0].sound, post[0].ButtonsSnare, post[0].ButtonsBass,
-        post[0].ButtonsHiHat, post[0].ButtonsTom1, post[0].ButtonsTom2, post[0].ButtonsCymbal, post[0].VolumeSnare,
-        post[0].VolumeBass, post[0].VolumeHiHat, post[0].VolumeTom1, post[0].VolumeTom2, post[0].VolumeCymbal);
+    values.push(post[0].tempo, post[0].meter, post[0].InstrumentTimes, ppost[0].VolumeCymbal,
+        post[0].VolumeHiHat, post[0].VolumeSnare, post[0].VolumeBass, post[0].VolumeTom1, post[0].VolumeTom2);
+    console.log(values);
 
-    let sql = 'INSERT INTO Loops (name, tempo, meter, sound, ButtonsSnare, ButtonsBass, ButtonsHiHat, ButtonsTom1,' +
-        +' ButtonsTom2, ButtonsCymbal, VolumeSnare, VolumeBass, VolumeHiHat, VolumeTom1, VolumeTom2, VolumeCymbal)' +
-        ' VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+    let sql = 'INSERT INTO Loops (tempo, meter, InstrumentTimes,' +
+        +' VolumeCymbal, VolumeHiHat, VolumeSnare, VolumeBass, VolumeTom1, VolumeTom2, MasterVolume, userId)' +
+        ' VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
 
     let query = db.query(sql, values, (err, result) => {
         if (err) {

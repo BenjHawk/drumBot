@@ -57,6 +57,7 @@ export class LoopService {
       this.instruments[i] = new Audio();
       this.instruments[i].src = this.audioDir + this.audioFilePaths[i];
       this.instruments[i].load();
+      this.instruments[i].volume = 0.5;
     }
   }
   
