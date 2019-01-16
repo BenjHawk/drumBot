@@ -26,10 +26,10 @@ export class LoopService {
   
   private instruments: Array<HTMLAudioElement>;
   private audioFilePaths: Array<string> = [
-    "drum_heavy_kick.flac",
+    "drum_splash_hard.flac",
     "drum_cymbal_pedal.flac",
     "drum_snare_soft.flac",
-    "drum_splash_hard.flac",
+    "drum_heavy_kick.flac",    
     "drum_tom_hi_hard.flac",
     "drum_tom_lo_hard.flac"];
   private audioDir: string = "assets/sound/";

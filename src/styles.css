@@ -31,7 +31,7 @@ margin-right: 10px;
 }
 
 .right {
-margin-top: 105px;
+margin-top: 120px;
 justify-content: right;
 }
 
@@ -112,6 +112,8 @@ input[type=range]::-moz-range-track {
   background: rgb(63, 99, 9);
   border-radius: 3px;
   border: 0.2px solid #010101;
+  width: 80px;
+  
 }
 
 input[type=range]::-moz-range-thumb {
@@ -122,7 +124,7 @@ input[type=range]::-moz-range-thumb {
   border-radius: 21px;
   background: greenyellow;
   -webkit-appearance: none;
-  margin-top: -7px;
+  margin-top: -15px;
 }
 
 input[type=range]::-ms-track {

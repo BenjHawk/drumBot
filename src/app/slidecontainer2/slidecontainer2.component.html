@@ -1,5 +1,5 @@
 <div class="slidecontainer2" *ngFor="let sliderName of name">
-  <div>{{ sliderName | uppercase }}
+  <div class="sliders2">{{ sliderName | uppercase }}
     <input [(ngModel)]="getVolumeRef(sliderName).volume" type="range" id="{{ sliderName }}" min=0.0 max=1.0 step=0.1>
   </div>
 </div>

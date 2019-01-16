@@ -37,7 +37,7 @@ export class Screen2Component implements OnInit {
     this.highlitedCols[colId] = rowId;
     if(this.counter>=this.colNr.length){
       let col = (this.colNr.length + colId-1) % (this.colNr.length-1)+1;
-      this.highlitedCols[colId >= 7 ? 0 : col] = 6;
+      this.highlitedCols[colId >= 7 ? 0 : col] = 7;
     }
   } 
 

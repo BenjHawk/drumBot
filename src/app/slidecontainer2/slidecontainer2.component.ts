@@ -8,9 +8,8 @@ import { LoopService } from "../loop.service";
 })
 export class Slidecontainer2Component implements OnInit {
 
-  name = ['bass', 'hihat', 'snare', 'cymbal', 'tom1', 'tom2'];
-  //sliderName = this.name[0];
-
+  name = ['cymbal', 'hihat', 'snare', 'bass', 'tom1', 'tom2'];
+  
   private loopSvc: LoopService;
 
   constructor(loopSvc: LoopService) { 

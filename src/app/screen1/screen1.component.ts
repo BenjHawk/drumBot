@@ -17,6 +17,8 @@ export class Screen1Component implements OnInit {
 
   user$: Object; 
 
+  
+
   constructor(private data : DataService) { }
 
   ngOnInit() {

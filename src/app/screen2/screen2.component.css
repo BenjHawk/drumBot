@@ -2,7 +2,7 @@
     height: 100px;
     width: 225px;
     margin-bottom: 5px;
-    border: 1px solid rgb(15, 22, 3);
+    border: 2px solid rgb(15, 22, 3);
     border-radius: 6px;
     box-shadow: 1px 1px 1px #000000;
 }
@@ -23,36 +23,49 @@
     margin-top: 20px;
 }
 
+@supports (-moz-appearance:none) {
+    .visualizer {
+        margin-top: 2px;
+    }
+
+    .button3 {
+        margin: 0px;
+    }
+
+    .row {
+        height: 20px;
+    }
+}
+
 .button3.highlited {
     opacity: 1.0;
 }
-/*javascript timer (set interval - atkariba no tempo, ik pec cik msek atkartojas, izpilda funkciju vienu soli uz priekshu) && animation*/
 
 .row {
     margin-left: 15px;
     margin-top: -5px;
 }
 
-#row1 .button3 {
+#row0 .button3 {
     background-color: red;
 }
 
-#row2 .button3 {
+#row1 .button3 {
     background-color: rgb(236, 98, 5);
 }
-#row3 .button3 {
+#row2 .button3 {
     background-color: rgb(247, 190, 3);
 }
 
-#row4 .button3 {
+#row3 .button3 {
     background-color: rgb(176, 228, 5);
 }
 
-#row5 .button3 {
+#row4 .button3 {
     background-color: rgb(89, 233, 5);
 }
 
-#row6 .button3 {
+#row5 .button3 {
     background-color: rgb(5, 134, 12);
 }
 
