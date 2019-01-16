@@ -26,6 +26,9 @@ app.get('/createusertable', (req, res) => {
 app.get('/createlooptable', (req, res) => {
     dbSetup.createLoopsTable(req, res);
 });
+app.get('/dropdatabase', (req, res) => {
+    dbSetup.dropDatabase();
+});
 
 
 //endpoint for login via JWT authentication
@@ -72,5 +75,3 @@ app.get('/dummy', authentication.checkIfAuthenticated, (req, res) => {
 app.listen('4040', () => {
     console.log('server started on port 4040');
 });
-
-app.use(bp.text());

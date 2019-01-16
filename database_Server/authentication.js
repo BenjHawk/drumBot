@@ -64,15 +64,14 @@ module.exports.loginRoute = function login(req, res) {
                 });
 
                 res.status(200).json({
-                        idToken: jwtBearerToken,
-                        expiresIn: "1h",
-                        Id: '' + userId
-                    })
-                    .catch(function(err) { //why is this not a function???
-                        console.log(err);
-                        res.sendStatus(401);
-                    });
+                    idToken: jwtBearerToken,
+                    expiresIn: "1h",
+                    Id: '' + userId
+                })
 
+            }).catch(function(err) { //why is this not a function???
+                console.log(err);
+                res.sendStatus(401);
             });
     }
 }

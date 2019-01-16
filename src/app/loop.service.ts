@@ -110,7 +110,7 @@ export class LoopService {
     // volumes (cympal, hihtat, snare, bass, tom1, tom2)
     // master vol
     // userID
-    sessionData = JSON.stringify({
+    sessionData ="[" + JSON.stringify({
       tempo: this.tempo,
       meter: '4/4',
       instrumentTimes: this.instrumentTimes,
@@ -122,9 +122,11 @@ export class LoopService {
       volumeTom2: this.instruments[5].volume,
       masterVolume: 1.1,
       userID: 1
-    });
+    }) + "]";
     console.log(sessionData);
-    this.dataService.saveLoop(sessionData);
+    this.dataService.saveLoop(this.tempo, '4/4', 'InstrumentTimesDummy',//JSON.stringify(this.instrumentTimes), 
+    this.instruments[0].volume, this.instruments[1].volume, 
+    this.instruments[2].volume, this.instruments[3].volume, this.instruments[4].volume, this.instruments[5].volume, 1.0, 1).subscribe();
     return sessionData;
   }
 

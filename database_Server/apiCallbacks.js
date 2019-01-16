@@ -1,21 +1,42 @@
 const express = require('express');
 const mariadb = require('mariadb/callback');
 const db = require('./databaseConnection');
+const bp = require('body-parser');
+
+const app = express();
+app.use(bp.json());
+
+
+module.exports.createUser = function(req, res) {
+    let post = req.body;
+    let values = [];
+    values.push(post.name, post.password);
+
+    let sql = 'INSERT INTO User (name, password) VALUES (?, ?) ';
+    let query = db.query(sql, values, (err, result) => {
+        if (err) {
+            res.status(501).end();
+            console.log(err);
+        }
+        res.status(201).end();
+    });
+};
 
 module.exports.createLoop = function(req, res) {
     let post = req.body;
-    console.log(post);
+
     let values = [];
-    values.push(post[0].tempo, post[0].meter, post[0].instrumentTimes, ppost[0].volumeCymbal,
-        post[0].volumeHiHat, post[0].volumeSnare, post[0].volumeBass, post[0].volumeTom1, post[0].volumeTom2, post[0].userId);
+    values.push(post.tempo, post.meter, post.instrumentTimes, post.volumeCymbal,
+        post.volumeHiHat, post.volumeSnare, post.volumeBass, post.volumeTom1, post.volumeTom2, post.masterVolume, post.userId);
     console.log(values);
 
     let sql = 'INSERT INTO Loops (tempo, meter, InstrumentTimes,' +
-        +' VolumeCymbal, VolumeHiHat, VolumeSnare, VolumeBass, VolumeTom1, VolumeTom2, MasterVolume, userId)' +
+        ' VolumeCymbal, VolumeHiHat, VolumeSnare, VolumeBass, VolumeTom1, VolumeTom2, MasterVolume, userId)' +
         ' VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
 
     let query = db.query(sql, values, (err, result) => {
         if (err) {
+            console.log(err);
             res.status(501).end();
         }
         res.status(201).end();
@@ -36,10 +57,11 @@ module.exports.getUser = function(req, res) {
 }
 
 module.exports.getLoopsByUser = function(req, res) {
-    let userId = req.params.id;
-    let sql = `SELECT * FROM Loop WHERE userId = ?`;
-    let query = db.query(sql, [userId], (err, result) => {
+    let userId = req.params.userid;
+    let sql = `SELECT * FROM Loops WHERE userId = ?`;
+    let query = db.query(sql, userId, (err, result) => {
         if (err) {
+            console.log(err);
             res.status(404).end();
         }
         //console.log(result);
@@ -49,8 +71,8 @@ module.exports.getLoopsByUser = function(req, res) {
 
 module.exports.getLoopsById = function(res, req) {
     let Id = req.params.id;
-    let sql = `SELECT * FROM Loop WHERE id = ?`;
-    let query = db.query(sql, [Id], (err, result) => {
+    let sql = `SELECT * FROM Loops WHERE id = ?`;
+    let query = db.query(sql, Id, (err, result) => {
         if (err) {
             res.status(404).end();
         }
@@ -60,8 +82,9 @@ module.exports.getLoopsById = function(res, req) {
 
 module.exports.updateUser = function(res, req) {
     let post = req.body;
-    let sql = `UPDATE User SET ? WHERE id =${req.params.id}`;
-    let query = db.query(sql, post, (err, result) => {
+    let user = req.params.id;
+    let sql = `UPDATE User SET ? WHERE id = ?`;
+    let query = db.query(sql, [post, user], (err, result) => {
         if (err) {
             res.status(501).end();
         }
@@ -83,7 +106,7 @@ module.exports.updateLoop = function(res, req) {
 module.exports.deleteUser = function(res, req) {
     let userId = req.params.id;
     let sql = `DELETE FROM User WHERE id = ?`;
-    let query = db.query(sql, [userId], (err, result) => {
+    let query = db.query(sql, userId, (err, result) => {
         if (err) {
             res.status(501).end();
         }
@@ -94,7 +117,7 @@ module.exports.deleteUser = function(res, req) {
 module.exports.deleteLoop = function(res, req) {
     let Id = req.params.id;
     let sql = `DELETE FROM Loop WHERE id = ?`;
-    let query = db.query(sql, [Id], (err, result) => {
+    let query = db.query(sql, Id, (err, result) => {
         if (err) {
             res.status(501).end();
         }

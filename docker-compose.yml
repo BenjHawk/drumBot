@@ -29,4 +29,3 @@ services:
         - 'database_server:database_server'     
 volumes:
   my-datavolume:
-
