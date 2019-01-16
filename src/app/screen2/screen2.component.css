@@ -2,7 +2,7 @@
     height: 100px;
     width: 225px;
     margin-bottom: 5px;
-    border: 1px solid rgb(15, 22, 3);
+    border: 2px solid rgb(15, 22, 3);
     border-radius: 6px;
     box-shadow: 1px 1px 1px #000000;
 }
@@ -21,6 +21,20 @@
     
 .visualizer {
     margin-top: 20px;
+}
+
+@supports (-moz-appearance:none) {
+    .visualizer {
+        margin-top: 2px;
+    }
+
+    .button3 {
+        margin: 0px;
+    }
+
+    .row {
+        height: 20px;
+    }
 }
 
 .button3.highlited {
