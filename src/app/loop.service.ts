@@ -110,19 +110,6 @@ export class LoopService {
     // volumes (cympal, hihtat, snare, bass, tom1, tom2)
     // master vol
     // userID
-    sessionData ="[" + JSON.stringify({
-      tempo: this.tempo,
-      meter: '4/4',
-      instrumentTimes: this.instrumentTimes,
-      volumeCymbal: this.instruments[0].volume,
-      volumeHiHat: this.instruments[1].volume,
-      volumeSnare: this.instruments[2].volume,
-      volumeBass: this.instruments[3].volume,
-      volumeTom1: this.instruments[4].volume,
-      volumeTom2: this.instruments[5].volume,
-      masterVolume: 1.1,
-      userID: 1
-    }) + "]";
     console.log(sessionData);
     this.dataService.saveLoop(this.tempo, '4/4', 'InstrumentTimesDummy',//JSON.stringify(this.instrumentTimes), 
     this.instruments[0].volume, this.instruments[1].volume, 
@@ -132,10 +119,38 @@ export class LoopService {
 
   /**
    * restores session data from Array of JSON-strings
+   * Body der Response:
+   * [
+   *      {
+   *          "id": 1,
+   *          "name": null,
+   *          "tempo": "56",
+   *          "meter": "4/4",
+   *          "InstrumentTimes": "InstrumentTimesDummy",
+   *          "VolumeCymbal": 0.5,
+   *          "VolumeHiHat": 0.5,
+   *          "VolumeSnare": 0.5,
+   *          "VolumeBass": 1,
+   *          "VolumeTom1": 0.5,
+   *          "VolumeTom2": 0.5,
+   *          "MasterVolume": 1,
+   *          "userId": 1
+   *      }
+   * ]
    */
   public fromDB(sessionData: Array<string>): void {
-    console.warn("fromDB() not implemented");
-    this.instrumentTimes = JSON.parse(sessionData.pop());
+    console.warn("fromDB() not tested");
+    this.dataService.getLoopById(1).subscribe(
+      (res) => {
+        try {
+          console.log(res);
+          console.log(res[0]);
+        }
+        catch(e){
+          console.error(e);
+        }
+      }
+    );
   }
 
   public setDimensions(rowCount: number, colCount: number): void {
