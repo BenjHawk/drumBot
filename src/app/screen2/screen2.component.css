@@ -26,33 +26,32 @@
 .button3.highlited {
     opacity: 1.0;
 }
-/*javascript timer (set interval - atkariba no tempo, ik pec cik msek atkartojas, izpilda funkciju vienu soli uz priekshu) && animation*/
 
 .row {
     margin-left: 15px;
     margin-top: -5px;
 }
 
-#row1 .button3 {
+#row0 .button3 {
     background-color: red;
 }
 
-#row2 .button3 {
+#row1 .button3 {
     background-color: rgb(236, 98, 5);
 }
-#row3 .button3 {
+#row2 .button3 {
     background-color: rgb(247, 190, 3);
 }
 
-#row4 .button3 {
+#row3 .button3 {
     background-color: rgb(176, 228, 5);
 }
 
-#row5 .button3 {
+#row4 .button3 {
     background-color: rgb(89, 233, 5);
 }
 
-#row6 .button3 {
+#row5 .button3 {
     background-color: rgb(5, 134, 12);
 }
 
