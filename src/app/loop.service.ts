@@ -1,6 +1,7 @@
 // TODO: toDB()
 // TODO: fromDB()
-// TODO: find a way of not giving the hole HTMLAudioElement to VolumeControl
+// TODO: after load -> aktualisiere UI
+// TODO: support general volume
 
 import { Injectable } from '@angular/core';
 import { DataService } from './data.service';
@@ -57,6 +58,7 @@ export class LoopService {
       this.instruments[i] = new Audio();
       this.instruments[i].src = this.audioDir + this.audioFilePaths[i];
       this.instruments[i].load();
+      this.instruments[i].volume = 0.5;
     }
   }
   
@@ -95,12 +97,31 @@ export class LoopService {
   /**
    * returns Array of JSON-strings holding session data
    */
-  public toDB(): Array<string> {
+  public toDB(): string {
     console.warn("toDB() not tested");
-    let sessionData: Array<string> = new Array<string>();
+    let sessionData: string = "";
     // data to be saved:
-    sessionData.push(JSON.stringify(this.instrumentTimes));
-    // TODO: dataService.saveLoop(sessionData);
+    // tempo
+    // meter
+    // instrumentTimes
+    // volumes (cympal, hihtat, snare, bass, tom1, tom2)
+    // master vol
+    // userID
+    sessionData = JSON.stringify({
+      tempo: this.tempo,
+      meter: '4/4',
+      instrumentTimes: this.instrumentTimes,
+      volumeCymbal: this.instruments[0].volume,
+      volumeHiHat: this.instruments[1].volume,
+      volumeSnare: this.instruments[2].volume,
+      volumeBass: this.instruments[3].volume,
+      volumeTom1: this.instruments[4].volume,
+      volumeTom2: this.instruments[5].volume,
+      masterVolume: 1.1,
+      userID: 1
+    });
+    console.log(sessionData);
+    this.dataService.saveLoop(sessionData);
     return sessionData;
   }
 
