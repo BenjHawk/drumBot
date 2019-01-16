@@ -1,22 +1,16 @@
 const express = require('express');
 const bp = require('body-parser');
 const dbSetup = require('./dbSetup');
-const apiCallback = require('./apiCallbacks')
-    //jwt
+const apiCallback = require('./apiCallbacks');
+const authentication = require('./authentication');
 
 const app = express();
 // Add headers
 app.use(function(req, res, next) {
-    // Website you wish to allow to connect
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
-    // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    // Request headers you wish to allow
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-    // Set to true if you need the website to include cookies in the requests sent
-    // to the API (e.g. in case you use sessions)
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type, Authorization');
     res.setHeader('Access-Control-Allow-Credentials', true);
-    // Pass to next layer of middleware
     next();
 });
 
@@ -33,6 +27,11 @@ app.get('/createlooptable', (req, res) => {
     dbSetup.createLoopsTable(req, res);
 });
 
+
+//endpoint for login via JWT authentication
+app.post('/login', (req, res) => {
+    authentication.loginRoute(req, res);
+});
 
 /*Implementation of the CRUD operations for the User and Loop table*/
 app.post('/createuser/', (req, res) => {
@@ -59,12 +58,19 @@ app.post('/updateloop/:id', (req, res) => {
 app.get('/deleteuser/:id', (req, res) => {
     apiCallback.deleteUser(req, res);
 });
-app.get('/deleteloop/:id', (req, res) => {
+app.get('/deleteloop/:id', authentication.checkIfAuthenticated, (req, res) => {
     apiCallback.deleteLoop(req, res);
+});
+
+//dummy endpoint for test purposes
+app.get('/dummy', authentication.checkIfAuthenticated, (req, res) => {
+    console.log("dummy endpoint visited");
+    console.log(req.headers);
 });
 
 
 app.listen('4040', () => {
     console.log('server started on port 4040');
 });
+
 app.use(bp.text());

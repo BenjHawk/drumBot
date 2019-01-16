@@ -1,54 +1,8 @@
 const express = require('express');
 const mariadb = require('mariadb/callback');
-let db;
-
-setTimeout(() => {
-    db = mariadb.createConnection({
-        host: 'db', //'localhost',
-        user: 'root',
-        password: 'test12',
-        database: 'DrumbotDatabase'
-    });
-
-    db.connect(err => {
-        if (err) {
-            console.log("not connected due to error: " + err);
-        } else {
-            console.log("connected ! connection id is " + db.threadId);
-        }
-    });
-}, 12000);
-
-/*db.query("select 1", [2])
-    .then(rows => {
-        console.log(rows); // [{ "1": 1 }]
-        console.log("success");
-        conn.end();
-
-    })
-    .catch(err => {
-        //handle query error
-    });*/
-
-/*setTimeout(() => {
-    db = mysql.createConnection({
-        host: 'db',
-        user: 'root',
-        password: 'test12',
-        //database: 'DrumbotDatabase'
-    });
-    console.log("dbsetup!!!!!!!!!!!!!!!!!!!!");
-}, 5000); 
-
+const db = require('./databaseConnection');
 
 // auseinander ziehen; callbacks raus, Datenbankverbindung raus; Modeldatei für Datenbankabfragen; JSON web token express-jwt -> Authentifizierung
-//Connect
-db.connect((err) => {
-    if (err) {
-        throw err;
-    }
-    console.log('MySQL connected...');
-})*/
 
 
 //Create DB
@@ -62,6 +16,7 @@ module.exports.createDatabase = function(req, res) {
     });
 };
 
+//username und PW besser als primary key verwenden?
 module.exports.createUserTable = function(req, res) {
     let sql = 'CREATE TABLE User(id int AUTO_INCREMENT, name VARCHAR(255), password VARCHAR(255), email VARCHAR(255), PRIMARY KEY (id))';
     db.query(sql, (err, result) => {

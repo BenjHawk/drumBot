@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { DataService } from '../data.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -13,18 +12,13 @@ export class Screen1Component implements OnInit {
   @Input() selectedVolume: number;
   @Input() selectedMeter: String;
   @Input() selectedEffects: String;
-  @Input() selectedMode: String;
-
-  user$: Object; 
-
+  @Input() selectedMode: String; 
   
+  constructor() { }
 
-  constructor(private data : DataService) { }
 
   ngOnInit() {
-    this.data.getUser("2").subscribe(
-      data => this.user$ = data
-    )
+
   }
 
 }

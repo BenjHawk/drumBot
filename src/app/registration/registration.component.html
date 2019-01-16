@@ -1,6 +1,18 @@
-<div class="registration">
-  <input type="text" class="logIn" placeholder="Username">
-  <input type="password" class="logIn" placeholder="Password">
-  <input type="submit" class="submit" value="Sign in">
-  <input type="button" class="submit" value="Register" style="margin-left: 20px"> 
+<div class="registration" style="margin-bottom: 20px">
+    <form [formGroup]="form">
+        
+        <input name="username" class="logIn" formControlName="username" placeholder="Username">
+            
+        <input name="password" formControlName="password" type="password" class="logIn" placeholder="Password">
+        <span class="form-buttons">         
+            <button class="button-primary" (click)="login()">Login</button>
+        </span>
+        <span class="form-buttons">
+            <button class="button button-primary" (click)="logout()">Logout</button>
+        </span>
+        <span class="form-buttons" style="margin-left: 20px">
+            <button class="button button-primary" (click)="register()">Register</button>
+        </span>        
+
+    </form>
 </div>
