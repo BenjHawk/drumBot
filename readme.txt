@@ -1,4 +1,4 @@
-DrumBot 1.0 loop machine; read me
+HyDrum loop machine; read me
 
 The drumBot loop machine is a browser application for creating, saving and playing drum loops. The app can be started from every browser on desktop computers, tablets and mobile devices. To aid usability on devices apart from the desktop computers the design of the drumBot will adapt depending on the display resolution of your device.
 For the drum loops up to six different sounds can be used simultaneously (Snare, Bass, HiHat, Tom1 & 2, Cymbal). The tempo of one down beat is adjustable from 40 beats per minute (bpm) to 208 bpm. For each sound every 1/8 note of a measure can be selected or deselected individually to allow a maximum of flexibility and creativity while developing loops. To add even more flexibility to the loop generating process, the volume of each drum sound can be changed individually so that different mixes are possible. Furthermore, the app includes a master volume button to decrease or increase the volume of all instruments of the loop.
