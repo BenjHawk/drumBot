@@ -16,7 +16,7 @@ export class Slidecontainer2Component implements OnInit {
     this.loopSvc = loopSvc;
   }
 
-  private getVolumeRef(btnName: string): HTMLAudioElement{
+  private getVolumeRef(btnName: string): any{
     let index: number;
     for (let i = 0; i < this.name.length; i++)
       if(this.name[i] === btnName)

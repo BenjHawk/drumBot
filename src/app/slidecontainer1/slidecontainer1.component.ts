@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoopService } from "../loop.service";
 
 @Component({
   selector: 'app-slidecontainer1',
@@ -10,7 +11,7 @@ export class Slidecontainer1Component implements OnInit {
   name = ['sld1', 'sld2', 'sld3', 'sld4', 'sld5', 'sld6'];
   sliderName = this.name[0];
 
-  constructor() { }
+  constructor(private loopService: LoopService) { }
 
   ngOnInit() {
   }
