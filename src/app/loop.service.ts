@@ -1,11 +1,14 @@
-// TODO: toDB()
-// TODO: fromDB()
 // TODO: after load -> aktualisiere UI
-// TODO: support general volume
-// Registration::Login -> LoopSvc::initFromDB() -> DS::getLoopIDsByUserID()
-// Ctrl2::btnLoad -> LoopSvc::loopFromDB() -> DS::getLoopByID()
-// Ctrl2::btnSave -> LoopSvc::loopToDB() -> DS::saveLoop()
-// Ctrl2::btnDelet -> LoopSvc::deleteLoopFromDB() -> DS::deleteLoopByID()
+// TODO: general volume currently affects ALL sliders in slidecontainer1 -> should we keep that?
+// TODO: (testing) [Registration::Login ->] LoopSvc::getLoopIdsByUser() -> DS::getLoopIDsByUserID()
+// TODO: (testing) [Ctrl2::btnLoad ->] LoopSvc::loopFromDB() -> DS::getLoopByID()
+// TODO: (testing) Ctrl2::btnSave -> LoopSvc::saveLoop() -> DS::saveLoop()
+// TODO: create dropdown for controls2::loadBtn
+// TODO: link controls2::loadBtn to LoopSvc::loopIDs
+// TODO: Ctrl2::btnDelete -> LoopSvc::deleteLoopFromDB() -> DS::deleteLoopByID()
+// OPTIONALS
+// TODO: loop.name in Database currently unused by LoopService
+// TODO: create component VolumeWraper
 
 import { Injectable } from '@angular/core';
 import { DataService } from './data.service';
@@ -20,14 +23,15 @@ export class LoopService {
   public onInstrumentPlay: any = null;
   public onStop: any = null;
   private tempo: number = 80;
-
+  
   // loop dimensions
   private instrumentCount: number = 0;  // number of instruments demanded by UI
   private timeCount: number = 0;        // number of times demanded by UI
+  private loopIDs: Array<number>;       // loop IDs needed to identify a specific loop in the database
   // instrument data
   private instrumentTimes: Array<Array<boolean>>;   // state of instruments at specific times
   public volumeMaster = 1.0;
-  public volumeInstruments: Array<any>;
+  public volumeInstrumentsWrapper: Array<any>;
   private instruments: Array<HTMLAudioElement>;
   private audioFilePaths: Array<string> = [
     "drum_splash_hard.mp3",
@@ -50,10 +54,10 @@ export class LoopService {
 
   private instrumentsInit(): void {
     this.instrumentTimes = new Array<Array<boolean>>(this.instrumentCount);
-    this.volumeInstruments = new Array<number>(this.instrumentCount);
+    this.volumeInstrumentsWrapper = new Array<any>(this.instrumentCount);
     for (let i = 0; i < this.instrumentCount; i++) {
       this.instrumentTimes[i] = new Array<boolean>(this.timeCount);
-      this.volumeInstruments[i] = { volume: 0.5 };
+      this.volumeInstrumentsWrapper[i] = { volume: 0.5 };   // ugly static wrapper -> should use external component if possible
       for (let j = 0; j < this.timeCount; j++) {
         this.instrumentTimes[i][j] = false;
       }
@@ -81,7 +85,7 @@ export class LoopService {
         if (this.instrumentTimes[i][this.time]) {
           console.log("playing instrument #" + i + " time" + (this.time));
           this.instruments[i].currentTime = 0;
-          this.instruments[i].volume = this.volumeInstruments[i].volume * this.volumeMaster;
+          this.instruments[i].volume = this.volumeInstrumentsWrapper[i].volume * this.volumeMaster;
           this.instruments[i].play();
           if (i < minInstrument) {
             minInstrument = i;
@@ -103,7 +107,7 @@ export class LoopService {
   /**
    * returns Array of JSON-strings holding session data
    */
-  public toDB(): string {
+  public saveLoop(): void {
     console.warn("toDB() not tested");
     console.log(this.instrumentTimes);
     let sessionData: string = "";
@@ -115,14 +119,31 @@ export class LoopService {
     // master vol
     // userID
     console.log(sessionData);
-    this.dataService.saveLoop(this.tempo, '4/4', 'InstrumentTimesDummy',//JSON.stringify(this.instrumentTimes), 
+    this.dataService.saveLoop(this.tempo, '4/4', JSON.stringify(this.instrumentTimes),
     this.instruments[0].volume, this.instruments[1].volume, 
     this.instruments[2].volume, this.instruments[3].volume, this.instruments[4].volume, this.instruments[5].volume, 1.0, 1).subscribe();
-    return sessionData;
   }
 
   /**
+   * @deprecated
    * restores session data from Array of JSON-strings
+   */
+  public fromDB(sessionData: Array<string>): void {
+    console.warn("fromDB() not tested");
+    this.dataService.getLoopById(1).subscribe(
+      (res) => {
+        try {
+          console.log(res);
+          console.log(res[0]);
+        }
+        catch(e){
+          console.error(e);
+        }
+      }
+      );
+  }
+  
+  /**
    * Body der Response:
    * [
    *      {
@@ -141,16 +162,50 @@ export class LoopService {
    *          "userId": 1
    *      }
    * ]
+   * @param loopId 
    */
-  public fromDB(sessionData: Array<string>): void {
-    console.warn("fromDB() not tested");
-    this.dataService.getLoopById(1).subscribe(
-      (res) => {
+  public getLoopById(loopId: number): void {
+    console.warn("LoopService::getLoopById():not tested");
+    this.dataService.getLoopById(loopId).subscribe(
+      (resBody) => {
         try {
-          console.log(res);
-          console.log(res[0]);
+          console.log(resBody[0]);
+          this.tempo = resBody[0].tempo;
+          this.volumeInstrumentsWrapper[0].volume = resBody[0].VolumeCymbal;
+          this.volumeInstrumentsWrapper[1].volume = resBody[0].VolumeHiHat;
+          this.volumeInstrumentsWrapper[2].volume = resBody[0].VolumeSnare;
+          this.volumeInstrumentsWrapper[3].volume = resBody[0].VolumeBass;
+          this.volumeInstrumentsWrapper[4].volume = resBody[0].VolumeTom1;
+          this.volumeInstrumentsWrapper[5].volume = resBody[0].VolumeTom2;
+          this.volumeMaster = resBody[0].volumeMaster;
+          this.instrumentTimes = <Array<Array<boolean>>> JSON.parse(resBody[0].InstrumentTimes);
         }
         catch(e){
+          console.warn("LoopService::getLoopById():error while parsing from responce body.")
+          console.error(e);
+        }
+      }
+      );
+    }
+    
+    /**
+     * Fetch LoopIDs from DataService. Responses body is expected to be of type Array<number>
+     * Save LoopIDs to this instance of LoopService
+     * @param userID
+     */
+    public getLoopIdsByUser(userID: number): void {
+      console.warn("LoopService::getLoopIdsByUser() not tested");
+      this.dataService.getLoopIdsByUser(userID).subscribe(
+        (resBody: Array<number>) => {
+          try {
+            console.log(resBody[0]);
+            let countIDs = resBody.length;
+            let buffer = new Array<number>(countIDs);
+            for(let i = 0; i < countIDs; i++)
+            buffer[i] = resBody[i]
+          }
+          catch(e){
+          console.warn("LoopService::getLoopIdsByUser():error while parsing from responce body.")
           console.error(e);
         }
       }
@@ -165,11 +220,17 @@ export class LoopService {
 
   public setInstrumentTime(instrument: number, time: number): void {
     this.instrumentTimes[instrument][time] = !this.instrumentTimes[instrument][time];
-    console.log("instrument #" + instrument + " time" + time);
+    // console.log("instrument #" + instrument + " time" + time);
   }
 
   public getInstrumentTime(instrument: number, time: number): boolean {
     return this.instrumentTimes[instrument][time];
+  }
+
+  public getLoopIDs(): Array<number>{
+    if(this.loopIDs === undefined)
+      console.warn("LoopService::getLoopIDs():LoopIDs undefined");
+    return this.loopIDs;
   }
 
   /**
@@ -177,7 +238,7 @@ export class LoopService {
    * provides reference to HTMLAudioElement.Volume for Volume Control
    */
   public getVolumeRef(index: number): any {
-    return this.volumeInstruments[index];
+    return this.volumeInstrumentsWrapper[index];
   }
 
   public play(): void {

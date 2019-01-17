@@ -4,6 +4,7 @@ import { AuthService } from '../auth-service.service';
 import { Router } from '@angular/router';
 import { DataService } from '../data.service';
 import { validateBasis } from '@angular/flex-layout';
+import { LoopService } from "../loop.service";
 
 @Component({
   selector: 'app-registration',
@@ -18,7 +19,8 @@ export class RegistrationComponent implements OnInit {
   constructor(private fb:FormBuilder, 
                private authService: AuthService, 
                private dataService: DataService,
-               private router: Router) {
+               private router: Router,
+               private loopSvc: LoopService) {
 
       this.form = this.fb.group({
           username: ['',Validators.required],
@@ -29,6 +31,10 @@ export class RegistrationComponent implements OnInit {
   ngOnInit() {
   }
 
+  // TODO: Registration::Login -> LoopSvc::getLoopIdsByUser() [-> DS::getLoopIDsByUserID()]
+  /**
+   * Login user and after that call LoopService::getLoopIdsByUser()
+  */
   login() {
       const val = this.form.value;
       if (val.username && val.password) {

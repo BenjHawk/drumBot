@@ -22,15 +22,14 @@ export class Controls2Component implements OnInit {
 
   ngOnInit() {
   }
+  
   private clickedBtn(btnName: String): void {
     if(btnName === this.name[0]){
-      this.loopSvc.toDB();
+      this.loopSvc.saveLoop();
     }
     if(btnName === this.name[1]){
       // dirty testing-method
-      this.loopSvc.fromDB(
-        ["[[false,false,true,false,true,true,true,false],[false,false,true,false,true,false,false,true],[true,true,true,false,true,true,true,false],[true,false,true,false,true,false,false,true],[true,true,true,false,true,true,true,true],[false,false,false,false,false,false,false,false]]"]
-        );
+      this.loopSvc.getLoopById(1);
       }
       if(btnName === this.name[2])
       this.loopSvc.play();
