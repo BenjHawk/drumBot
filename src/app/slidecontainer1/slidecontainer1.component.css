@@ -15,3 +15,8 @@ input[type=range] {
     margin-right: -23px;        
 }
 
+@supports (-moz-appearance:none) {
+    input[type=range] {
+        margin-right: -28px;
+    }
+}

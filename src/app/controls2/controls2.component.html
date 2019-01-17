@@ -1,5 +1,10 @@
-<span class="controls2" *ngFor="let btnName of name">
-    <button (click)="clickedBtn(btnName)" class="button1" id="{{ btnName }}">{{ btnName | uppercase }}</button>  
-</span>
+<div>    
+        <button class="button1" id="save" (click)="clickedBtn(btnName)">SAVE</button> 
+        
+        <button class="button1" id="load" (click)="chooseLoop()" *ngIf="!loopsVisible">LOAD</button>
+            <select *ngIf="loopsVisible" [(ngModel)]="loop" name="loop" (change)="hideSavedLoops()" class="select">
+                <option *ngFor="let loop1 of savedLoops()" [value]="loop1.value">{{ loop1.title }}</option>
+            </select>
 
-
+        <button class="button1" id="delete" (click)="clickedBtn(btnName)">DELETE</button>
+</div>

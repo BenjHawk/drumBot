@@ -19,14 +19,9 @@ import { AuthInterceptor } from './auth-interceptor';
 import { AuthService } from './auth-service.service';
 import { DataService } from './data.service';
 
-/********************************** */
 const appRoutes: Routes = [
   { path: 'login', component: RegistrationComponent },
 ];
-
-/************************************* */
-
-
 
 @NgModule({
   declarations: [
@@ -55,7 +50,7 @@ const appRoutes: Routes = [
       provide: HTTP_INTERCEPTORS, 
       useClass: AuthInterceptor, 
       multi: true 
-  }
+    }
   ],
   bootstrap: [AppComponent]
 })
