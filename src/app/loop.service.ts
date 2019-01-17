@@ -4,7 +4,7 @@
 
 import { Injectable } from '@angular/core';
 import { DataService } from './data.service';
-import { Observable } from 'rxjs'
+//import { Observable } from 'rxjs'
 
 
 @Injectable({
@@ -89,14 +89,6 @@ export class LoopService {
     }, 60/this.tempo*1000);
   }
 
-  public setTempo(tempo: number) {
-    this.tempo = tempo;
-  }
-
-  public setLoop(loop: String) {
-    this.loop = loop;
-  }
-
   /**
    * returns Array of JSON-strings holding session data
    */
@@ -165,7 +157,16 @@ export class LoopService {
     }
   }
 
-  public isCurrentlyPlaying(){
+  isCurrentlyPlaying(){
     return this.isPlaying;
   }
+  
+  setTempo(tempo: number) {
+    this.tempo = tempo;
+  }
+
+  setLoop(loop: String) {
+    this.loop = loop;
+  }
+
 }

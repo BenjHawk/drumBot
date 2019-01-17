@@ -17,9 +17,11 @@
       [volume]="curVolume" (volumeChanged)="onVolumeChange($event)"
       [meter]="curMeter" (meterChanged)="onMeterChange($event)" 
       [effects]="curEffects" (effectsChanged)="onEffectsChange($event)"
-      [mode]="curMode" (modeChanged)="onModeChange($event)"></app-controls1>
+      [mode]="curMode" (modeChanged)="onModeChange($event)">
+      </app-controls1>
       
       <app-slidecontainer1></app-slidecontainer1>
+      
       <app-controls2 [loop]="curLoop" (loopChanged)="onLoopChange($event)"></app-controls2>
     </div>
       

@@ -18,6 +18,7 @@ export class Controls2Component implements OnInit {
 
   ngOnInit() {
   }
+
   private clickedBtn(btnName: String): void {
     if(btnName === this.name[0]){
       console.log(this.loopSvc.toDB());
@@ -32,7 +33,7 @@ export class Controls2Component implements OnInit {
       this.loopSvc.play();
     }
 
-  public loopsVisible: boolean = false;
+  private loopsVisible: boolean = false;
   @Input() loop: String;
   @Output() loopChanged = new EventEmitter<String>();
 
@@ -40,7 +41,7 @@ export class Controls2Component implements OnInit {
     return [{value:'default', title: 'default'},{value:'Loop1', title: 'Loop1'}, {value:'Loop2', title: 'Loop2'}, {value:'Loop3', title: 'Loop3'}, {value:'Loop4', title: 'Loop4'}];
   } 
 
-  public chooseLoop(): void {
+  private chooseLoop(): void {
     this.loopsVisible = true;
   }
 
