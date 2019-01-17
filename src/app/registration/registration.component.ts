@@ -31,7 +31,6 @@ export class RegistrationComponent implements OnInit {
 
   login() {
       const val = this.form.value;
-
       if (val.username && val.password) {
           this.authService.login(val.username, val.password)
               .subscribe(
@@ -55,23 +54,27 @@ export class RegistrationComponent implements OnInit {
         this.dataService.createUser(val.username, val.password)
             .subscribe(
                 (res: any) => {
-                    if (res.userStatus === "Created"){
+                    console.log(res.status);
+                     if (res.userStatus === "Created"){
                         alert("User "+ val.username + " sucessfully created!");
                       }    
                     else {
-                        alert("Error! Username already exists. Please choose another one.");
+                        this.router.navigateByUrl('/')
+
                     }
-                    this.router.navigateByUrl('/');
-                }
+                },
+                    (error: any) => {
+                        alert("Error, no user was created! The username chosen already exist. Please use another one and retry.");
+                        console.log(error);
+                    }
+                
             );
     }
 
     logout(){
-        const val = this.form.value;
-
         this.authService.logout();
-        val.username = '';
-        val.password= '';
+        this.form.reset();
+        console.log("Logout succesfull!");
     }
 }
 

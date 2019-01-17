@@ -144,7 +144,7 @@ export class LoopService {
    */
   public fromDB(sessionData: Array<string>): void {
     console.warn("fromDB() not tested");
-    this.dataService.getLoopsByUser(1).subscribe(
+    this.dataService.getLoopById(1).subscribe(
       (res) => {
         try {
           console.log(res);

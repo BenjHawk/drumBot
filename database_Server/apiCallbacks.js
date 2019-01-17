@@ -15,7 +15,7 @@ module.exports.createUser = function(req, res) {
     let sql = 'INSERT INTO User (name, password) VALUES (?, ?) ';
     let query = db.query(sql, values, (err, result) => {
         if (err) {
-            res.status(501).end();
+            res.status(409).json({ userStatus: "Error" }).end();
             return console.log(err);
         }
         res.status(201).json({ userStatus: "Created" }).end();

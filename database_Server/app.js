@@ -61,15 +61,15 @@ app.get('/getloopidsbyuser/:userid', (req, res) => {
 app.get('/getloopbyid/:id', (req, res) => {
     apiCallback.getLoopsById(req, res);
 });
-app.post('/updateuser/:id', (req, res) => {
+/*app.post('/updateuser/:id', (req, res) => {
     apiCallback.updateUser(req, res);
-});
+});*/
 app.post('/updateloop/:id', (req, res) => {
     apiCallback.updateLoop(req, res);
 });
-app.get('/deleteuser/:id', (req, res) => {
+/*app.get('/deleteuser/:id', (req, res) => {
     apiCallback.deleteUser(req, res);
-});
+});*/
 app.get('/deleteloop/:id', authentication.checkIfAuthenticated, (req, res) => {
     apiCallback.deleteLoop(req, res);
 });
