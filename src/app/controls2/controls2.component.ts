@@ -39,7 +39,12 @@ export class Controls2Component implements OnInit {
   @Output() loopChanged = new EventEmitter<String>();
 
   private savedLoops(): Object [] {
-    return [{value:'default', title: 'default'},{value:'Loop1', title: 'Loop1'}, {value:'Loop2', title: 'Loop2'}, {value:'Loop3', title: 'Loop3'}, {value:'Loop4', title: 'Loop4'}];
+    let fetchedIDs: Array<number> = this.loopSvc.getLoopIDs();
+    let htmlAttributeContainer: Array<any> = new Array<any>(fetchedIDs.length + 1);
+    htmlAttributeContainer[0] = {value: 'default', title: 'default'};
+    for (let i = 0; i < fetchedIDs.length; i++)
+      htmlAttributeContainer[i + 1] = {value: 'Loop' + fetchedIDs[i], title: 'Loop' + fetchedIDs[i]};
+    return htmlAttributeContainer;
   } 
 
   private chooseLoop(): void {

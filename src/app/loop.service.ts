@@ -3,7 +3,6 @@
 // TODO: (testing) [Registration::Login ->] LoopSvc::getLoopIdsByUser() -> DS::getLoopIDsByUserID()
 // TODO: (testing) [Ctrl2::btnLoad ->] LoopSvc::loopFromDB() -> DS::getLoopByID()
 // TODO: (testing) Ctrl2::btnSave -> LoopSvc::saveLoop() -> DS::saveLoop()
-// TODO: create dropdown for controls2::loadBtn
 // TODO: link controls2::loadBtn to LoopSvc::loopIDs
 // TODO: Ctrl2::btnDelete -> LoopSvc::deleteLoopFromDB() -> DS::deleteLoopByID()
 // OPTIONALS
@@ -227,8 +226,10 @@ export class LoopService {
   }
 
   public getLoopIDs(): Array<number>{
-    if(this.loopIDs === undefined)
+    if(this.loopIDs === undefined){
       console.warn("LoopService::getLoopIDs():LoopIDs undefined");
+      return [];
+    }
     return this.loopIDs;
   }
 
