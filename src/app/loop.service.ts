@@ -9,7 +9,7 @@
 
 import { Injectable } from '@angular/core';
 import { DataService } from './data.service';
-import { Observable } from 'rxjs'
+//import { Observable } from 'rxjs'
 
 
 @Injectable({
@@ -19,8 +19,11 @@ export class LoopService {
 
   public onInstrumentPlay: any = null;
   public onStop: any = null;
-  private tempo: number = 80;
-
+  private tempo: number = 120;
+  public loop: String = null;
+  
+  // private itemsToStore = 1;
+  
   // loop dimensions
   private instrumentCount: number = 0;  // number of instruments demanded by UI
   private timeCount: number = 0;        // number of times demanded by UI
@@ -94,10 +97,6 @@ export class LoopService {
       this.time++;
       this.time = this.time % this.timeCount;
     }, 60 / this.tempo * 1000);
-  }
-
-  public setTempo(tempo: number) {
-    this.tempo = tempo;
   }
 
   /**
@@ -205,7 +204,16 @@ export class LoopService {
     }
   }
 
-  public isCurrentlyPlaying() {
+  isCurrentlyPlaying(){
     return this.isPlaying;
   }
+  
+  setTempo(tempo: number) {
+    this.tempo = tempo;
+  }
+
+  setLoop(loop: String) {
+    this.loop = loop;
+  }
+
 }

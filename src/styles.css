@@ -3,36 +3,38 @@ body {
 }
 
 .register {
-text-align: center;
+  text-align: center;
 }
 
 .container {
   width: fit-content;
   height: fit-content;
   margin: 0 auto;
-  border: 3px solid black;
+  border: 5px solid black;
+  box-shadow: 10px 10px 50px black;
   background-color: rgb(77, 76, 76);
   border-radius: 6px;
   padding: 10px;
 }
-
+/*
 .flex {
-display: flex;
-margin: 2rem;
+  display: flex;
+  margin: 10px;
 }
+*/
 
 .left {
-justify-content: left;
-margin-right: 10px;
+  margin-right: 10px;
+  justify-content: left;
 }
 
 .middle {
-margin-right: 10px;
+  margin-right: 10px;
 }
 
 .right {
-margin-top: 120px;
-justify-content: right;
+  margin-top: 110px;
+  justify-content: right;
 }
 
 .button1 {
@@ -78,10 +80,9 @@ justify-content: right;
   border-radius: 6px;
 }
 
-
 input[type=range] {
   -webkit-appearance: none;
-}
+} 
 
 input[type=range]:focus {
   outline: none;
@@ -112,8 +113,7 @@ input[type=range]::-moz-range-track {
   background: rgb(63, 99, 9);
   border-radius: 3px;
   border: 0.2px solid #010101;
-  width: 80px;
-  
+  width: 80px;  
 }
 
 input[type=range]::-moz-range-thumb {
@@ -128,30 +128,30 @@ input[type=range]::-moz-range-thumb {
 }
 
 input[type=range]::-ms-track {
-height: 7px;
-background: transparent;
-border-color: transparent;
-border-width: 6px 0;
-border-radius: 2px;
-color: transparent;
+  height: 7px;
+  background: transparent;
+  border-color: transparent;
+  border-width: 6px 0;
+  border-radius: 2px;
+  color: transparent;
 }
 
 input[type=range]::-ms-thumb {
-border: 1px solid black;
-height: 17px;
-width: 7px;
-border-radius: 21px;
-background: greenyellow; 
+  border: 1px solid black;
+  height: 17px;
+  width: 7px;
+  border-radius: 21px;
+  background: greenyellow; 
 }
 
 input[type=range]::-ms-fill-lower {
-background: rgb(63, 99, 9);
-border: 0.2px solid #010101;
-border-radius: 2px;
+  background: rgb(63, 99, 9);
+  border: 0.2px solid #010101;
+  border-radius: 2px;
 }
 
 input[type=range]::-ms-fill-upper {
-background: rgb(63, 99, 9);
-border: 0.2px solid #010101;
-border-radius: 2px;
+  background: rgb(63, 99, 9);
+  border: 0.2px solid #010101;
+  border-radius: 2px;
 }

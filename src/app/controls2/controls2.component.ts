@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { LoopService } from "../loop.service";
 import { DataService } from '../data.service';
 import { AuthService } from '../auth-service.service';
@@ -11,9 +11,8 @@ import { TouchSequence } from 'selenium-webdriver';
 })
 export class Controls2Component implements OnInit {
 
-  name: String[] = ['save', 'load', 'delete'];
-  btnName: String =this.name[0];
-
+  public name: String[] = ['save', 'load', 'delete'];
+  
   private loopSvc: LoopService;
 
   constructor(loopSvc: LoopService, private dataService : DataService) { 
@@ -22,6 +21,7 @@ export class Controls2Component implements OnInit {
 
   ngOnInit() {
   }
+
   private clickedBtn(btnName: String): void {
     if(btnName === this.name[0]){
       this.loopSvc.toDB();
@@ -35,4 +35,22 @@ export class Controls2Component implements OnInit {
       if(btnName === this.name[2])
       this.loopSvc.play();
     }
+
+  private loopsVisible: boolean = false;
+  @Input() loop: String;
+  @Output() loopChanged = new EventEmitter<String>();
+
+  private savedLoops(): Object [] {
+    return [{value:'default', title: 'default'},{value:'Loop1', title: 'Loop1'}, {value:'Loop2', title: 'Loop2'}, {value:'Loop3', title: 'Loop3'}, {value:'Loop4', title: 'Loop4'}];
+  } 
+
+  private chooseLoop(): void {
+    this.loopsVisible = true;
+  }
+
+  private hideSavedLoops(): void {
+    this.loopsVisible = false;
+    this.loopChanged.emit(this.loop);
+  }
+
 }

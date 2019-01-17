@@ -7,12 +7,13 @@ import { LoopService } from './loop.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'drumBot';
-  curTempo: number = 40;
+  title = 'HyDrum';
+  curTempo: number = 120;
   curVolume: number = 10;
   curMeter: String = '4/4';
   curEffects: String = 'none';
   curMode: String = 'standard';
+  curLoop: String = 'default';
   
   private loopSvc: LoopService;
 
@@ -46,6 +47,10 @@ export class AppComponent {
     this.curMode = mode;
   }
 
-  
+  onLoopChange(loop: String) {
+    console.log("New loop:", loop);
+    this.curLoop = loop;
+    this.loopSvc.setLoop(loop);
+  }
 }
 

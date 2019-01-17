@@ -8,10 +8,10 @@ import { LoopService } from "../loop.service";
 })
 export class Controls3Component implements OnInit {
 
-  rowNr: number[] = [1, 2, 3, 4, 5, 6];
-  colNr: number[] = [1, 2, 3, 4, 5, 6, 7, 8];
-  rowId: number = this.rowNr[0];
-  colId: number = this.colNr[0];
+  private rowNr: number[] = [1, 2, 3, 4, 5, 6];
+  private colNr: number[] = [1, 2, 3, 4, 5, 6, 7, 8];
+  public rowId: number = this.rowNr[0];
+  public colId: number = this.colNr[0];
 
   private selectedBtns: Array<Array<boolean>> = null;
 
