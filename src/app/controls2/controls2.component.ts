@@ -30,8 +30,10 @@ export class Controls2Component implements OnInit {
       // dirty testing-method
       this.loopSvc.getLoopById(1);
       }
-      if(btnName === this.name[2])
-      this.loopSvc.play();
+      if(btnName === this.name[2]){
+        console.log("controls2::clickedBtn():DELETE Loop" + this.loopSvc.getLoadedLoopID());
+        this.loopSvc.deleteLoopById(this.loopSvc.getLoadedLoopID());
+      }
     }
 
   private loopsVisible: boolean = false;

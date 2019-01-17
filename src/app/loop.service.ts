@@ -3,11 +3,11 @@
 // TODO: (testing) [Registration::Login ->] LoopSvc::getLoopIdsByUser() -> DS::getLoopIDsByUserID()
 // TODO: (testing) [Ctrl2::btnLoad ->] LoopSvc::loopFromDB() -> DS::getLoopByID()
 // TODO: (testing) Ctrl2::btnSave -> LoopSvc::saveLoop() -> DS::saveLoop()
-// TODO: link controls2::loadBtn to LoopSvc::loopIDs
-// TODO: Ctrl2::btnDelete -> LoopSvc::deleteLoopFromDB() -> DS::deleteLoopByID()
+// TODO: Ctrl2::btnDelete -> LoopSvc::deleteLoopByID() -> DS::deleteLoopByID()
 // OPTIONALS
 // TODO: loop.name in Database currently unused by LoopService
 // TODO: create component VolumeWraper
+// TODO: implement variable meter
 
 import { Injectable } from '@angular/core';
 import { DataService } from './data.service';
@@ -22,10 +22,10 @@ export class LoopService {
   public onInstrumentPlay: any = null;
   public onStop: any = null;
   private tempo: number = 120;
-  public loop: String = null;
-  
+  public loopName: String = "";
+
   // private itemsToStore = 1;
-  
+
   // loop dimensions
   private instrumentCount: number = 0;  // number of instruments demanded by UI
   private timeCount: number = 0;        // number of times demanded by UI
@@ -85,7 +85,7 @@ export class LoopService {
       let minInstrument = 6;
       for (let i = 0; i < this.instrumentCount; i++) {
         if (this.instrumentTimes[i][this.time]) {
-          console.log("playing instrument #" + i + " time" + (this.time));
+          console.log("loopService::playInstruments()playing instrument #" + i + " time" + (this.time));
           this.instruments[i].currentTime = 0;
           this.instruments[i].volume = this.volumeInstrumentsWrapper[i].volume * this.volumeMaster;
           this.instruments[i].play();
@@ -104,43 +104,32 @@ export class LoopService {
 
   /**
    * returns Array of JSON-strings holding session data
+   * data to be saved:
+   * tempo
+   * meter
+   * instrumentTimes
+   * volumes (cympal, hihtat, snare, bass, tom1, tom2)
+   * master vol
+   * userID
    */
   public saveLoop(): void {
-    console.warn("toDB() not tested");
-    console.log(this.instrumentTimes);
+    console.log("loopService::saveLoop()");
+    console.log("loopService::saveLoop()" + this.instrumentTimes);
     let sessionData: string = "";
-    // data to be saved:
-    // tempo
-    // meter
-    // instrumentTimes
-    // volumes (cympal, hihtat, snare, bass, tom1, tom2)
-    // master vol
-    // userID
-    console.log(sessionData);
-    this.dataService.saveLoop(this.tempo, '4/4', JSON.stringify(this.instrumentTimes),
-    this.instruments[0].volume, this.instruments[1].volume, 
-    this.instruments[2].volume, this.instruments[3].volume, this.instruments[4].volume, this.instruments[5].volume, 1.0, 1).subscribe();
+    console.log("loopService::saveLoop()" + sessionData);
+    this.dataService.saveLoop(
+      this.tempo, '4/4', JSON.stringify(this.instrumentTimes),
+      this.instruments[0].volume, this.instruments[1].volume, this.instruments[2].volume,
+      this.instruments[3].volume, this.instruments[4].volume, this.instruments[5].volume,
+      1.0, 1
+    ).subscribe();
   }
 
-  /**
-   * @deprecated
-   * restores session data from Array of JSON-strings
-   */
-  public fromDB(sessionData: Array<string>): void {
-    console.warn("fromDB() not tested");
-    this.dataService.getLoopById(1).subscribe(
-      (res) => {
-        try {
-          console.log(res);
-          console.log(res[0]);
-        }
-        catch(e){
-          console.error(e);
-        }
-      }
-      );
+  public deleteLoopById(loopId: number): void {
+    console.log("loopService::deleteLoopById()");
+    this.dataService.deleteLoop(loopId);
   }
-  
+
   /**
    * Body der Response:
    * [
@@ -167,7 +156,7 @@ export class LoopService {
     this.dataService.getLoopById(loopId).subscribe(
       (resBody) => {
         try {
-          console.log(resBody[0]);
+          console.log("loopService::getLoopById()" + resBody[0]);
           this.tempo = resBody[0].tempo;
           this.volumeInstrumentsWrapper[0].volume = resBody[0].VolumeCymbal;
           this.volumeInstrumentsWrapper[1].volume = resBody[0].VolumeHiHat;
@@ -176,34 +165,34 @@ export class LoopService {
           this.volumeInstrumentsWrapper[4].volume = resBody[0].VolumeTom1;
           this.volumeInstrumentsWrapper[5].volume = resBody[0].VolumeTom2;
           this.volumeMaster = resBody[0].volumeMaster;
-          this.instrumentTimes = <Array<Array<boolean>>> JSON.parse(resBody[0].InstrumentTimes);
+          this.instrumentTimes = <Array<Array<boolean>>>JSON.parse(resBody[0].InstrumentTimes);
         }
-        catch(e){
-          console.warn("LoopService::getLoopById():error while parsing from responce body.")
+        catch (e) {
+          console.warn("LoopService::getLoopById()error while parsing from responce body.")
           console.error(e);
         }
       }
-      );
-    }
-    
-    /**
-     * Fetch LoopIDs from DataService. Responses body is expected to be of type Array<number>
-     * Save LoopIDs to this instance of LoopService
-     * @param userID
-     */
-    public getLoopIdsByUser(userID: number): void {
-      console.warn("LoopService::getLoopIdsByUser() not tested");
-      this.dataService.getLoopIdsByUser(userID).subscribe(
-        (resBody: Array<number>) => {
-          try {
-            console.log(resBody[0]);
-            let countIDs = resBody.length;
-            let buffer = new Array<number>(countIDs);
-            for(let i = 0; i < countIDs; i++)
+    );
+  }
+
+  /**
+   * Fetch LoopIDs from DataService. Responses body is expected to be of type Array<number>
+   * Save LoopIDs to this instance of LoopService
+   * @param userID
+   */
+  public getLoopIdsByUser(userID: number): void {
+    console.warn("LoopService::getLoopIdsByUser() not tested");
+    this.dataService.getLoopIdsByUser(userID).subscribe(
+      (resBody: Array<number>) => {
+        try {
+          console.log("loopService::getLoopIdsByUser()" + resBody[0]);
+          let countIDs = resBody.length;
+          let buffer = new Array<number>(countIDs);
+          for (let i = 0; i < countIDs; i++)
             buffer[i] = resBody[i]
-          }
-          catch(e){
-          console.warn("LoopService::getLoopIdsByUser():error while parsing from responce body.")
+        }
+        catch (e) {
+          console.warn("LoopService::getLoopIdsByUser()error while parsing from responce body.")
           console.error(e);
         }
       }
@@ -218,17 +207,17 @@ export class LoopService {
 
   public setInstrumentTime(instrument: number, time: number): void {
     this.instrumentTimes[instrument][time] = !this.instrumentTimes[instrument][time];
-    // console.log("instrument #" + instrument + " time" + time);
   }
 
   public getInstrumentTime(instrument: number, time: number): boolean {
     return this.instrumentTimes[instrument][time];
   }
 
-  public getLoopIDs(): Array<number>{
-    if(this.loopIDs === undefined){
-      console.warn("LoopService::getLoopIDs():LoopIDs undefined");
-      return [];
+  public getLoopIDs(): Array<number> {
+    if (this.loopIDs === undefined) {
+      console.warn("LoopService::getLoopIDs()LoopIDs undefined");
+      console.warn("LoopService::getLoopIDs()generating mock Loops... REMOVE AFTER TESTING!!!");
+      return [1,2,3,4];
     }
     return this.loopIDs;
   }
@@ -243,7 +232,7 @@ export class LoopService {
 
   public play(): void {
     if (this.isPlaying) {
-      console.log("stopping loop");
+      console.log("LoopService::play()stopping loop");
       this.isPlaying = false;
       this.clearLoop();
       // stop all instruments
@@ -260,22 +249,45 @@ export class LoopService {
       }
     }
     else {
-      console.log("starting loop");
+      console.log("LoopService::play()starting loop");
       this.isPlaying = true;
       this.playInstruments();
     }
   }
 
-  isCurrentlyPlaying(){
+  isCurrentlyPlaying() {
     return this.isPlaying;
   }
-  
+
   setTempo(tempo: number) {
     this.tempo = tempo;
   }
 
   setLoop(loop: String) {
-    this.loop = loop;
+    this.loopName = loop;
+  }
+
+  /**
+   * Returns id of currently loaded loop.
+   * This function extpects the loopName variable to have the value 'default' or
+   * 'LoopX...X' while 'X...X' can be any combination of numbers.
+   * @returns id of currently loaded loop as number
+   */
+  public getLoadedLoopID(): number{
+    let stringBuffer: string = "";
+    let loopId: number = 0;
+    let loopIdLength: number = 0;
+    if(this.loopName === "default")
+      return loopId;
+    else if(this.loopName.length === 0)
+      return loopId;
+    loopIdLength = this.loopName.length - "Loop".length;
+    while(loopIdLength > 0){
+      stringBuffer = stringBuffer + this.loopName[this.loopName.length - loopIdLength];
+      loopIdLength--;
+    }
+    loopId = parseInt(stringBuffer);
+    return loopId;
   }
 
 }
