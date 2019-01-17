@@ -23,7 +23,6 @@ module.exports.createUser = function(req, res) {
 
 }
 
-
 module.exports.createLoop = function(req, res) {
     let post = req.body;
 
@@ -53,7 +52,6 @@ module.exports.getUser = function(req, res) {
             res.status(404).end();
             console.log(err);
         }
-        //console.log("Response to be send" + result);
         res.status(200).json(result).end();
     });
 }
@@ -66,7 +64,6 @@ module.exports.getLoopIdsByUser = function(req, res) {
             console.log(err);
             res.status(404).end();
         }
-        //console.log(result);
         res.status(200).json(result).end();
     });
 }

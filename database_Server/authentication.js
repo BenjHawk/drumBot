@@ -59,17 +59,17 @@ module.exports.loginRoute = function login(req, res) {
 
                 const jwtBearerToken = jwt.sign(payload, RSA_PRIVATE_KEY, {
                     algorithm: 'RS256',
-                    expiresIn: "1h",
+                    expiresIn: 3600,
                     subject: '' + userId
                 });
 
                 res.status(200).json({
                     idToken: jwtBearerToken,
-                    expiresIn: "1h",
+                    expiresIn: 3600,
                     Id: '' + userId
                 });
 
-            }).catch(function(err) { //why is this not a function???
+            }).catch(function(err) {
                 console.log(err);
                 res.sendStatus(401);
             });

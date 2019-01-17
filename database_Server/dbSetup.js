@@ -16,7 +16,7 @@ module.exports.createDatabase = function(req, res) {
     });
 };
 
-//Drop User Table
+//Drop User Table; dev purposes only
 module.exports.dropUserTable = function(req, res) {
     let sql = 'DROP TABLE User';
     db.query(sql, (err, result) => {
@@ -27,7 +27,7 @@ module.exports.dropUserTable = function(req, res) {
     });
 };
 
-//Drop Loops Table
+//Drop Loops Table; dev purposes only
 module.exports.dropLoopTable = function(req, res) {
     let sql = 'DROP TABLE Loops';
     db.query(sql, (err, result) => {
@@ -38,7 +38,7 @@ module.exports.dropLoopTable = function(req, res) {
     });
 };
 
-//Drop DB
+//Drop DB; dev purposes only
 module.exports.dropDatabase = function(req, res) {
     let sql = 'DROP DATABASE DrumbotDatabase';
     db.query(sql, (err, result) => {
@@ -49,8 +49,6 @@ module.exports.dropDatabase = function(req, res) {
     });
 };
 
-
-//username und PW besser als primary key verwenden?
 module.exports.createUserTable = function(req, res) {
     let sql = 'CREATE TABLE User(id int AUTO_INCREMENT, name VARCHAR(255) UNIQUE, password VARCHAR(255), email VARCHAR(255), PRIMARY KEY (id))';
     db.query(sql, (err, result) => {
