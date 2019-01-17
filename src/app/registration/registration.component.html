@@ -1,18 +1,38 @@
-<div class="registration" style="margin-bottom: 20px">
+<form [formGroup]="form" class="registration">
+    <div class="row">
+        <input name="username" class="logIn item" formControlName="username" placeholder="Username">       
+        <input name="password" formControlName="password" type="password" class="logIn item" placeholder="Password">
+    </div>
+    <div class="row">
+        <button class="button-primary item" (click)="login()">Login</button>
+        <button class="button button-primary item" (click)="logout()">Logout</button>
+    </div>
+    <div class="row">
+    <button class="button button-primary item" (click)="register()">Register</button>   
+    </div>
+</form>
+
+<!--
+<div class="smallRegistration" class="registration" style="margin-bottom: 20px" fxHide fxHide.xs="false">
     <form [formGroup]="form">
         
-        <input name="username" class="logIn" formControlName="username" placeholder="Username">
+        <div><input name="username" class="logIn" formControlName="username" placeholder="Username">
+            <span class="form-buttons">         
+                <button class="button-primary" (click)="login()">Login</button>
+            </span>
+        </div>
             
-        <input name="password" formControlName="password" type="password" class="logIn" placeholder="Password">
-        <span class="form-buttons">         
-            <button class="button-primary" (click)="login()">Login</button>
-        </span>
-        <span class="form-buttons">
-            <button class="button button-primary" (click)="logout()">Logout</button>
-        </span>
-        <span class="form-buttons" style="margin-left: 20px">
+        <div><input name="password" formControlName="password" type="password" class="logIn" placeholder="Password">
+            <span class="form-buttons">
+                <button class="button button-primary" (click)="logout()">Logout</button>
+            </span>
+        </div>
+
+                
+        <div class="form-buttons" style="margin-top: 7px">
             <button class="button button-primary" (click)="register()">Register</button>
-        </span>        
+        </div>        
 
     </form>
 </div>
+-->

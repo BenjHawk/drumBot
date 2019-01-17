@@ -1,37 +1,56 @@
 
-<div class="register">
+<!--<div class="register">-->
   <app-registration></app-registration>
-</div>
+<!--</div>-->
   
 <div class="container" fxLayout="row" fxLayout.xs="column">
   
-    <div class="left">
-      <app-screen1 
+  <div class="left">
+    <div class="largeLeft" >
+      <div class="smallLeft">
+    <app-screen1 
       [selectedTempo]="curTempo" [selectedVolume]="curVolume" 
       [selectedMeter]="curMeter" [selectedMode]="curMode"
       [selectedLoop]="curLoop">
-      </app-screen1> 
+    </app-screen1> 
 
-      <app-controls1 
+    <app-controls1 
       [tempo]="curTempo" (tempoChanged)="onTempoChange($event)"
       [volume]="curVolume" (volumeChanged)="onVolumeChange($event)"
       [meter]="curMeter" (meterChanged)="onMeterChange($event)" 
       [effects]="curEffects" (effectsChanged)="onEffectsChange($event)"
       [mode]="curMode" (modeChanged)="onModeChange($event)">
-      </app-controls1>
+    </app-controls1>
       
-      <app-slidecontainer1></app-slidecontainer1>
+    <app-slidecontainer1 [volume]="curVolume" (sliderVolumeChanged)="onVolumeChange($event)"></app-slidecontainer1>
       
-      <app-controls2 [loop]="curLoop" (loopChanged)="onLoopChange($event)"></app-controls2>
-    </div>
+    <app-controls2 [loop]="curLoop" (loopChanged)="onLoopChange($event)"></app-controls2>
+  </div>
+</div>
+</div>
+
+
       
-    <div class="middle">
-      <app-screen2></app-screen2>
-      <app-controls3></app-controls3>
-    </div>
-      
-    <div class="right">
+  <div class="middle">
+    <app-screen2></app-screen2>
+    <app-controls3></app-controls3>
+  </div>
+  
+ 
+   
+  <div class="right">
+    <div class="largeRight" fxHide fxHide.md="false" fxHide.lg="false">
       <app-slidecontainer2></app-slidecontainer2>
-    </div>      
+    </div>
+
+    <div class="smallRight" fxHide fxHide.sm="false">
+      <app-slidecontainer2></app-slidecontainer2>
+    </div>
+
+    <div class="extraSmallRight" fxHide fxHide.xs="false">
+      <app-slidecontainer2></app-slidecontainer2>
+    </div>
+  </div>
+
   
 </div>

@@ -1,6 +1,5 @@
+
 .logIn {
-    width: 100px;
-    margin-right: 5px;
     border-radius: 6px;
     background-color:rgb(206, 202, 202);
     box-shadow: 1px 1px 1px #000000;
@@ -23,3 +22,60 @@
 .button-primary:hover {
     background-color: rgb(202, 74, 23);
 }
+
+.registration .row {
+    display: flex;
+}
+
+.registration .row .item {
+    flex-grow: 1;
+    flex-shrink: 1;
+    box-sizing: border-box;
+    width: 100%;
+}
+.registration {
+    margin: 0 auto;
+    margin-bottom: 20px;
+    width: 284px;
+}
+@media (min-width: 600px) { 
+    .registration {
+        width: 100%;
+        max-width: 500px;
+    }
+    .registration .row {
+        display: inline;
+    }
+    .registration .row .item {
+        width: 20%;
+    }
+}
+    /*
+    // Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) { ... }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { ... }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { ... }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { ... }
+}
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) { ... }
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) and (max-width: 767.98px) { ... }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (max-width: 991.98px) { ... }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) and (max-width: 1199.98px) { ... }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { ... }
+*/

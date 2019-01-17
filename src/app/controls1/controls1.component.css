@@ -1,0 +1,17 @@
+
+.smallControls1 .button1 {
+  background-color: greenyellow;
+  box-shadow: 2px 2px 2px #000000;
+  border: 2px solid rgb(31, 49, 3);
+  border-radius: 6px;
+  width: 68px;
+  font-family: sans-serif;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.smallControls1 .select {
+    width: 68px;
+    border-radius: 6px;
+    font-size: 10px;
+}

@@ -8,6 +8,16 @@
     box-shadow: 1px 1px 1px #000000;
 }
 
+.smallBox {
+    height: 100px;
+    width: 200px;
+    margin-bottom: 5px;
+    border: 2px solid rgb(15, 22, 3);
+    color: greenyellow;
+    border-radius: 6px;
+    box-shadow: 1px 1px 1px #000000;
+}
+
 .entry {
     margin: 3px 20px;
     font-family: sans-serif;
