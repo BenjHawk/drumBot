@@ -77,9 +77,7 @@ app.get('/deleteloop/:id', authentication.checkIfAuthenticated, (req, res) => {
 //dummy endpoint for test purposes
 app.get('/dummy', authentication.checkIfAuthenticated, (req, res) => {
     console.log("dummy endpoint visited");
-    console.log(req.headers);
 });
-
 
 app.listen('4040', () => {
     console.log('server started on port 4040');

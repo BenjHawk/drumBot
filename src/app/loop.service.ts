@@ -99,7 +99,7 @@ export class LoopService {
       }
       this.time++;
       this.time = this.time % this.timeCount;
-    }, 60 / this.tempo * 1000);
+    }, 60 / this.tempo * 500);
   }
 
   /**

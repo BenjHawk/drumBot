@@ -49,8 +49,7 @@ export class RegistrationComponent implements OnInit {
                         this.router.navigateByUrl('/');
                         alert("Login successful! \nWelcome " + val.username);
                       }                   
-                  }
-              );
+                  });
       }
   }
 
@@ -63,6 +62,7 @@ export class RegistrationComponent implements OnInit {
                     console.log(res.status);
                      if (res.userStatus === "Created"){
                         alert("User "+ val.username + " sucessfully created!");
+                        console.log(localStorage.getItem("expires_at"));
                       }    
                     else {
                         this.router.navigateByUrl('/')
@@ -72,15 +72,25 @@ export class RegistrationComponent implements OnInit {
                     (error: any) => {
                         alert("Error, no user was created! The username chosen already exist. Please use another one and retry.");
                         console.log(error);
-                    }
-                
-            );
+                    });
     }
 
     logout(){
         this.authService.logout();
         this.form.reset();
         console.log("Logout succesfull!");
+    }
+
+    //Only for development purposes
+    test(){
+        this.authService.test().subscribe(
+            res => {
+                console.log("Authentication is valid!");
+            },
+            error => {
+                console.log("Error! No Authentication or token not valid anynmore!");
+            }
+        );
     }
 }
 

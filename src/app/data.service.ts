@@ -18,9 +18,8 @@ export class DataService {
   }
 
   saveLoop(tempo, meter, instrumentTimes, volumeCymbal, volumeHiHat, volumeSnare, volumeBass, volumeTom1,volumeTom2, masterVolume, userId){
-    console.log("I am the dataservice, hello");
-     return this.http.post('http://localhost:4040/createloop/', {tempo, meter, instrumentTimes, volumeCymbal, volumeHiHat,
-     volumeSnare, volumeBass, volumeTom1, volumeTom2, masterVolume, userId});
+    return this.http.post('http://localhost:4040/createloop/', {tempo, meter, instrumentTimes, volumeCymbal, volumeHiHat,
+    volumeSnare, volumeBass, volumeTom1, volumeTom2, masterVolume, userId});
   }
 
   updateLoop(loopId, body){
