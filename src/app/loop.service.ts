@@ -99,7 +99,7 @@ export class LoopService {
       }
       this.time++;
       this.time = this.time % this.timeCount;
-    }, 60 / this.tempo * 1000);
+    }, 60 / this.tempo * 500);
   }
 
   /**
@@ -183,17 +183,14 @@ export class LoopService {
   public getLoopIdsByUser(userID: number): void {
     console.warn("LoopService::getLoopIdsByUser() not tested");
     this.dataService.getLoopIdsByUser(userID).subscribe(
-      (resBody: Array<number>) => {
+      (resBody: Array<any>) => {
         try {
           console.log("loopService::getLoopIdsByUser()" + resBody[0]);
           let countIDs = resBody.length;
           let buffer = new Array<number>(countIDs);
           for (let i = 0; i < countIDs; i++)
-            buffer[i] = resBody[i];
-<<<<<<< HEAD
+            buffer[i] = resBody[i].id;
           console.log(buffer);
-=======
->>>>>>> 222e90be08aa0e705a0810bd8a51d38c673385de
           this.loopIDs = buffer;
         }
         catch (e) {
@@ -221,18 +218,17 @@ export class LoopService {
   public getLoopIDs(): Array<number> {
     if (this.loopIDs === undefined) {
       console.log("LoopService::getLoopIDs()LoopIDs undefined. Try to fetch LoopIDs from DataService");
-      //console.warn("LoopService::getLoopIDs()generating mock Loops... REMOVE AFTER TESTING!!!");
-      //return [1, 2, 3, 4];
-      try{
+      return;
+      /*try{
         this.getLoopIdsByUser(parseInt(localStorage.getItem("userId")));
       }
       catch(e){
         console.error(e);
         return[];
-      }
-    }
-    return this.loopIDs;
-  }
+      }*/
+    }	    
+    return this.loopIDs;	    
+  }	 
 
   /**
    * getVolumeRef
@@ -285,16 +281,16 @@ export class LoopService {
    * 'LoopX...X' while 'X...X' can be any combination of numbers.
    * @returns id of currently loaded loop as number
    */
-  public getLoadedLoopID(): number {
+  public getLoadedLoopID(): number{
     let stringBuffer: string = "";
     let loopId: number = 0;
     let loopIdLength: number = 0;
-    if (this.loopName === "default")
+    if(this.loopName === "default")
       return loopId;
-    else if (this.loopName.length === 0)
+    else if(this.loopName.length === 0)
       return loopId;
     loopIdLength = this.loopName.length - "Loop".length;
-    while (loopIdLength > 0) {
+    while(loopIdLength > 0){
       stringBuffer = stringBuffer + this.loopName[this.loopName.length - loopIdLength];
       loopIdLength--;
     }
