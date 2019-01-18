@@ -1,15 +1,5 @@
 <div class="slidecontainer1">
-  <span *ngFor="let sliderName of name">
+  <span class="slider1" *ngFor="let sliderName of name">
     <input [(ngModel)]="volume" type="range" id="{{ sliderName }}" min=0.0 max=1.0 step=0.1 (change)="changeVolume()">
   </span>
 </div>
-
-
-<!--
-<div class="smallSlidecontainer1" fxHide fxHide.sm="false">
-  <span *ngFor="let sliderName of name">
-    <input [(ngModel)]="this.loopService.volumeMaster" type="range" id="{{ sliderName }}" min=0.0 max=1.0 step=0.1 (onChange)="volumeSliderValue()">
-  </span>
-</div>
--->
-

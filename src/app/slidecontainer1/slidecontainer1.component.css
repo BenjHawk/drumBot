@@ -1,18 +1,8 @@
 .slidecontainer1 {    
     height: 105px;
     width: 100%;
-    justify-content: center;
-    align-items: center;  
-}
-
-.smallSlidecontainer1 input[type=range] {
-    transform: rotate(270deg);    
-    height: 5px;
-    width: 85px;
-    margin-bottom: -20px;
-    margin-top: 50px;
-    margin-left: -27px;
-    margin-right: -27px;        
+    margin: auto;
+    display: flex;
 }
 
 input[type=range] {
@@ -23,6 +13,34 @@ input[type=range] {
     margin-top: 50px;
     margin-left: -23px;
     margin-right: -23px;        
+}
+
+@media (min-width: 600px) {
+    .slidecontainer1 {    
+        height: 105px;
+        width: 100%;        
+        margin: auto;
+        display: flex;
+        max-width: 190px;
+    }
+    .slider1 {
+        width: 16%;
+        max-width: 31px;
+    }
+}
+
+@media (min-width: 992px) {
+    .slidecontainer1 {    
+        height: 120px;
+        width: 100%;        
+        margin: auto;
+        display: flex;
+        max-width: 330px;
+    }
+    .slider1 {
+        width: 16%;
+        max-width: 55px;
+    }
 }
 
 @supports (-moz-appearance:none) {

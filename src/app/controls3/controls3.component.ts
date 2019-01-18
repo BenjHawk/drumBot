@@ -50,9 +50,6 @@ export class Controls3Component implements OnInit {
     console.log("initialized selecedBtns");
   }  
 
-  slideContainerVisible:boolean = false;
-  showSlidecontainer2():void {
-    this.slideContainerVisible = true;
-  }
+  
 }
 

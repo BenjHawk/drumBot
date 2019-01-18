@@ -1,4 +1,5 @@
-<div fxHide.sm>    
+<div class="controls2">
+    <div class="row">    
         <button class="button1" id="save" (click)="clickedBtn(btnName)">SAVE</button> 
         
         <button class="button1" id="load" (click)="chooseLoop()" *ngIf="!loopsVisible">LOAD</button>
@@ -7,15 +8,5 @@
             </select>
 
         <button class="button1" id="delete" (click)="clickedBtn(btnName)">DELETE</button>
-</div>
-
-<div class="smallControls2" fxHide fxHide.sm="false">    
-    <button class="button1" id="save" (click)="clickedBtn(btnName)">SAVE</button> 
-    
-    <button class="button1" id="load" (click)="chooseLoop()" *ngIf="!loopsVisible">LOAD</button>
-        <select *ngIf="loopsVisible" [(ngModel)]="loop" name="loop" (change)="hideSavedLoops()" class="select">
-            <option *ngFor="let loop1 of savedLoops()" [value]="loop1.value">{{ loop1.title }}</option>
-        </select>
-
-    <button class="button1" id="delete" (click)="clickedBtn(btnName)">DELETE</button>
+    </div>
 </div>

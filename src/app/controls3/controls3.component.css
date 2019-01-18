@@ -1,0 +1,62 @@
+.controls3 {
+    margin: auto;
+    width: 90%;
+    text-align: center;
+}
+
+.button2 {
+    flex-grow: 1;
+    flex-shrink: 1;
+    box-sizing: border-box;
+    width: 12%;    
+}
+.row {
+    width: 90%;
+}
+
+.controls3 .row .button2 {
+    display: flex;
+    display: inline;
+}
+
+@media (min-width: 600px) { 
+    .controls3 {
+        width: 90%;
+        margin-top: 15px;
+    }
+  
+    .button2 {
+        
+        max-height: 24px;        
+        margin: auto;
+    }
+
+    .button2Selected {
+        max-height: 24px;
+        max-width: 24px;
+        margin: auto;
+    }
+}
+
+@media (min-width: 992px) { 
+    .controls3 {
+        width: 90%;
+        margin-top: 15px;
+    }
+    
+    .row {
+        width: 90%;
+    }
+
+    .button2 {
+        width: 12%;
+        max-width: 28px;
+        max-height: 28px;        
+        margin: auto;
+    }
+
+    .button2Selected {
+        max-height: 28px;
+        max-width: 28px;
+    }
+}

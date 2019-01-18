@@ -1,9 +1,16 @@
-.slidecontainer2 {
+.slidecontainer2 {   
+    margin-top: 10px;
+    height: 174px;
+    width: 100%;
+}
+
+.slidergroup {
     text-align: right;
     font-family: sans-serif;
     font-size: 12px;
     font-weight: bold;
     height: 30px;
+    margin-right: 60px;
 }
 
 .sliders2 {
@@ -17,26 +24,43 @@ input[type=range] {
     margin-left: 10px;
 }
 
-.smallRight {
-    margin-top: 0px;
-    text-align: center;
-    font-family: sans-serif;
-    font-size: 10px;
-    font-weight: bold;
-    height: 30px;
+@media (min-width: 600px) {
+    .slidecontainer2 {
+        margin-top: 130px;
+    }
+
+    .slidergroup {
+        font-size: 10px;
+        height: 22px;
+        width: 90%;
+        max-width: 140px;
+        margin-bottom: 3px;
+    }
+
+    .sliders2 {
+        width:90%;        
+    }
+
+    input[type=range] {
+        width: 50%;
+        margin-top: 8px;
+        margin-bottom: 3px;
+        margin-left: 10px;
+    }
 }
 
-.smallRight .sliders2 {
-    margin-bottom: 12px;
-    text-align: right;
+@media (min-width: 992px) {
+    .slidergroup {
+        font-size: 14px;
+        max-width: 200px;
+        margin-bottom: 8px;
+    }
+
+    input[type=range] {
+        width: 60%;
+        max-width: 100px;
+    }
 }
-/*
-.smallRight input[type=range] {
-    width: 60px;
-    margin-top: 8px;
-    margin-bottom: 3px;
-    margin-left: 5px;
-}*/
 
 @supports (-moz-appearance:none) {
     input[type=range] {
