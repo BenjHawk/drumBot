@@ -12,42 +12,38 @@ import { TouchSequence } from 'selenium-webdriver';
 export class Controls2Component implements OnInit {
 
   public name: String[] = ['save', 'load', 'delete'];
-  
+
   private loopSvc: LoopService;
 
-  constructor(loopSvc: LoopService, private dataService : DataService) { 
+  constructor(loopSvc: LoopService, private dataService: DataService) {
     this.loopSvc = loopSvc;
   }
 
   ngOnInit() {
   }
-  
+
   private clickedBtn(btnName: String): void {
-    if(btnName === this.name[0]){
+    if (btnName === this.name[0]) {
       this.loopSvc.saveLoop();
     }
-    if(btnName === this.name[1]){
-      // dirty testing-method
-      this.loopSvc.getLoopById(1);
-      }
-      if(btnName === this.name[2]){
-        console.log("controls2::clickedBtn():DELETE Loop" + this.loopSvc.getLoadedLoopID());
-        this.loopSvc.deleteLoopById(this.loopSvc.getLoadedLoopID());
-      }
+    if (btnName === this.name[2]) {
+      console.log("controls2::clickedBtn():DELETE Loop" + this.loopSvc.getLoadedLoopID());
+      this.loopSvc.deleteLoopById(this.loopSvc.getLoadedLoopID());
     }
+  }
 
   private loopsVisible: boolean = false;
   @Input() loop: String;
   @Output() loopChanged = new EventEmitter<String>();
 
-  private savedLoops(): Object [] {
+  private savedLoops(): Object[] {
     let fetchedIDs: Array<number> = this.loopSvc.getLoopIDs();
     let htmlAttributeContainer: Array<any> = new Array<any>(fetchedIDs.length + 1);
-    htmlAttributeContainer[0] = {value: 'default', title: 'default'};
+    htmlAttributeContainer[0] = { value: 'default', title: 'default' };
     for (let i = 0; i < fetchedIDs.length; i++)
-      htmlAttributeContainer[i + 1] = {value: 'Loop' + fetchedIDs[i], title: 'Loop' + fetchedIDs[i]};
+      htmlAttributeContainer[i + 1] = { value: 'Loop' + fetchedIDs[i], title: 'Loop' + fetchedIDs[i] };
     return htmlAttributeContainer;
-  } 
+  }
 
   private chooseLoop(): void {
     this.loopsVisible = true;
