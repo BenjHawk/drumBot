@@ -1,4 +1,6 @@
-<div>    
+
+<div class="controls2">
+    <div class="row">    
         <button class="button1" id="save" (click)="clickedBtn(this.name[0])">SAVE</button> 
         
         <button class="button1" id="load" (click)="chooseLoop()" *ngIf="!loopsVisible">LOAD</button>
@@ -7,4 +9,5 @@
             </select>
 
         <button class="button1" id="delete" (click)="clickedBtn(this.name[2])">DELETE</button>
+    </div>
 </div>

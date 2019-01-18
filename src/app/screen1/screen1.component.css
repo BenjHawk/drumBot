@@ -1,23 +1,53 @@
 .box {
-    height: 100px;
-    width: 240px;
-    margin-bottom: 5px;
-    border: 2px solid rgb(15, 22, 3);
-    color: greenyellow;
-    border-radius: 6px;
-    box-shadow: 1px 1px 1px #000000;
+    margin: auto;
+}
+
+.textField {
+    margin: 5px auto;
+    height: 90%;
 }
 
 .entry {
-    margin: 3px 20px;
     font-family: sans-serif;
     font-size: 12px;
     font-weight: bold;
     text-align: center;
     color: black;
     background-color: gainsboro;
-    opacity: 0.5;
     border: 1px solid  rgb(15, 22, 3);
     border-radius: 4px;
     box-shadow: 3px 2px;
-} 
+    width: 70%;
+    margin: 4px auto;
+    opacity: 0.7;
+}
+
+@media (min-width: 600px) {
+    .box {
+        height: 110px;
+    }
+    .textField {
+        margin: auto;
+    }
+    .entry {
+        margin-bottom: 3px;
+    }
+    @supports (-moz-appearance:none) {
+        .box {
+            margin: 0 auto;
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    .entry {
+        font-size: 13px;
+        font-weight: normal;
+        margin-bottom: 2px;
+    }
+    @supports (-moz-appearance:none) {
+        .entry {
+            font-size: 12px;
+        }
+    }
+}

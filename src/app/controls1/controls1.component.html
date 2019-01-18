@@ -1,6 +1,6 @@
 <div class="controls1">
 
-    <div>    
+    <div class="row">    
         <button class="button1" id="tempo" (click)="chooseTempo()" *ngIf="!tempoVisible">TEMPO</button>
             <select *ngIf="tempoVisible" [(ngModel)]="tempo" name="tempo" (change)="hideTempo()" class="select">
                 <option *ngFor="let tempo1 of tempoScale()"  [value]="tempo1.value">{{ tempo1.title }}</option>
@@ -14,10 +14,10 @@
         <button class="button1" id="effects" (click)="chooseEffects()" *ngIf="!effectsVisible">EFFECTS</button>
             <select *ngIf="effectsVisible" [(ngModel)]="effects" name="effects" (click)="hideEffects()" class="select">
                 <option *ngFor="let effects1 of effectsScale()"  [value]="effects1.value" disabled>{{ effects1.title }}</option>
-             </select>
+            </select>
     </div>
     
-    <div>
+    <div class="row">
         <button class="button1" id="meter" (click)="chooseMeter()" *ngIf="!meterVisible">METER</button>
             <select *ngIf="meterVisible" [(ngModel)]="meter" name="meter" (click)="hideMeter()" class="select">
                 <option *ngFor="let meter1 of meterScale()"  [value]="meter1.value" disabled>{{ meter1.title }}</option>
