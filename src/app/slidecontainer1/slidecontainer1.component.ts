@@ -14,12 +14,8 @@ export class Slidecontainer1Component implements OnInit {
 
   constructor(private loopService: LoopService) { }
 
-  /************************************ */
-  
   @Input() volume: number;
   @Output() sliderVolumeChanged = new EventEmitter<number>();
-
-  /************ */
 
   ngOnInit() {
   }

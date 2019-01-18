@@ -17,10 +17,6 @@ input[type=range] {
 
 @media (min-width: 600px) {
     .slidecontainer1 {    
-        height: 105px;
-        width: 100%;        
-        margin: auto;
-        display: flex;
         max-width: 190px;
     }
     .slider1 {
@@ -31,20 +27,11 @@ input[type=range] {
 
 @media (min-width: 992px) {
     .slidecontainer1 {    
-        height: 120px;
-        width: 100%;        
-        margin: auto;
-        display: flex;
+        height: 110px;
         max-width: 330px;
     }
     .slider1 {
-        width: 16%;
         max-width: 55px;
     }
 }
 
-@supports (-moz-appearance:none) {
-    input[type=range] {
-        margin-right: -28px;
-    }
-}

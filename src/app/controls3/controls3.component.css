@@ -5,56 +5,46 @@
 }
 
 .button2 {
-    flex-grow: 1;
-    flex-shrink: 1;
-    box-sizing: border-box;
-    width: 12%;    
+    background-color: greenyellow;
+    box-shadow: 1px 1px 1px #000000;
+    border: 2px solid rgb(31, 49, 3);
+    border-radius: 6px;
+    width: 28px;
+    height: 28px;
 }
+
+.button2Selected {
+    background-color: rgb(202, 74, 23);
+    box-shadow: 1px 1px 1px #000000;
+    border: 3px solid rgb(31, 49, 3);
+    border-radius: 6px;
+    width: 28px;
+    height: 28px;
+  }
+
 .row {
     width: 90%;
 }
 
-.controls3 .row .button2 {
-    display: flex;
-    display: inline;
-}
-
 @media (min-width: 600px) { 
     .controls3 {
-        width: 90%;
         margin-top: 15px;
+    }  
+    .button2 {        
+        max-height: 24px;     
+        max-width: 24px;
     }
-  
-    .button2 {
-        
-        max-height: 24px;        
-        margin: auto;
-    }
-
     .button2Selected {
         max-height: 24px;
         max-width: 24px;
-        margin: auto;
     }
 }
 
 @media (min-width: 992px) { 
-    .controls3 {
-        width: 90%;
-        margin-top: 15px;
-    }
-    
-    .row {
-        width: 90%;
-    }
-
     .button2 {
-        width: 12%;
         max-width: 28px;
         max-height: 28px;        
-        margin: auto;
     }
-
     .button2Selected {
         max-height: 28px;
         max-width: 28px;

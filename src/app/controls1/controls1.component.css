@@ -3,46 +3,35 @@
   margin: 7px auto;
 }
 
-.controls1 .row {
+.row {
   display: flex;
 }
 
-.controls1 .button1:hover {
-  background-color:  rgb(91, 138, 21);
-}
-
-.controls1 .button1 {
-  background-color: greenyellow;
-  box-shadow: 2px 2px 2px #000000;
-  border: 2px solid rgb(31, 49, 3);
-  border-radius: 6px;
-  width: 33%;
-  font-family: sans-serif;
+.button1 {
+  width: 33%;  
   font-size: 12px;
   font-weight: bold;
 }
 
-.controls1 .select {
+.select {
     width: 33%;
-    border-radius: 6px;
     font-size: 12px;
 }
 
 @media (min-width: 600px) {
-  .controls1 .button1 {
+  .button1 {
       font-size: 10px;
   }
-  .controls1 .select {
+  .select {
     font-size: 10px;
   }
 }
 
 @media (min-width: 992px) {
-  .controls1 .button1 {
-      font-size: 14px;
-      font-weight: normal;
+  .button1 {
+    font-size: 14px;
+    font-weight: normal;
   }
-
   .controls1 .select {
     font-size: 13px;
   }

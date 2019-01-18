@@ -53,10 +53,6 @@ export class AppComponent {
     this.curLoop = loop;
     this.loopSvc.setLoop(loop);
   }
-/*
-  onSliderChange(volume: number) {
-    console.log("New volume:", volume);
-    this.curVolume = volume;
-  }*/
+
 }
 

@@ -24,11 +24,13 @@ input[type=range] {
     margin-left: 10px;
 }
 
-@media (min-width: 600px) {
-    .slidecontainer2 {
-        margin-top: 130px;
+@supports (-moz-appearance:none) {
+    input[type=range] {
+        margin-bottom: -5px;
     }
+}
 
+@media (min-width: 600px) {   
     .slidergroup {
         font-size: 10px;
         height: 22px;
@@ -36,16 +38,23 @@ input[type=range] {
         max-width: 140px;
         margin-bottom: 3px;
     }
-
     .sliders2 {
         width:90%;        
     }
-
     input[type=range] {
         width: 50%;
-        margin-top: 8px;
-        margin-bottom: 3px;
-        margin-left: 10px;
+    }
+    @supports (-moz-appearance:none) {
+        input[type=range] {
+            margin-bottom: -5px;
+            width: 50%;
+        }
+        .slidergroup {
+            width: 100%;
+        }
+        .sliders2 {
+            width: 150px;
+        }
     }
 }
 
@@ -54,20 +63,24 @@ input[type=range] {
         font-size: 14px;
         max-width: 200px;
         margin-bottom: 8px;
+        font-weight: normal;
     }
-
     input[type=range] {
         width: 60%;
         max-width: 100px;
     }
-}
-
-@supports (-moz-appearance:none) {
-    input[type=range] {
-        margin-bottom: -5px;
-    }
-
-    .slidecontainer2 {
-        height: 28px;
+    @supports (-moz-appearance:none) {
+        input[type=range] {
+            margin-bottom: -5px;            
+        }
+        .slidergroup {
+            width: 100%;
+        }
+        .sliders2 {
+            width: 180px;
+        }
+        .slidecontainer2 {
+            margin-top: 3px;
+        }
     }
 }
