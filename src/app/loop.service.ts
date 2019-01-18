@@ -99,7 +99,7 @@ export class LoopService {
       }
       this.time++;
       this.time = this.time % this.timeCount;
-    }, 60 / this.tempo * 500);
+    }, 60 / this.tempo * 1000);
   }
 
   /**
@@ -189,7 +189,8 @@ export class LoopService {
           let countIDs = resBody.length;
           let buffer = new Array<number>(countIDs);
           for (let i = 0; i < countIDs; i++)
-            buffer[i] = resBody[i]
+            buffer[i] = resBody[i];
+          this.loopIDs = buffer;
         }
         catch (e) {
           console.warn("LoopService::getLoopIdsByUser()error while parsing from responce body.")
@@ -217,7 +218,7 @@ export class LoopService {
     if (this.loopIDs === undefined) {
       console.warn("LoopService::getLoopIDs()LoopIDs undefined");
       console.warn("LoopService::getLoopIDs()generating mock Loops... REMOVE AFTER TESTING!!!");
-      return [1,2,3,4];
+      return [1, 2, 3, 4];
     }
     return this.loopIDs;
   }
@@ -273,16 +274,16 @@ export class LoopService {
    * 'LoopX...X' while 'X...X' can be any combination of numbers.
    * @returns id of currently loaded loop as number
    */
-  public getLoadedLoopID(): number{
+  public getLoadedLoopID(): number {
     let stringBuffer: string = "";
     let loopId: number = 0;
     let loopIdLength: number = 0;
-    if(this.loopName === "default")
+    if (this.loopName === "default")
       return loopId;
-    else if(this.loopName.length === 0)
+    else if (this.loopName.length === 0)
       return loopId;
     loopIdLength = this.loopName.length - "Loop".length;
-    while(loopIdLength > 0){
+    while (loopIdLength > 0) {
       stringBuffer = stringBuffer + this.loopName[this.loopName.length - loopIdLength];
       loopIdLength--;
     }
