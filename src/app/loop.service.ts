@@ -216,9 +216,16 @@ export class LoopService {
 
   public getLoopIDs(): Array<number> {
     if (this.loopIDs === undefined) {
-      console.warn("LoopService::getLoopIDs()LoopIDs undefined");
-      console.warn("LoopService::getLoopIDs()generating mock Loops... REMOVE AFTER TESTING!!!");
-      return [1, 2, 3, 4];
+      console.log("LoopService::getLoopIDs()LoopIDs undefined. Try to fetch LoopIDs from DataService");
+      //console.warn("LoopService::getLoopIDs()generating mock Loops... REMOVE AFTER TESTING!!!");
+      //return [1, 2, 3, 4];
+      try{
+        this.getLoopIdsByUser(parseInt(localStorage.getItem("userId")));
+      }
+      catch(e){
+        console.error(e);
+        return[];
+      }
     }
     return this.loopIDs;
   }
