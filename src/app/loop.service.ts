@@ -189,7 +189,9 @@ export class LoopService {
           let countIDs = resBody.length;
           let buffer = new Array<number>(countIDs);
           for (let i = 0; i < countIDs; i++)
-            buffer[i] = resBody[i]
+            buffer[i] = resBody[i];
+          console.log(buffer);
+          this.loopIDs = buffer;
         }
         catch (e) {
           console.warn("LoopService::getLoopIdsByUser()error while parsing from responce body.")

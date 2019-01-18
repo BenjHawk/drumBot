@@ -56,14 +56,14 @@ app.get('/getusers/:id', (req, res) => {
     apiCallback.getUser(req, res);
 });
 app.get('/getloopidsbyuser/:userid', (req, res) => {
-    apiCallback.getLoopsByUser(req, res);
+    apiCallback.getLoopIdsByUser(req, res);
 });
 app.get('/getloopbyid/:id', (req, res) => {
-    apiCallback.getLoopsById(req, res);
+    apiCallback.getLoopById(req, res);
 });
-/*app.post('/updateuser/:id', (req, res) => {
-    apiCallback.updateUser(req, res);
-});*/
+app.get('/getallloops/', (req, res) => {
+    apiCallback.getAllLoops(req, res);
+});
 app.post('/updateloop/:id', (req, res) => {
     apiCallback.updateLoop(req, res);
 });

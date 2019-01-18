@@ -48,6 +48,7 @@ export class RegistrationComponent implements OnInit {
                         this.authService.setSession(res);
                         this.router.navigateByUrl('/');
                         alert("Login successful! \nWelcome " + val.username);
+                        this.loopSvc.getLoopIdsByUser(Number(localStorage.getItem("userId")));
                       }                   
                   });
       }

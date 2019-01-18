@@ -28,7 +28,7 @@ export class Controls2Component implements OnInit {
     }
     if(btnName === this.name[1]){
       // dirty testing-method
-      this.loopSvc.getLoopById(1);
+      this.loopSvc.getLoopById(4);
       }
       if(btnName === this.name[2]){
         console.log("controls2::clickedBtn():DELETE Loop" + this.loopSvc.getLoadedLoopID());

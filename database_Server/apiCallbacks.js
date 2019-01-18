@@ -3,8 +3,8 @@ const mariadb = require('mariadb/callback');
 const db = require('./databaseConnection');
 const bp = require('body-parser');
 
-const app = express();
-app.use(bp.json());
+/*const app = express();
+app.use(bp.json());*/
 
 
 module.exports.createUser = function(req, res) {
@@ -68,10 +68,23 @@ module.exports.getLoopIdsByUser = function(req, res) {
     });
 }
 
-module.exports.getLoopsById = function(res, req) {
+module.exports.getLoopById = function(req, res) {
     let Id = req.params.id;
-    let sql = `SELECT * FROM Loops WHERE id = ?`;
+    let sql = `SELECT tempo, InstrumentTimes, VolumeCymbal, VolumeHiHat, VolumeSnare, VolumeBass, VolumeTom1, VolumeTom2, 
+                MasterVolume FROM Loops WHERE id = ?`;
     let query = db.query(sql, Id, (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(404).end();
+        }
+        res.status(200).json(result).end();
+    });
+}
+
+module.exports.getAllLoops = function(res, req) {
+    let Id = req.params.id;;
+    let sql = `SELECT * FROM Loops`;
+    let query = db.query(sql, (err, result) => {
         if (err) {
             res.status(404).end();
         }
@@ -79,22 +92,12 @@ module.exports.getLoopsById = function(res, req) {
     });
 }
 
+
 module.exports.updateUser = function(res, req) {
     let post = req.body;
     let user = req.params.id;
     let sql = `UPDATE User SET ? WHERE id = ?`;
     let query = db.query(sql, [post, user], (err, result) => {
-        if (err) {
-            res.status(501).end();
-        }
-        res.status(200).end();
-    });
-}
-
-module.exports.updateLoop = function(res, req) {
-    let post = req.body;
-    let sql = `UPDATE Loop SET ? WHERE id =${req.params.id}`;
-    let query = db.query(sql, post, (err, result) => {
         if (err) {
             res.status(501).end();
         }
