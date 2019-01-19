@@ -88,6 +88,7 @@ export class LoopService {
           console.log("loopService::playInstruments()playing instrument #" + i + " time" + (this.time));
           this.instruments[i].currentTime = 0;
           this.instruments[i].volume = this.volumeInstrumentsWrapper[i].volume * this.volumeMaster;
+          console.log(this.instruments[i].volume);
           this.instruments[i].play();
           if (i < minInstrument) {
             minInstrument = i;
@@ -156,7 +157,7 @@ export class LoopService {
     this.dataService.getLoopById(loopId).subscribe(
       (resBody) => {
         try {
-          console.log("loopService::getLoopById()" + resBody[0]);
+          console.log("loopService::getLoopById()");
           this.tempo = resBody[0].tempo;
           this.volumeInstrumentsWrapper[0].volume = resBody[0].VolumeCymbal;
           this.volumeInstrumentsWrapper[1].volume = resBody[0].VolumeHiHat;
@@ -164,7 +165,7 @@ export class LoopService {
           this.volumeInstrumentsWrapper[3].volume = resBody[0].VolumeBass;
           this.volumeInstrumentsWrapper[4].volume = resBody[0].VolumeTom1;
           this.volumeInstrumentsWrapper[5].volume = resBody[0].VolumeTom2;
-          this.volumeMaster = resBody[0].volumeMaster;
+          this.volumeMaster = resBody[0].MasterVolume;
           this.instrumentTimes = <Array<Array<boolean>>>JSON.parse(resBody[0].InstrumentTimes);
         }
         catch (e) {
@@ -190,7 +191,7 @@ export class LoopService {
           let buffer = new Array<number>(countIDs);
           for (let i = 0; i < countIDs; i++)
             buffer[i] = resBody[i].id;
-          console.log(buffer);
+          
           this.loopIDs = buffer;
         }
         catch (e) {

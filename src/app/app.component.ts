@@ -51,6 +51,8 @@ export class AppComponent {
     console.log("New loop:", loop);
     this.curLoop = loop;
     this.loopSvc.setLoop(loop);
+    console.log("app::onLoopChange()Loading loop number:", this.loopSvc.getLoadedLoopID());
+    this.loopSvc.getLoopById(this.loopSvc.getLoadedLoopID());
   }
 }
 

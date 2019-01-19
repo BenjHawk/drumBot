@@ -87,12 +87,19 @@ export class RegistrationComponent implements OnInit {
         this.authService.test().subscribe(
             res => {
                 console.log("Authentication is valid!");
+                
             },
             error => {
                 console.log("Error! No Authentication or token not valid anynmore!");
             }
         );
     }
+
+    //Only for development purposes
+    testLoopSVC(){
+        this.loopSvc.getLoopById(4);
+    }
+    
 }
 
   

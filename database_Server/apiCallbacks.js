@@ -77,6 +77,7 @@ module.exports.getLoopById = function(req, res) {
             console.log(err);
             res.status(404).end();
         }
+        console.log(result);
         res.status(200).json(result).end();
     });
 }

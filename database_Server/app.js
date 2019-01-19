@@ -49,13 +49,13 @@ app.post('/login', (req, res) => {
 app.post('/createuser/', (req, res) => {
     apiCallback.createUser(req, res);
 });
-app.post('/createloop/', (req, res) => {
+app.post('/createloop/', authentication.checkIfAuthenticated, (req, res) => {
     apiCallback.createLoop(req, res);
 });
 app.get('/getusers/:id', (req, res) => {
     apiCallback.getUser(req, res);
 });
-app.get('/getloopidsbyuser/:userid', (req, res) => {
+app.get('/getloopidsbyuser/:userid', authentication.checkIfAuthenticated, (req, res) => {
     apiCallback.getLoopIdsByUser(req, res);
 });
 app.get('/getloopbyid/:id', (req, res) => {
@@ -64,9 +64,10 @@ app.get('/getloopbyid/:id', (req, res) => {
 app.get('/getallloops/', (req, res) => {
     apiCallback.getAllLoops(req, res);
 });
-app.post('/updateloop/:id', (req, res) => {
+app.post('/updateloop/:id', authentication.checkIfAuthenticated, (req, res) => {
     apiCallback.updateLoop(req, res);
 });
+
 /*app.get('/deleteuser/:id', (req, res) => {
     apiCallback.deleteUser(req, res);
 });*/
