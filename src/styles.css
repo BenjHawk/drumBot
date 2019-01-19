@@ -2,39 +2,73 @@ body {
   background-color: rgb(33, 36, 36);
 }
 
-.register {
-  text-align: center;
-}
-
 .container {
-  width: fit-content;
-  height: fit-content;
   margin: 0 auto;
+  width: 284px;
   border: 5px solid black;
   box-shadow: 10px 10px 50px black;
   background-color: rgb(77, 76, 76);
   border-radius: 6px;
   padding: 10px;
 }
-/*
-.flex {
-  display: flex;
-  margin: 10px;
-}
-*/
 
 .left {
-  margin-right: 10px;
-  justify-content: left;
+  flex-grow: 1;
+  flex-shrink: 1;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .middle {
-  margin-right: 10px;
+  flex-grow: 1;
+  flex-shrink: 1;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .right {
-  margin-top: 110px;
-  justify-content: right;
+  flex-grow: 1;
+  flex-shrink: 1;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  .container {
+    width: 100%;
+    max-width: 600px;
+  }
+  .left {
+    width: 30%;
+    max-width: 200px;
+  }
+  .middle {
+    width: 35%;
+    max-width: 250px;
+  }
+  .right {
+    margin-top: 120px;
+    width: 25%;
+    max-width: 150px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 800px;
+  }  
+  .left {
+    max-width: 250px;
+  }
+  .middle {
+    width: 40%;
+    max-width: 310px;
+  }
+  .right {
+    margin-top: 120px;
+    width: 30%;
+    max-width: 220px;
+  }
 }
 
 .button1 {
@@ -42,33 +76,20 @@ body {
   box-shadow: 2px 2px 2px #000000;
   border: 2px solid rgb(31, 49, 3);
   border-radius: 6px;
-  width: 80px;
+  font-family: sans-serif;
 }
 
+.box {
+  border: 2px solid rgb(15, 22, 3);
+  border-radius: 6px;
+  box-shadow: 1px 1px 1px #000000;
+  width: 90%;
+}
 .button1Selected {
   background-color:  rgb(91, 138, 21);
   box-shadow: 2px 2px 2px #000000;
   border: 2px solid rgb(31, 49, 3);
   border-radius: 6px;
-  width: 80px;
-}
-
-.button2 {
-  background-color: greenyellow;
-  box-shadow: 1px 1px 1px #000000;
-  border: 2px solid rgb(31, 49, 3);
-  border-radius: 6px;
-  width: 28px;
-  height: 28px;
-}
-
-.button2Selected {
-  background-color: rgb(202, 74, 23);
-  box-shadow: 1px 1px 1px #000000;
-  border: 3px solid rgb(31, 49, 3);
-  border-radius: 6px;
-  width: 28px;
-  height: 28px;
 }
 
 [class^="button"]:hover {
@@ -76,7 +97,6 @@ body {
 }
 
 .select {
-  width: 80px;
   border-radius: 6px;
 }
 
@@ -125,33 +145,4 @@ input[type=range]::-moz-range-thumb {
   background: greenyellow;
   -webkit-appearance: none;
   margin-top: -15px;
-}
-
-input[type=range]::-ms-track {
-  height: 7px;
-  background: transparent;
-  border-color: transparent;
-  border-width: 6px 0;
-  border-radius: 2px;
-  color: transparent;
-}
-
-input[type=range]::-ms-thumb {
-  border: 1px solid black;
-  height: 17px;
-  width: 7px;
-  border-radius: 21px;
-  background: greenyellow; 
-}
-
-input[type=range]::-ms-fill-lower {
-  background: rgb(63, 99, 9);
-  border: 0.2px solid #010101;
-  border-radius: 2px;
-}
-
-input[type=range]::-ms-fill-upper {
-  background: rgb(63, 99, 9);
-  border: 0.2px solid #010101;
-  border-radius: 2px;
 }

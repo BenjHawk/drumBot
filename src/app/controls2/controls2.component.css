@@ -1,1 +1,38 @@
+.controls2 {
+    width: 100%;
+}
 
+.row {
+    display: flex;
+}
+
+.button1 {
+    width: 33%;
+    font-size: 12px;
+    font-weight: bold;
+}
+  
+.select {
+    width: 33%;
+    font-size: 12px;
+}
+
+.button1:hover {
+    background-color:  rgb(91, 138, 21);
+}
+
+@media (min-width: 600px) {
+    .button1 {
+        font-size: 10px;
+    }
+}
+
+@media (min-width: 992px) {
+    .button1 {
+        font-size: 14px;
+        font-weight: normal;
+    }  
+    .select {
+      font-size: 14px;
+    }
+}

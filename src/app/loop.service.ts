@@ -11,7 +11,8 @@
 
 import { Injectable } from '@angular/core';
 import { DataService } from './data.service';
-//import { Observable } from 'rxjs'
+import { Observable } from 'rxjs'
+import { error } from 'util';
 
 
 @Injectable({
@@ -173,7 +174,7 @@ export class LoopService {
           console.error(e);
         }
       }
-    );
+      );
   }
 
   /**
@@ -182,10 +183,9 @@ export class LoopService {
    * @param userID
    */
   public getLoopIdsByUser(userID: number): void {
-    console.warn("LoopService::getLoopIdsByUser() not tested");
+    console.log("LoopService::getLoopIdsByUser()");
     this.dataService.getLoopIdsByUser(userID).subscribe(
       (resBody: Array<any>) => {
-        try {
           console.log("loopService::getLoopIdsByUser()" + resBody[0]);
           let countIDs = resBody.length;
           let buffer = new Array<number>(countIDs);
@@ -193,11 +193,6 @@ export class LoopService {
             buffer[i] = resBody[i].id;
           
           this.loopIDs = buffer;
-        }
-        catch (e) {
-          console.warn("LoopService::getLoopIdsByUser()error while parsing from responce body.")
-          console.error(e);
-        }
       }
     );
   }
@@ -219,17 +214,14 @@ export class LoopService {
   public getLoopIDs(): Array<number> {
     if (this.loopIDs === undefined) {
       console.log("LoopService::getLoopIDs()LoopIDs undefined. Try to fetch LoopIDs from DataService");
-      return;
-      /*try{
-        this.getLoopIdsByUser(parseInt(localStorage.getItem("userId")));
-      }
-      catch(e){
-        console.error(e);
-        return[];
-      }*/
-    }	    
-    return this.loopIDs;	    
-  }	 
+      console.warn("LoopService::getLoopIDs()returning mock object(IDs)");
+      //  this.getLoopIdsByUser(parseInt(localStorage.getItem("userId")));
+      this.loopIDs = [1,2,3];
+      return this.loopIDs;
+    }
+    console.log("LoopService::getLoopIDs()returning old LoopIDs.");
+    return this.loopIDs;
+  }
 
   /**
    * getVolumeRef
@@ -282,16 +274,16 @@ export class LoopService {
    * 'LoopX...X' while 'X...X' can be any combination of numbers.
    * @returns id of currently loaded loop as number
    */
-  public getLoadedLoopID(): number{
+  public getLoadedLoopID(): number {
     let stringBuffer: string = "";
     let loopId: number = 0;
     let loopIdLength: number = 0;
-    if(this.loopName === "default")
+    if (this.loopName === "default")
       return loopId;
-    else if(this.loopName.length === 0)
+    else if (this.loopName.length === 0)
       return loopId;
     loopIdLength = this.loopName.length - "Loop".length;
-    while(loopIdLength > 0){
+    while (loopIdLength > 0) {
       stringBuffer = stringBuffer + this.loopName[this.loopName.length - loopIdLength];
       loopIdLength--;
     }

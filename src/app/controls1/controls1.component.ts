@@ -9,30 +9,30 @@ import { LoopService } from "../loop.service";
 
 export class Controls1Component implements OnInit {
 
-  public playTitle: String = 'PLAY';
-  private minTempo: number = 40;
-  private maxTempo: number = 208;
-  public tempoVisible: boolean = false;
+  playTitle: String = 'PLAY';
+  minTempo: number = 40;
+  maxTempo: number = 208;
+  tempoVisible: boolean = false;
 
   @Input() tempo: number;
   @Output() tempoChanged = new EventEmitter<number>();
 
-  private minVolume: number = 1;
-  private maxVolume: number = 20;
-  public volumeVisible: boolean = false;
+  minVolume: number = 0;
+  maxVolume: number = 1.0;
+  volumeVisible: boolean = false;
 
   @Input() volume: number;
   @Output() volumeChanged = new EventEmitter<number>(); 
   
-  public meterVisible: boolean = false;
+  meterVisible: boolean = false;
   @Input() meter: String;
   @Output() meterChanged = new EventEmitter<String>();
 
-  public effectsVisible: boolean = false;
+  effectsVisible: boolean = false;
   @Input() effects: String;
   @Output() effectsChanged = new EventEmitter<String>();
 
-  public modeVisible: boolean = false;
+  modeVisible: boolean = false;
   @Input() mode: String;
   @Output() modeChanged = new EventEmitter<String>();
     
@@ -45,7 +45,7 @@ export class Controls1Component implements OnInit {
   ngOnInit() {
   }
 
-  private tempoScale(): number[] {
+  tempoScale(): number[] {
     let values = [];
     for (let i=this.minTempo; i <= this.maxTempo; i++){
       values.push({value:i, title: i.toString()});
@@ -53,72 +53,72 @@ export class Controls1Component implements OnInit {
     return values;
   }
 
-  public chooseTempo(): void {
+  chooseTempo(): void {
     this.tempoVisible = true;
   }
 
-  private hideTempo(): void {
+  hideTempo(): void {
     this.tempoVisible = false;
     this.tempoChanged.emit(this.tempo);
   }
 
-  private volumeScale(): number[] {
+  volumeScale(): number[] {
     let values = [];
-    for (let i = this.minVolume; i <= this.maxVolume; i++){
-      values.push({value:i, title: i.toString()});
+    for (let i = this.minVolume; i <= this.maxVolume; i+=0.1){
+      values.push({value:i, title: i.toFixed(1)});
     }
     return values;
   }
 
-  public chooseVolume(): void {
+  chooseVolume(): void {
     this.volumeVisible = true;
   }
 
-  private hideVolume(): void {
+  hideVolume(): void {
     this.volumeVisible = false;
     this.volumeChanged.emit(this.volume);
   }
   
-  private meterScale(): Object [] {            
+  meterScale(): Object [] {            
     return [{value:'3/4', title:'3/4'}, {value:'4/4', title:'4/4'}, {value:'6/8', title:'6/8'}];      
   }
 
-  public chooseMeter(): void {
+  chooseMeter(): void {
     this.meterVisible = true;
   }
 
-  private hideMeter(): void {
+  hideMeter(): void {
     this.meterVisible = false;
     this.meterChanged.emit(this.meter);
   }
 
-  private effectsScale(): Object [] {
+  effectsScale(): Object [] {
     return [{value:'none', title:'none'}, {value:'Hall', title:'Hall'}, {value:'Rewerb', title:'Rewerb'}, {value:'Echo', title:'Echo'}, {value:'Flanger', title:'Flanger'}];
   }
 
-  public chooseEffects(): void {
+  chooseEffects(): void {
     this.effectsVisible = true;
   }
 
-  private hideEffects() {
+  hideEffects() {
     this.effectsVisible = false;
     this.effectsChanged.emit(this.effects);
   }
 
-  private modeScale(): Object [] {
+  modeScale(): Object [] {
     return [{value:'standard', title:'standard'}, {value:'advanced', title:'advanced'}];
   }
 
-  public chooseMode(): void {
+  chooseMode(): void {
     this.modeVisible = true;
   }
 
-  private hideMode() {
+  hideMode() {
     this.modeVisible = false;
     this.modeChanged.emit(this.mode);
   }
 
-  private play() {
+  play() {
     this.loopSvc.play();
     if (this.loopSvc.isCurrentlyPlaying()) {
       this.playTitle = 'STOP';

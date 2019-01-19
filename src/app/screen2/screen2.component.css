@@ -1,49 +1,55 @@
 .box {
-    height: 100px;
-    width: 225px;
-    margin-bottom: 5px;
-    border: 2px solid rgb(15, 22, 3);
-    border-radius: 6px;
-    box-shadow: 1px 1px 1px #000000;
+    margin: 7px auto;
+    text-align: center;
 }
 
 .button3 {
-    background-color: greenyellow;
     box-shadow: 1px 1px 1px #000000;
     border: 2px solid rgb(31, 49, 3);
     border-radius: 2px;
-    width: 24px;
-    height: 15px;
-    margin-top: 0px;
-    margin-bottom: 0px;
+    width: 11%;
+    height: 100%;
     opacity: 0.07;
+    margin: 0;
+    padding: 0;
 }
     
 .visualizer {
-    margin-top: 20px;
+    margin: 5px auto;
+    height: 90%;
+    width: 90%;
+    max-width: 210px;
 }
 
 @supports (-moz-appearance:none) {
     .visualizer {
-        margin-top: 2px;
+        margin: 2px auto 15px;
     }
+}
 
-    .button3 {
-        margin: 0px;
+.row {
+    height: 16px;
+    margin: 0 auto;
+}
+
+@media (min-width: 600px) { 
+    .box {
+        margin: auto;
+        height: 110px;
     }
-
-    .row {
-        height: 20px;
+    .visualizer {  
+        max-width: 240px; 
+        height: 90%;   
+    } 
+    @supports (-moz-appearance:none) {
+        .visualizer {
+            margin: 0 auto;
+        }
     }
 }
 
 .button3.highlited {
     opacity: 1.0;
-}
-
-.row {
-    margin-left: 15px;
-    margin-top: -5px;
 }
 
 #row0 .button3 {

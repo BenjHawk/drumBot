@@ -1,7 +1,9 @@
 <div class="box">
-    <div class="entry">Tempo: {{ selectedTempo }}</div>
-    <div class="entry">Volume: {{ selectedVolume }}</div>
-    <div class="entry">Meter: {{ selectedMeter }}</div>
-    <div class="entry">Mode: {{ selectedMode }}</div>
-    <div class="entry">Loop: {{ selectedLoop }}</div>
+    <div class="textField">
+        <div class="entry">Tempo: {{ selectedTempo }}</div>
+        <div class="entry">Volume: {{ selectedVolume | number:'1.0' }}</div>
+        <div class="entry">Meter: {{ selectedMeter }}</div>
+        <div class="entry">Mode: {{ selectedMode }}</div>
+        <div class="entry">Loop: {{ selectedLoop }}</div>
+    </div>
 </div>

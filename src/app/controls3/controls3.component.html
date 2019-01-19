@@ -1,11 +1,13 @@
-<div class="controls3" *ngFor="let rowId of rowNr" id="{{ rowNr }}">
-  <span class="row" *ngFor="let colId of colNr">
-    <button [class.button2]="!this.selectedBtn(rowId, colId)"
+<div class="controls3" >
+  <div *ngFor="let rowId of rowNr" id="{{ rowNr }}">
+    <span class="row" *ngFor="let colId of colNr">
+      <button [class.button2]="!this.selectedBtn(rowId, colId)"
             [class.button2Selected]="this.selectedBtn(rowId, colId)"
             id="{{ rowId }}{{ colId }}"
             (click)="clickedBtn(rowId, colId)">
-    </button>    
-  </span>
-</div>
+      </button>    
+    </span>
+  </div>
+</div> 
 
       
