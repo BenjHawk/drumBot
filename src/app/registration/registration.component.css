@@ -1,12 +1,11 @@
+
 .logIn {
-    width: 100px;
-    margin-right: 5px;
     border-radius: 6px;
     background-color:rgb(206, 202, 202);
     box-shadow: 1px 1px 1px #000000;
     border: 2px solid rgb(31, 49, 3);
     text-align: center;
-}
+} 
 
 ::placeholder {
     color: rgb(92, 89, 89);
@@ -23,3 +22,43 @@
 .button-primary:hover {
     background-color: rgb(202, 74, 23);
 }
+
+.registration .row {
+    display: flex;
+}
+
+.registration .row .logIn {
+    flex-grow: 1;
+    flex-shrink: 1;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.registration .row button {
+    flex-grow: 1;
+    flex-shrink: 1;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.registration {
+    margin: 0 auto;
+    margin-bottom: 20px;
+    width: 284px;
+}
+@media (min-width: 600px) { 
+    .registration {
+        width: 100%;
+        max-width: 500px;
+    }
+    .registration .row {
+        display: inline;
+    }
+    .registration .row .logIn {
+        width: 20%;
+    }
+    .registration .row .button {
+        width: 20%;
+    }
+}
+

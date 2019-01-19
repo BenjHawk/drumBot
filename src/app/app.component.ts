@@ -9,7 +9,7 @@ import { LoopService } from './loop.service';
 export class AppComponent {
   title = 'HyDrum';
   curTempo: number = 120;
-  curVolume: number = 10;
+  curVolume: number = 0.5;
   curMeter: String = '4/4';
   curEffects: String = 'none';
   curMode: String = 'standard';
@@ -30,6 +30,7 @@ export class AppComponent {
   onVolumeChange(volume: number) {
     console.log("New volume:", volume);
     this.curVolume = volume;
+    this.loopSvc.volumeMaster = volume;
   }
 
   onMeterChange(meter: String) {
@@ -52,5 +53,6 @@ export class AppComponent {
     this.curLoop = loop;
     this.loopSvc.setLoop(loop);
   }
+
 }
 

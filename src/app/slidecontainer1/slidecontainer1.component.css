@@ -1,8 +1,8 @@
 .slidecontainer1 {    
     height: 105px;
     width: 100%;
-    justify-content: center;
-    align-items: center;  
+    margin: auto;
+    display: flex;
 }
 
 input[type=range] {
@@ -15,8 +15,23 @@ input[type=range] {
     margin-right: -23px;        
 }
 
-@supports (-moz-appearance:none) {
-    input[type=range] {
-        margin-right: -28px;
+@media (min-width: 600px) {
+    .slidecontainer1 {    
+        max-width: 190px;
+    }
+    .slider1 {
+        width: 16%;
+        max-width: 31px;
     }
 }
+
+@media (min-width: 992px) {
+    .slidecontainer1 {    
+        height: 110px;
+        max-width: 330px;
+    }
+    .slider1 {
+        max-width: 55px;
+    }
+}
+

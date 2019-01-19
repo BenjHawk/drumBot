@@ -1,0 +1,52 @@
+.controls3 {
+    margin: auto;
+    width: 90%;
+    text-align: center;
+}
+
+.button2 {
+    background-color: greenyellow;
+    box-shadow: 1px 1px 1px #000000;
+    border: 2px solid rgb(31, 49, 3);
+    border-radius: 6px;
+    width: 28px;
+    height: 28px;
+}
+
+.button2Selected {
+    background-color: rgb(202, 74, 23);
+    box-shadow: 1px 1px 1px #000000;
+    border: 3px solid rgb(31, 49, 3);
+    border-radius: 6px;
+    width: 28px;
+    height: 28px;
+  }
+
+.row {
+    width: 90%;
+}
+
+@media (min-width: 600px) { 
+    .controls3 {
+        margin-top: 15px;
+    }  
+    .button2 {        
+        max-height: 24px;     
+        max-width: 24px;
+    }
+    .button2Selected {
+        max-height: 24px;
+        max-width: 24px;
+    }
+}
+
+@media (min-width: 992px) { 
+    .button2 {
+        max-width: 28px;
+        max-height: 28px;        
+    }
+    .button2Selected {
+        max-height: 28px;
+        max-width: 28px;
+    }
+}

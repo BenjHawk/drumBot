@@ -99,7 +99,7 @@ export class LoopService {
       }
       this.time++;
       this.time = this.time % this.timeCount;
-    }, 60 / this.tempo * 1000);
+    }, 60 / this.tempo * 500);
   }
 
   /**
@@ -183,13 +183,14 @@ export class LoopService {
   public getLoopIdsByUser(userID: number): void {
     console.warn("LoopService::getLoopIdsByUser() not tested");
     this.dataService.getLoopIdsByUser(userID).subscribe(
-      (resBody: Array<number>) => {
+      (resBody: Array<any>) => {
         try {
           console.log("loopService::getLoopIdsByUser()" + resBody[0]);
           let countIDs = resBody.length;
           let buffer = new Array<number>(countIDs);
           for (let i = 0; i < countIDs; i++)
-            buffer[i] = resBody[i];
+            buffer[i] = resBody[i].id;
+          console.log(buffer);
           this.loopIDs = buffer;
         }
         catch (e) {
@@ -217,15 +218,14 @@ export class LoopService {
   public getLoopIDs(): Array<number> {
     if (this.loopIDs === undefined) {
       console.log("LoopService::getLoopIDs()LoopIDs undefined. Try to fetch LoopIDs from DataService");
-      //console.warn("LoopService::getLoopIDs()generating mock Loops... REMOVE AFTER TESTING!!!");
-      //return [1, 2, 3, 4];
-      try{
+      return;
+      /*try{
         this.getLoopIdsByUser(parseInt(localStorage.getItem("userId")));
       }
       catch(e){
         console.error(e);
         return[];
-      }
+      }*/
     }
     return this.loopIDs;
   }
