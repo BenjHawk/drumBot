@@ -3,7 +3,8 @@
 // TODO: (testing) [Registration::Login ->] LoopSvc::getLoopIdsByUser() -> DS::getLoopIDsByUserID()
 // TODO: (testing) [Ctrl2::btnLoad ->] LoopSvc::loopFromDB() -> DS::getLoopByID()
 // TODO: (testing) Ctrl2::btnSave -> LoopSvc::saveLoop() -> DS::saveLoop()
-// TODO: Ctrl2::btnDelete -> LoopSvc::deleteLoopByID() -> DS::deleteLoopByID()
+// TODO: (testing) Ctrl2::btnDelete -> LoopSvc::deleteLoopByID() -> DS::deleteLoopByID()
+// TODO: implement variable meter
 // OPTIONALS
 // TODO: loop.name in Database currently unused by LoopService
 // TODO: create component VolumeWraper
@@ -22,7 +23,7 @@ export class LoopService {
 
   public onInstrumentPlay: any = null;
   public onStop: any = null;
-  private tempo: number = 120;
+  private tempo: number = 80;
   public loopName: String = "";
 
   // private itemsToStore = 1;
@@ -174,9 +175,16 @@ export class LoopService {
           console.error(e);
         }
       }
-      );
+    );
+    // console.warn("LoopService::getLoopById():DISABLED LOGIC FOR INTERNAL TESTING -> no call to dataService");
+    // this.instrumentTimes = [[true,false,true,false,true,false,true,false],
+    //                         [false,true,false,true,false,true,false,true],
+    //                         [false,true,true,false,false,true,true,false],
+    //                         [true,false,false,false,true,false,false,false],
+    //                         [false,false,false,false,false,false,false,true],
+    //                         [false,false,false,true,false,false,false,false]];
   }
-
+        
   /**
    * Fetch LoopIDs from DataService. Responses body is expected to be of type Array<number>
    * Save LoopIDs to this instance of LoopService
@@ -186,36 +194,37 @@ export class LoopService {
     console.log("LoopService::getLoopIdsByUser()");
     this.dataService.getLoopIdsByUser(userID).subscribe(
       (resBody: Array<any>) => {
-          console.log("loopService::getLoopIdsByUser()" + resBody[0]);
-          let countIDs = resBody.length;
-          let buffer = new Array<number>(countIDs);
-          for (let i = 0; i < countIDs; i++)
-            buffer[i] = resBody[i].id;
-          
-          this.loopIDs = buffer;
+        console.log("loopService::getLoopIdsByUser()" + resBody[0]);
+        let countIDs = resBody.length;
+        let buffer = new Array<number>(countIDs);
+        for (let i = 0; i < countIDs; i++)
+        buffer[i] = resBody[i].id;
+        
+        this.loopIDs = buffer;
       }
-    );
-  }
-
-  public setDimensions(rowCount: number, colCount: number): void {
-    this.instrumentCount = rowCount;
-    this.timeCount = colCount;
-    this.instrumentsInit();
-  }
-
-  public setInstrumentTime(instrument: number, time: number): void {
-    this.instrumentTimes[instrument][time] = !this.instrumentTimes[instrument][time];
-  }
-
-  public getInstrumentTime(instrument: number, time: number): boolean {
-    return this.instrumentTimes[instrument][time];
-  }
-
+      );
+    }
+    
+    public setDimensions(rowCount: number, colCount: number): void {
+      this.instrumentCount = rowCount;
+      this.timeCount = colCount;
+      this.instrumentsInit();
+    }
+    
+    public setInstrumentTime(instrument: number, time: number): void {
+      this.instrumentTimes[instrument][time] = !this.instrumentTimes[instrument][time];
+    }
+    
+    public getInstrumentTime(instrument: number, time: number): boolean {
+      return this.instrumentTimes[instrument][time];
+    }
+            
   public getLoopIDs(): Array<number> {
     if (this.loopIDs === undefined) {
       console.log("LoopService::getLoopIDs()LoopIDs undefined. Try to fetch LoopIDs from DataService");
+      console.warn("LoopService::getLoopById():DISABLED LOGIC FOR INTERNAL TESTING -> no call to dataService");
       console.warn("LoopService::getLoopIDs()returning mock object(IDs)");
-      //  this.getLoopIdsByUser(parseInt(localStorage.getItem("userId")));
+      // this.getLoopIdsByUser(parseInt(localStorage.getItem("userId")));
       this.loopIDs = [1,2,3];
       return this.loopIDs;
     }
@@ -230,7 +239,7 @@ export class LoopService {
   public getVolumeRef(index: number): any {
     return this.volumeInstrumentsWrapper[index];
   }
-
+  
   public play(): void {
     if (this.isPlaying) {
       console.log("LoopService::play()stopping loop");

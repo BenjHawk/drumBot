@@ -13,7 +13,7 @@ export class Controls3Component implements OnInit {
   rowId: number = this.rowNr[0];
   colId: number = this.colNr[0];
 
-  private selectedBtns: Array<Array<boolean>> = null;
+  // private selectedBtns: Array<Array<boolean>> = null;
 
   private loopSvc: LoopService;
 
@@ -23,30 +23,31 @@ export class Controls3Component implements OnInit {
   
   private clickedBtn(rowId: number, colId: number): void{
     this.loopSvc.setInstrumentTime(rowId - 1, colId - 1);
-    this.selectedBtns[rowId - 1][colId - 1] = !this.selectedBtns[rowId - 1][colId - 1];
+    // this.selectedBtns[rowId - 1][colId - 1] = !this.selectedBtns[rowId - 1][colId - 1];
   }
 
 
-  private initSelectedBtns(): void {
-    this.selectedBtns = new Array<Array<boolean>>(this.rowNr.length);
-    for (let i = 0; i < this.rowNr.length; i++){
-      this.selectedBtns[i] = new Array<boolean>(this.colNr.length);
-      for (let j = 0; j < this.colNr.length; j++)
-        this.selectedBtns[i][j] = false;
-      }
-    }
+  // private initSelectedBtns(): void {
+  //   this.selectedBtns = new Array<Array<boolean>>(this.rowNr.length);
+  //   for (let i = 0; i < this.rowNr.length; i++){
+  //     this.selectedBtns[i] = new Array<boolean>(this.colNr.length);
+  //     for (let j = 0; j < this.colNr.length; j++)
+  //       this.selectedBtns[i][j] = false;
+  //     }
+  //   }
     
     private selectedBtn(rowId:number, colId: number): boolean{
       //console.log("check selectedBtns");
-    if(this.selectedBtns === null)
-      return false;
-    else
-      return this.selectedBtns[rowId - 1][colId - 1];
+    // if(this.selectedBtns === null)
+      // return false;
+    // else
+      // return this.selectedBtns[rowId - 1][colId - 1];
+      return this.loopSvc.getInstrumentTime(rowId - 1, colId - 1);
   }
   
   ngOnInit() {
     this.loopSvc.setDimensions(this.rowNr.length,this.colNr.length);
-    this.initSelectedBtns();
+    // this.initSelectedBtns();
     console.log("initialized selecedBtns");
   }  
 
