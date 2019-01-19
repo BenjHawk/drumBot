@@ -11,7 +11,8 @@
 
 import { Injectable } from '@angular/core';
 import { DataService } from './data.service';
-//import { Observable } from 'rxjs'
+import { Observable } from 'rxjs'
+import { error } from 'util';
 
 
 @Injectable({
@@ -152,27 +153,27 @@ export class LoopService {
    * @param loopId 
    */
   public getLoopById(loopId: number): void {
-    console.warn("LoopService::getLoopById():not tested");
-    this.dataService.getLoopById(loopId).subscribe(
-      (resBody) => {
-        try {
+    console.log("LoopService::getLoopById(" + loopId + ")fetching loop from dataservice");
+    let responseObject = this.dataService.getLoopById(loopId);
+    if(responseObject === null){
+      console.error("LoopService::getLoopById()error fetching loop from dataservice: response object is null");
+    }
+    else{
+      responseObject.subscribe(
+        (resBody) => {
           console.log("loopService::getLoopById()" + resBody[0]);
           this.tempo = resBody[0].tempo;
-          this.volumeInstrumentsWrapper[0].volume = resBody[0].VolumeCymbal;
-          this.volumeInstrumentsWrapper[1].volume = resBody[0].VolumeHiHat;
-          this.volumeInstrumentsWrapper[2].volume = resBody[0].VolumeSnare;
-          this.volumeInstrumentsWrapper[3].volume = resBody[0].VolumeBass;
-          this.volumeInstrumentsWrapper[4].volume = resBody[0].VolumeTom1;
-          this.volumeInstrumentsWrapper[5].volume = resBody[0].VolumeTom2;
-          this.volumeMaster = resBody[0].volumeMaster;
-          this.instrumentTimes = <Array<Array<boolean>>>JSON.parse(resBody[0].InstrumentTimes);
+        this.volumeInstrumentsWrapper[0].volume = resBody[0].VolumeCymbal;
+        this.volumeInstrumentsWrapper[1].volume = resBody[0].VolumeHiHat;
+        this.volumeInstrumentsWrapper[2].volume = resBody[0].VolumeSnare;
+        this.volumeInstrumentsWrapper[3].volume = resBody[0].VolumeBass;
+        this.volumeInstrumentsWrapper[4].volume = resBody[0].VolumeTom1;
+        this.volumeInstrumentsWrapper[5].volume = resBody[0].VolumeTom2;
+        this.volumeMaster = resBody[0].volumeMaster;
+        this.instrumentTimes = <Array<Array<boolean>>>JSON.parse(resBody[0].InstrumentTimes);
         }
-        catch (e) {
-          console.warn("LoopService::getLoopById()error while parsing from responce body.")
-          console.error(e);
-        }
-      }
-    );
+      );
+    }
   }
 
   /**
@@ -181,10 +182,9 @@ export class LoopService {
    * @param userID
    */
   public getLoopIdsByUser(userID: number): void {
-    console.warn("LoopService::getLoopIdsByUser() not tested");
+    console.log("LoopService::getLoopIdsByUser()");
     this.dataService.getLoopIdsByUser(userID).subscribe(
       (resBody: Array<any>) => {
-        try {
           console.log("loopService::getLoopIdsByUser()" + resBody[0]);
           let countIDs = resBody.length;
           let buffer = new Array<number>(countIDs);
@@ -192,11 +192,6 @@ export class LoopService {
             buffer[i] = resBody[i].id;
           console.log(buffer);
           this.loopIDs = buffer;
-        }
-        catch (e) {
-          console.warn("LoopService::getLoopIdsByUser()error while parsing from responce body.")
-          console.error(e);
-        }
       }
     );
   }
@@ -218,15 +213,12 @@ export class LoopService {
   public getLoopIDs(): Array<number> {
     if (this.loopIDs === undefined) {
       console.log("LoopService::getLoopIDs()LoopIDs undefined. Try to fetch LoopIDs from DataService");
-      return;
-      /*try{
-        this.getLoopIdsByUser(parseInt(localStorage.getItem("userId")));
-      }
-      catch(e){
-        console.error(e);
-        return[];
-      }*/
+      console.warn("LoopService::getLoopIDs()returning mock object(IDs)");
+      //  this.getLoopIdsByUser(parseInt(localStorage.getItem("userId")));
+      this.loopIDs = [1,2,3];
+      return this.loopIDs;
     }
+    console.log("LoopService::getLoopIDs()returning old LoopIDs.");
     return this.loopIDs;
   }
 

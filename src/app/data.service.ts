@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { shareReplay } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -31,10 +32,12 @@ export class DataService {
   }
 
   getLoopIdsByUser(userId) {
+    console.log("data::getLoopIdsByUser()");
     return this.http.get('http://localhost:4040/getloopidsbyuser/'+userId);
   }
   
   getLoopById(loopId) {
+    console.log("data::getLoopById()");
     return this.http.get('http://localhost:4040/getloopbyid/'+loopId);
   }
   

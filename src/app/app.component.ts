@@ -48,10 +48,11 @@ export class AppComponent {
     this.curMode = mode;
   }
 
-  onLoopChange(loop: String) {
-    console.log("New loop:", loop);
-    this.curLoop = loop;
-    this.loopSvc.setLoop(loop);
+  onLoopChange(loopName: String) {
+    this.curLoop = loopName;
+    this.loopSvc.setLoop(loopName);
+    console.log("app::onLoopChange()Loading loop number:", this.loopSvc.getLoadedLoopID());
+    this.loopSvc.getLoopById(this.loopSvc.getLoadedLoopID());
   }
 
 }
