@@ -128,8 +128,15 @@ export class LoopService {
     ).subscribe();
   }
 
+  /**
+   * Deletes loop with specified loopID from local loopID Array and also calls dataService::deleteLoop()
+   * If there is another LoopID loaded for the current user then fetches the loop with the next higher ID.
+   * Otherwise fetches the default loop, meaning the return to an initial state.
+   * @param loopId 
+   */
   public deleteLoopById(loopId: number): void {
     console.log("loopService::deleteLoopById()");
+
     this.dataService.deleteLoop(loopId);
   }
 
