@@ -71,7 +71,7 @@ app.post('/updateloop/:id', authentication.checkIfAuthenticated, (req, res) => {
 /*app.get('/deleteuser/:id', (req, res) => {
     apiCallback.deleteUser(req, res);
 });*/
-app.get('/deleteloop/:id', authentication.checkIfAuthenticated, (req, res) => {
+app.get('/deleteloop/:id', (req, res) => {
     apiCallback.deleteLoop(req, res);
 });
 

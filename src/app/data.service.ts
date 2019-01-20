@@ -42,10 +42,10 @@ export class DataService {
   }
   
   deleteUser(userId) {
-    return this.http.get('http://database_server:4040/deleteuser/'+userId);
+    return this.http.get('http://localhost:4040/deleteuser/'+userId);
   }
 
   deleteLoop(loopId) {
-    return this.http.get('http://database_server:4040/deleteloop/'+loopId);
+    return this.http.get('http://localhost:4040/deleteloop/'+loopId);
   }
 }

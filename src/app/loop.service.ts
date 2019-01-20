@@ -31,7 +31,7 @@ export class LoopService {
   // loop dimensions
   private instrumentCount: number = 0;  // number of instruments demanded by UI
   private timeCount: number = 0;        // number of times demanded by UI
-  private loopIDs: Array<number>;       // loop IDs needed to identify a specific loop in the database
+  private loopIDs: Array<number>;       // loop IDs saved in database by current user(needed to identify a specific loop in the database)
   // instrument data
   private instrumentTimes: Array<Array<boolean>>;   // state of instruments at specific times
   public volumeMaster = 1.0;
@@ -120,24 +120,52 @@ export class LoopService {
     console.log("loopService::saveLoop()" + this.instrumentTimes);
     let sessionData: string = "";
     console.log("loopService::saveLoop()" + sessionData);
+    let userId: Number = Number(localStorage.getItem("userId"));
+    console.log(userId);
     this.dataService.saveLoop(
       this.tempo, '4/4', JSON.stringify(this.instrumentTimes),
       this.instruments[0].volume, this.instruments[1].volume, this.instruments[2].volume,
       this.instruments[3].volume, this.instruments[4].volume, this.instruments[5].volume,
-      1.0, 1
+      1.0, userId
     ).subscribe();
   }
 
   /**
    * Deletes loop with specified loopID from local loopID Array and also calls dataService::deleteLoop()
-   * If there is another LoopID loaded for the current user then fetches the loop with the next higher ID.
-   * Otherwise fetches the default loop, meaning the return to an initial state.
+   * Return hyDrum/interface to an initial state for current user.
    * @param loopId 
    */
   public deleteLoopById(loopId: number): void {
-    console.log("loopService::deleteLoopById()");
-
-    this.dataService.deleteLoop(loopId);
+    let it = 0;
+    console.log("loopService::deleteLoopById( "+ loopId + " )");
+    // check if there is a loop to delete
+    if(this.loopIDs === undefined || this.loopIDs === null || this.loopIDs.length === 0){
+      console.error("loopService::deleteLoopById()Can't delete loop. No loopIDs loaded.");
+      return;
+    }
+    
+    // // FOR INTERNAL TESTING ONLY: adjust local loopIDs
+    // let buffer:Array<number> = new Array<number>();
+    // console.log("loopService::deleteLoopById()current loopIDs: " + this.loopIDs);
+    // console.log("loopService::deleteLoopById()current loopIDs.length: " + this.loopIDs.length);
+    // for(let i = 0; i < this.loopIDs.length; i++){
+    //   if(this.loopIDs[i] !== loopId){
+    //     buffer.push(this.loopIDs[i]);
+    //   }
+    // }
+    // this.loopIDs = buffer;
+    // console.log("loopService::deleteLoopById()end of internal testing. current loopIDs are: " + this.loopIDs);
+    // console.warn("loopService::deleteLoopById()FOR INTERNAL TESTING ONLY: no call to dataService");
+    // // END OF INTERNAL TESTING
+    
+    // clear array loopIDs forcing getLoopIDs() to load from dataService
+    this.loopIDs = [];
+    this.dataService.deleteLoop(loopId).subscribe();
+    // fetch loopIDs from dataService
+    this.getLoopIDs();
+    
+    // return to initial state
+    this.instrumentsInit();
   }
 
   /**
@@ -227,7 +255,7 @@ export class LoopService {
     }
             
   public getLoopIDs(): Array<number> {
-    if (this.loopIDs === undefined) {
+    if (this.loopIDs === undefined || this.loopIDs === null || this.loopIDs.length === 0) {
       console.log("LoopService::getLoopIDs()LoopIDs undefined. Try to fetch LoopIDs from DataService");
       console.warn("LoopService::getLoopById():DISABLED LOGIC FOR INTERNAL TESTING -> no call to dataService");
       console.warn("LoopService::getLoopIDs()returning mock object(IDs)");
