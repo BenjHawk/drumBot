@@ -21,12 +21,10 @@ export class Controls2Component implements OnInit {
 
   private clickedBtn(btnName: String): void {
     if (btnName === this.name[0]) {
-      console.log("controls2::clickedBtn():SAVE Loop" + this.loopSvc.getLoadedLoopID());
       this.loopSvc.saveLoop();
       this.loopSvc.getLoopIdsByUser(Number(localStorage.getItem("userId")));
     }
     else if (btnName === this.name[2]) {
-      console.log("controls2::clickedBtn():DELETE Loop" + this.loopSvc.getLoadedLoopID());
       this.loopSvc.deleteLoopById(this.loopSvc.getLoadedLoopID());
       this.loopSvc.getLoopIdsByUser(Number(localStorage.getItem("userId")));
     }

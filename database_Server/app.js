@@ -5,6 +5,7 @@ const apiCallback = require('./apiCallbacks');
 const authentication = require('./authentication');
 
 const app = express();
+
 // Add headers
 app.use(function(req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
@@ -27,7 +28,8 @@ app.get('/createlooptable', (req, res) => {
     dbSetup.createLoopsTable(req, res);
 });
 
-//Only for dev purpose; comment out in the final version
+//Only for dev purpose;
+/*
 app.get('/dropdatabase', (req, res) => {
     dbSetup.dropDatabase();
 });
@@ -38,7 +40,7 @@ app.get('/dropdusertable', (req, res) => {
 
 app.get('/droplooptable', (req, res) => {
     dbSetup.dropLoopTable();
-});
+});*/
 
 //endpoint for login via JWT authentication
 app.post('/login', (req, res) => {
@@ -61,17 +63,7 @@ app.get('/getloopidsbyuser/:userid', authentication.checkIfAuthenticated, (req, 
 app.get('/getloopbyid/:id', (req, res) => {
     apiCallback.getLoopById(req, res);
 });
-app.get('/getallloops/', (req, res) => {
-    apiCallback.getAllLoops(req, res);
-});
-app.post('/updateloop/:id', authentication.checkIfAuthenticated, (req, res) => {
-    apiCallback.updateLoop(req, res);
-});
-
-/*app.get('/deleteuser/:id', (req, res) => {
-    apiCallback.deleteUser(req, res);
-});*/
-app.get('/deleteloop/:id', (req, res) => {
+app.get('/deleteloop/:id', authentication.checkIfAuthenticated, (req, res) => {
     apiCallback.deleteLoop(req, res);
 });
 

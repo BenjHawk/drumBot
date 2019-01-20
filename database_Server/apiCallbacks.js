@@ -3,9 +3,6 @@ const mariadb = require('mariadb/callback');
 const db = require('./databaseConnection');
 const bp = require('body-parser');
 
-/*const app = express();
-app.use(bp.json());*/
-
 
 module.exports.createUser = function(req, res) {
     let post = req.body;
@@ -87,41 +84,6 @@ module.exports.deleteLoop = function(req, res) {
     console.log(Id);
     let sql = `DELETE FROM Loops WHERE id = ?`;
     let query = db.query(sql, Id, (err, result) => {
-        if (err) {
-            res.status(501).end();
-        }
-        res.status(204).end();
-    });
-}
-
-module.exports.getAllLoops = function(res, req) {
-    let Id = req.params.id;;
-    let sql = `SELECT * FROM Loops`;
-    let query = db.query(sql, (err, result) => {
-        if (err) {
-            res.status(404).end();
-        }
-        res.status(200).json(result).end();
-    });
-}
-
-
-module.exports.updateUser = function(res, req) {
-    let post = req.body;
-    let user = req.params.id;
-    let sql = `UPDATE User SET ? WHERE id = ?`;
-    let query = db.query(sql, [post, user], (err, result) => {
-        if (err) {
-            res.status(501).end();
-        }
-        res.status(200).end();
-    });
-}
-
-module.exports.deleteUser = function(res, req) {
-    let userId = req.params.id;
-    let sql = `DELETE FROM User WHERE id = ?`;
-    let query = db.query(sql, userId, (err, result) => {
         if (err) {
             res.status(501).end();
         }

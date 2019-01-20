@@ -33,6 +33,7 @@ function findUserIdForUsername(username) {
 
         let query = db.query(sql, [username], (err, result) => {
             if (err) {
+                console.log(err);
                 reject(err);
             } else {
                 userId = result[0].id;

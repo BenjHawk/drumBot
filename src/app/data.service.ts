@@ -14,17 +14,9 @@ export class DataService {
     return this.http.post('http://localhost:4040/createuser/', {username, password});
   }
 
-  updateUser(userId, body){
-    this.http.post('http://localhost:4040/updateuser/'+userId, body);
-  }
-
   saveLoop(tempo, meter, instrumentTimes, volumeCymbal, volumeHiHat, volumeSnare, volumeBass, volumeTom1,volumeTom2, masterVolume, userId){
     return this.http.post('http://localhost:4040/createloop/', {tempo, meter, instrumentTimes, volumeCymbal, volumeHiHat,
     volumeSnare, volumeBass, volumeTom1, volumeTom2, masterVolume, userId});
-  }
-
-  updateLoop(loopId, body){
-    this.http.post('http://localhost:4040/updateloop/'+loopId, body);
   }
 
   getUser(userId) {
@@ -32,17 +24,11 @@ export class DataService {
   }
 
   getLoopIdsByUser(userId) {
-    console.log("data::getLoopIdsByUser()");
     return this.http.get('http://localhost:4040/getloopidsbyuser/'+userId);
   }
   
   getLoopById(loopId) {
-    console.log("data::getLoopById()");
     return this.http.get('http://localhost:4040/getloopbyid/'+loopId);
-  }
-  
-  deleteUser(userId) {
-    return this.http.get('http://localhost:4040/deleteuser/'+userId);
   }
 
   deleteLoop(loopId) {

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth-service.service';
-import { Router } from '@angular/router';
 import { DataService } from '../data.service';
 import { validateBasis } from '@angular/flex-layout';
 import { LoopService } from "../loop.service";
@@ -19,7 +18,6 @@ export class RegistrationComponent implements OnInit {
   constructor(private fb:FormBuilder, 
                private authService: AuthService, 
                private dataService: DataService,
-               private router: Router,
                private loopSvc: LoopService) {
 
       this.form = this.fb.group({
@@ -31,7 +29,6 @@ export class RegistrationComponent implements OnInit {
   ngOnInit() {
   }
 
-  // TODO: Registration::Login -> LoopSvc::getLoopIdsByUser() [-> DS::getLoopIDsByUserID()]
   /**
    * Login user and after that call LoopService::getLoopIdsByUser()
   */
@@ -41,16 +38,14 @@ export class RegistrationComponent implements OnInit {
           this.authService.login(val.username, val.password)
               .subscribe(
                   (res: any) => {
-                      console.log("User is logged in");
-                      console.log(res);
                       //load jwt, expiration time and userId from to localstorage 
                       if (res.idToken != null && res.Id != null){
                         this.authService.setSession(res);
-                        this.router.navigateByUrl('/');
                         alert("Login successful! \nWelcome " + val.username);
+                        //load loop ids sorted by this user from the database
                         this.loopSvc.getLoopIdsByUser(Number(localStorage.getItem("userId")));
-                      }                   
-                  });
+                      }  
+                    });
       }
   }
 
@@ -63,12 +58,7 @@ export class RegistrationComponent implements OnInit {
                     console.log(res.status);
                      if (res.userStatus === "Created"){
                         alert("User "+ val.username + " sucessfully created!");
-                        console.log(localStorage.getItem("expires_at"));
                       }    
-                    else {
-                        this.router.navigateByUrl('/')
-
-                    }
                 },
                     (error: any) => {
                         alert("Error, no user was created! The username chosen already exist. Please use another one and retry.");
@@ -81,25 +71,6 @@ export class RegistrationComponent implements OnInit {
         this.form.reset();
         console.log("Logout succesfull!");
     }
-
-    //Only for development purposes
-    test(){
-        this.authService.test().subscribe(
-            res => {
-                console.log("Authentication is valid!");
-                
-            },
-            error => {
-                console.log("Error! No Authentication or token not valid anynmore!");
-            }
-        );
-    }
-
-    //Only for development purposes
-    testLoopSVC(){
-        this.loopSvc.getLoopById(4);
-    }
-    
 }
 
   

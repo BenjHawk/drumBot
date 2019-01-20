@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -19,9 +18,6 @@ import { AuthInterceptor } from './auth-interceptor';
 import { AuthService } from './auth-service.service';
 import { DataService } from './data.service';
 
-const appRoutes: Routes = [
-  { path: 'login', component: RegistrationComponent },
-];
 
 @NgModule({
   declarations: [
@@ -40,8 +36,7 @@ const appRoutes: Routes = [
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    RouterModule.forRoot(appRoutes)
+    HttpClientModule
   ],
   providers: [
     AuthService,
