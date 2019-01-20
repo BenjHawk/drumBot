@@ -259,8 +259,8 @@ export class LoopService {
       console.log("LoopService::getLoopIDs()LoopIDs undefined. Try to fetch LoopIDs from DataService");
       console.warn("LoopService::getLoopById():DISABLED LOGIC FOR INTERNAL TESTING -> no call to dataService");
       console.warn("LoopService::getLoopIDs()returning mock object(IDs)");
-      // this.getLoopIdsByUser(parseInt(localStorage.getItem("userId")));
-      this.loopIDs = [1,2,3];
+      this.getLoopIdsByUser(parseInt(localStorage.getItem("userId")));
+      //this.loopIDs = [1,2,3];
       return this.loopIDs;
     }
     console.log("LoopService::getLoopIDs()returning old LoopIDs.");
