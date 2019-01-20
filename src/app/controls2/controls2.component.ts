@@ -13,10 +13,7 @@ export class Controls2Component implements OnInit {
 
   public name: String[] = ['save', 'load', 'delete'];
 
-  private loopSvc: LoopService;
-
-  constructor(loopSvc: LoopService, private dataService: DataService) {
-    this.loopSvc = loopSvc;
+  constructor(private loopSvc: LoopService, private dataService: DataService) {
   }
 
   ngOnInit() {
@@ -24,14 +21,11 @@ export class Controls2Component implements OnInit {
 
   private clickedBtn(btnName: String): void {
     if (btnName === this.name[0]) {
+      console.log("controls2::clickedBtn():SAVE Loop" + this.loopSvc.getLoadedLoopID());
       this.loopSvc.saveLoop();
       this.loopSvc.getLoopIdsByUser(Number(localStorage.getItem("userId")));
     }
-    //if (btnName === this.name[1]) {
-    //  // dirty testing-method
-    //  this.loopSvc.getLoopById(4);
-    //}
-    if (btnName === this.name[2]) {
+    else if (btnName === this.name[2]) {
       console.log("controls2::clickedBtn():DELETE Loop" + this.loopSvc.getLoadedLoopID());
       this.loopSvc.deleteLoopById(this.loopSvc.getLoadedLoopID());
       this.loopSvc.getLoopIdsByUser(Number(localStorage.getItem("userId")));

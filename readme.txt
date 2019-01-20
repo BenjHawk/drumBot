@@ -9,3 +9,6 @@ Enjoy the drumBot web-based drum machine for musical projects as well as for hav
 
 Cheers, 
 The developers
+
+changelog:
+190120_01 implemented saving of current volumeMaster state
