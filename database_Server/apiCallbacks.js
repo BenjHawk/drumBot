@@ -82,6 +82,18 @@ module.exports.getLoopById = function(req, res) {
     });
 }
 
+module.exports.deleteLoop = function(req, res) {
+    let Id = req.params.id;
+    console.log(Id);
+    let sql = `DELETE FROM Loops WHERE id = ?`;
+    let query = db.query(sql, Id, (err, result) => {
+        if (err) {
+            res.status(501).end();
+        }
+        res.status(204).end();
+    });
+}
+
 module.exports.getAllLoops = function(res, req) {
     let Id = req.params.id;;
     let sql = `SELECT * FROM Loops`;
@@ -110,17 +122,6 @@ module.exports.deleteUser = function(res, req) {
     let userId = req.params.id;
     let sql = `DELETE FROM User WHERE id = ?`;
     let query = db.query(sql, userId, (err, result) => {
-        if (err) {
-            res.status(501).end();
-        }
-        res.status(204).end();
-    });
-}
-
-module.exports.deleteLoop = function(res, req) {
-    let Id = req.params.id;
-    let sql = `DELETE FROM Loop WHERE id = ?`;
-    let query = db.query(sql, Id, (err, result) => {
         if (err) {
             res.status(501).end();
         }

@@ -120,17 +120,19 @@ export class LoopService {
     console.log("loopService::saveLoop()" + this.instrumentTimes);
     let sessionData: string = "";
     console.log("loopService::saveLoop()" + sessionData);
+    let userId: Number = Number(localStorage.getItem("userId"));
+    console.log(userId);
     this.dataService.saveLoop(
       this.tempo, '4/4', JSON.stringify(this.instrumentTimes),
       this.instruments[0].volume, this.instruments[1].volume, this.instruments[2].volume,
       this.instruments[3].volume, this.instruments[4].volume, this.instruments[5].volume,
-      1.0, 1
+      1.0, userId
     ).subscribe();
   }
 
   public deleteLoopById(loopId: number): void {
     console.log("loopService::deleteLoopById()");
-    this.dataService.deleteLoop(loopId);
+    this.dataService.deleteLoop(loopId).subscribe();
   }
 
   /**
